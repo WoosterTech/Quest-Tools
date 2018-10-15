@@ -25,7 +25,7 @@ StatusChange(keys) ; The piece that actually does the window switching and chang
 return
 
 ^F2::
-	StatusChange("/dnd on phone")
+	StatusChange("/dnd On Phone")
 return
 
 ^F3::
@@ -33,23 +33,29 @@ return
 	EnvAdd, var, 15, Minutes
 	FormatTime, var, %var%, h:mm
 
-	StatusChange("/away back ~" var)
+	StatusChange("/away Back ~" var)
 return
 
 ^F4::
-	StatusChange("/away PM me")
+	StatusChange("/away PM Me")
 return
 
 ^F5::
 	; Ask user for away input
 	InputBox, var, Away Message, Message for Away Status?
-
+	if ErrorLevel 
+	{
+		return
+	}
 	StatusChange("/away " var)
 return
 
 ^F6::
 	; Ask user for dnd input
 	InputBox, var, Do Not Disturb Message, Message for DND Status?
-
+	if ErrorLevel
+	{
+		return
+	}
 	StatusChange("/dnd " var)
 return
