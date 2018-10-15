@@ -1,12 +1,22 @@
-#WinActivateForce
-
 StatusChange(keys) ; The piece that actually does the window switching and change of status
 {
 	winid := WinExist("A")
-	WinActivate, HipChat
-	WinActivate, HipChat
-	SendInput, %keys%
-	SendInput, {Enter}
+	IfWinExist, HipChat
+	{
+		WinActivate
+		WinActivate
+		WinWaitActive, , , 1
+		If ErrorLevel
+		{
+			MsgBox, 8208, Error, WinWaitActive Timed Out, cancelling
+			return
+		}
+	} else {
+		MsgBox, 8208, Not Running, HipChat is not running, cancelling
+		return
+	}
+	SendInput, %keys%{Enter}
+	Sleep, 100
 	WinActivate, ahk_id %winid%
 }
 
