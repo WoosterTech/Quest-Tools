@@ -1,7 +1,7 @@
 # AutoHotKey
 
 ## HipChat Scripts
-This is a compiled [AutoHotKey](https://autohotkey.com/ "AutoHotKey's Homepage") script that makes it easy to change your HipChat status. Automatically switches you back to active window.
+This is a compiled [AutoHotKey](https://autohotkey.com/ "AutoHotKey's Homepage") script that makes it easy to change HipChat status. Automatically switches back to active window.
 
 + Ctrl+F1 - Available
 + Ctrl+F2 - Do Not Disturb On Phone
