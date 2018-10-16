@@ -30,6 +30,6 @@ On my keyboard, I have those programmed to (in order):
 + fn+m
 + fn+c
 
-**__Please submit issues/comments/suggests using Issues on GitHub__**
+**_Please submit issues/comments/suggests using Issues on GitHub_**
 
 \- Xenon
