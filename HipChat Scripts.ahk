@@ -29,10 +29,19 @@ return
 return
 
 ^F3::
-	; Determine time 15 minutes from now
-	EnvAdd, var, 15, Minutes
+	; Determine time %increment% minutes from now
+	increment := 15 ; time to add to current time
+	rounder := 5 ; what level to round UP to nearest
+	EnvAdd, var, %increment%, Minutes
+	FormatTime, time, %var%, h:mm
+	FormatTime, min, %var%, mm
+	mod := Mod(min, rounder)
+	if mod
+	{
+		EnvSub, rounder, %mod%
+		EnvAdd, var, %rounder%, Minutes
+	}
 	FormatTime, var, %var%, h:mm
-
 	StatusChange("/away Back ~" var)
 return
 
