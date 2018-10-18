@@ -1,12 +1,13 @@
-StatusChange(keys) ; The piece that actually does the window switching and change of status
+StatusChange(keys) 				; The piece that actually does the window switching and change of status
 {
-	winid := WinExist("A")
-	IfWinExist, HipChat
+	winid := WinExist("A")		; Store ID of current active window
+
+	if WinExist("HipChat")		; Check to make sure HipChat is running
 	{
 		WinActivate
-		WinActivate
-		WinWaitActive, , , 1
-		If ErrorLevel
+		WinActivate 			; Not sure why this has to be sent twice, seems to be related to virtual desktops
+		WinWaitActive, , , 1	; Make sure window got activated within 1 second
+		If ErrorLevel 			; Run if window did not activate within timeout value
 		{
 			MsgBox, 8208, Error, WinWaitActive Timed Out, cancelling
 			return
@@ -16,8 +17,7 @@ StatusChange(keys) ; The piece that actually does the window switching and chang
 		return
 	}
 	SendInput, %keys%{Enter}
-	Sleep, 100
-	WinActivate, ahk_id %winid%
+	WinActivate, ahk_id %winid%		; Switch back to original active window
 }
 
 ^F1::
@@ -30,10 +30,9 @@ return
 
 ^F3::
 	; Determine time %increment% minutes from now
-	increment := 15 ; time to add to current time
-	rounder := 5 ; what level to round UP to nearest
+	increment := 15 						; time to add to current time
+	rounder := 5 							; what level to round UP to nearest
 	EnvAdd, var, %increment%, Minutes
-	FormatTime, time, %var%, h:mm
 	FormatTime, min, %var%, mm
 	mod := Mod(min, rounder)
 	if mod
@@ -42,6 +41,7 @@ return
 		EnvAdd, var, %rounder%, Minutes
 	}
 	FormatTime, var, %var%, h:mm
+
 	StatusChange("/away Back ~" var)
 return
 
@@ -52,19 +52,21 @@ return
 ^F5::
 	; Ask user for away input
 	InputBox, var, Away Message, Message for Away Status?
-	if ErrorLevel 
+	if ErrorLevel 		; Cancel script if "Cancel" is pressed 
 	{
 		return
 	}
+
 	StatusChange("/away " var)
 return
 
 ^F6::
 	; Ask user for dnd input
 	InputBox, var, Do Not Disturb Message, Message for DND Status?
-	if ErrorLevel
+	if ErrorLevel 		; Cancel script if "Cancel" is pressed
 	{
 		return
 	}
+	
 	StatusChange("/dnd " var)
 return

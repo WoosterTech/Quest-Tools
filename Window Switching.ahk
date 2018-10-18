@@ -116,3 +116,20 @@ IfWinExist, ahk_exe chrome.exe
 		return
 }
 return
+
+^+F8::
+IfWinExist, ahk_exe sldworks.exe
+{
+	WinActivate
+	WinActivate
+	WinWaitActive, , , 1 
+	If ErrorLevel
+	{
+		MsgBox, 8208, Error, WinWaitActive Timed Out, cancelling
+		return
+	}
+} else {
+		MsgBox, 8208, Not Running, SOLIDWORKS is not running, cancelling
+		return
+}
+return

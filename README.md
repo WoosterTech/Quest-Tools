@@ -5,7 +5,7 @@ This is a compiled [AutoHotKey](https://autohotkey.com/ "AutoHotKey's Homepage")
 
 + Ctrl+F1 - Available
 + Ctrl+F2 - Do Not Disturb On Phone
-+ Ctrl+F3 - Away Back ~{current time + 15 rounded UP to nearest 5 minutes}
++ Ctrl+F3 - Away Back ~{current time + 15 rounded **UP** to nearest 5 minutes}
 + Ctrl+F4 - Away PM Me
 + Ctrl+F5 - Away {prompt for message}
 + Ctrl+F6 - Do Not Disturb {prompt for message}
@@ -20,6 +20,7 @@ Quick switching to commonly open windows
 + Ctrl+Shift+F5 - Firefox
 + Ctrl+Shift+F6 - GoToMeeting
 + Ctrl+Shift+F7 - Chrome
++ Ctrl+Shift+F8 - SOLIDWORKS
 
 On my keyboard, I have those programmed to (in order):
 + fn+h
@@ -29,6 +30,7 @@ On my keyboard, I have those programmed to (in order):
 + fn+f
 + fn+m
 + fn+c
++ fn+w
 
 **_Please submit issues/comments/suggests using Issues on GitHub_**
 
