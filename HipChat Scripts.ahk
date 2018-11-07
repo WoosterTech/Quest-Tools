@@ -1,4 +1,4 @@
-StatusChange(keys) 				; The piece that actually does the window switching and change of status
+StatusChange(keys) 				; The function that actually does the window switching and change of status
 {
 	winid := WinExist("A")		; Store ID of current active window
 
@@ -32,15 +32,19 @@ return
 	; Determine time %increment% minutes from now
 	increment := 15 						; time to add to current time
 	rounder := 5 							; what level to round UP to nearest
-	EnvAdd, var, %increment%, Minutes
-	FormatTime, min, %var%, mm
-	mod := Mod(min, rounder)
+	var := ;								; initialize %var% as current time
+	EnvAdd, var, %increment%, Minutes 		; current time plus increment
+	; MsgBox %var%
+	FormatTime, min, %var%, mm 				; grab minute part of time for rounding
+	mod := Mod(min, rounder)				; grab remainder after dividing current mins by rounder
+	; MsgBox %var% %mod%
 	if mod
 	{
 		EnvSub, rounder, %mod%
 		EnvAdd, var, %rounder%, Minutes
+		; MsgBox %var%
 	}
-	FormatTime, var, %var%, h:mm
+	FormatTime, var, %var%, h:mm 			; format for easy human digestion
 
 	StatusChange("/away Back ~" var)
 return
