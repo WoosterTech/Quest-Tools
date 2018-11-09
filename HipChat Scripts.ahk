@@ -16,7 +16,7 @@ StatusChange(keys) 				; The function that actually does the window switching an
 		MsgBox, 8208, Not Running, HipChat is not running, cancelling
 		return
 	}
-	SendInput, %keys%{Enter}
+	SendInput, ^a%keys%{Enter}
 	WinActivate, ahk_id %winid%		; Switch back to original active window
 }
 
