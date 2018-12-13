@@ -1,4 +1,4 @@
-StatusChange(keys) 				; The function that actually does the window switching and change of status
+StatusChangeHC(keys) 			; The function that actually does the window switching and change of status
 {
 	winid := WinExist("A")		; Store ID of current active window
 
@@ -20,12 +20,41 @@ StatusChange(keys) 				; The function that actually does the window switching an
 	WinActivate, ahk_id %winid%		; Switch back to original active window
 }
 
+StatusChangeTeams(keys) 		; The piece that actually does the window switching and change of status
+{
+	winid := WinExist("A")		; Store ID of current active window
+
+	if WinExist("ahk_exe teams.exe")		; Check to make sure HipChat is running
+	{
+		WinActivate
+		WinActivate 			; Not sure why this has to be sent twice, seems to be related to virtual desktops
+		WinWaitActive, , , 1	; Make sure window got activated within 1 second
+		If ErrorLevel 			; Run if window did not activate within timeout value
+		{
+			MsgBox, 8208, Error, WinWaitActive Timed Out, cancelling
+			return
+		}
+	} else {
+		MsgBox, 8208, Not Running, Teams is not running, cancelling
+		return
+	}
+
+	SendInput, ^e
+	SendInput, %keys%
+	Sleep, 250
+	SendInput, {Enter}
+	Sleep, 250
+	WinActivate, ahk_id %winid%		; Switch back to original active window
+}
+
 ^F1::
-	StatusChange("/back")
+	StatusChangeHC("/back")
+	StatusChangeTeams("/available")
 return
 
 ^F2::
-	StatusChange("/dnd On Phone")
+	StatusChangeHC("/dnd On Phone")
+	StatusChangeTeams("/dnd")
 return
 
 ^F3::
@@ -46,11 +75,13 @@ return
 	}
 	FormatTime, var, %var%, h:mm 			; format for easy human digestion
 
-	StatusChange("/away Back ~" var)
+	StatusChangeHC("/away Back ~" var)
+	StatusChangeTeams("/away")
 return
 
 ^F4::
-	StatusChange("/away PM Me")
+	StatusChangeHC("/away PM Me")
+	StatusChangeTeams("/away")
 return
 
 ^F5::
@@ -61,7 +92,8 @@ return
 		return
 	}
 
-	StatusChange("/away " var)
+	StatusChangeHC("/away " var)
+	StatusChangeTeams("/away")
 return
 
 ^F6::
@@ -72,5 +104,6 @@ return
 		return
 	}
 	
-	StatusChange("/dnd " var)
+	StatusChangeHC("/dnd " var)
+	StatusChangeTeams("/dnd")
 return
