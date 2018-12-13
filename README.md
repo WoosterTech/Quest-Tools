@@ -3,12 +3,14 @@
 ## HipChat Script
 This is a compiled [AutoHotKey](https://autohotkey.com/ "AutoHotKey's Homepage") script that makes it easy to change HipChat status. Automatically switches back to active window.
 
+Now also changes Teams status. Teams doesn't support messages with the status. Brackets indicate what will happen in Teams vs. what happens in HipChat.
+
 + Ctrl+F1 - Available
-+ Ctrl+F2 - Do Not Disturb On Phone
-+ Ctrl+F3 - Away Back ~{current time + 15 rounded **UP** to nearest 5 minutes}
-+ Ctrl+F4 - Away PM Me
-+ Ctrl+F5 - Away {prompt for message}
-+ Ctrl+F6 - Do Not Disturb {prompt for message}
++ Ctrl+F2 - Do Not Disturb On Phone [Do Not Disturb]
++ Ctrl+F3 - Away Back ~{current time + 15 rounded **UP** to nearest 5 minutes} [Away]
++ Ctrl+F4 - Away PM Me [Away]
++ Ctrl+F5 - Away {prompt for message} [Away]
++ Ctrl+F6 - Do Not Disturb {prompt for message} [Do Not Disturb]
 
 ## Window Switching Script
 Quick switching to commonly open windows
