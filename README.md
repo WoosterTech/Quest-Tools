@@ -7,8 +7,8 @@ Now also changes Teams status. Teams doesn't support messages with the status. B
 
 + Ctrl+F1 - Available
 + Ctrl+F2 - Do Not Disturb On Phone [Do Not Disturb]
-+ Ctrl+F3 - Away Back ~{current time + 15 rounded **UP** to nearest 5 minutes} [Away]
-+ Ctrl+F4 - Away PM Me [Away]
++ Ctrl+F3 - Away Back ~{current time + 15 rounded **UP** to nearest 5 minutes} [Be Right Back]
++ Ctrl+F4 - Away PM Me [Be Right Back]
 + Ctrl+F5 - Away {prompt for message} [Away]
 + Ctrl+F6 - Do Not Disturb {prompt for message} [Do Not Disturb]
 

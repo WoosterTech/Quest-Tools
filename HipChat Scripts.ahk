@@ -61,11 +61,11 @@ return
 	}
 	FormatTime, var, %var%, h:mm 			; format for easy human digestion
 
-	StatusChange("/away Back ~" var, "/away")
+	StatusChange("/away Back ~" var, "/brb")
 return
 
 ^F4::
-	StatusChange("/away PM Me", "/away")
+	StatusChange("/away PM Me", "/brb")
 return
 
 ^F5::
