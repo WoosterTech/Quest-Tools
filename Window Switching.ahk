@@ -153,3 +153,20 @@ return
 ; Click, 200, 90									; clicks in search field of GM
 ; SendInput, ^a%var%{Enter}						; selects all and clears text
 ; return
+
+^+F9::											; ctrl+F9 switch to 3cx if open
+IfWinExist, ahk_exe 3CXWin8Phone.exe
+{
+	WinActivate
+	WinActivate
+	WinWaitActive, , , 1 
+	If ErrorLevel
+	{
+		MsgBox, 8208, Error, WinWaitActive Timed Out, cancelling
+		return
+	}
+} else {
+	MsgBox, 8208, Not Running, 3CX is not running, cancelling
+	return
+}
+return
