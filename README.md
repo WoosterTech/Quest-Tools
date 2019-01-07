@@ -34,7 +34,7 @@ On my keyboard, I have those programmed to (in order):
 + fn+m
 + fn+c
 + fn+w
-+ fn+3
++ fn+x
 
 **_Please submit issues/comments/suggests using Issues on GitHub_**
 
