@@ -23,6 +23,7 @@ Quick switching to commonly open windows
 + Ctrl+Shift+F6 - GoToMeeting
 + Ctrl+Shift+F7 - Chrome
 + Ctrl+Shift+F8 - SOLIDWORKS
++ Ctrl+Shift+F9 - 3CX
 
 On my keyboard, I have those programmed to (in order):
 + fn+h
@@ -33,6 +34,7 @@ On my keyboard, I have those programmed to (in order):
 + fn+m
 + fn+c
 + fn+w
++ fn+3
 
 **_Please submit issues/comments/suggests using Issues on GitHub_**
 
