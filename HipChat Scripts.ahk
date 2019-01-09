@@ -12,7 +12,9 @@ StatusChange(keysHC, keysTeams) 			; The function that actually does the window 
 			MsgBox, 8208, Error, HipChat Timed Out, cancelling
 			return
 		}
-		SendInput, ^a%keysHC%{Enter}
+		SendInput, ^{Tab}					; Switch room to clear selection
+		SendInput, ^+{Tab}					; Switch back to original room
+		SendInput, ^a%keysHC%{Enter}		; Select all existing text and send command
 	}
 
 	if WinExist("ahk_exe teams.exe")		; Check to make sure Teams is running
@@ -34,6 +36,8 @@ StatusChange(keysHC, keysTeams) 			; The function that actually does the window 
 
 	WinActivate, ahk_id %winid%				; Switch back to original active window
 }
+
+#SingleInstance, force 						; Forces only one instance, allows to re-run script without reloading
 
 ^F1::
 	StatusChange("/back", "/available")
