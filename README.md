@@ -16,6 +16,7 @@ Now also changes Teams status. Teams doesn't support messages with the status. B
 Quick switching to commonly open windows
 
 + Ctrl+Shift+F1 - HipChat
++ Ctrl+Alt+F1	- View HipChat for 500ms (quick-check status)
 + Ctrl+Shift+F2 - Remote Desktop (must include "gm rdp" in title bar)
 + Ctrl+Shift+F3 - Outlook
 + Ctrl+Shift+F4 - slack
@@ -27,6 +28,7 @@ Quick switching to commonly open windows
 
 On my keyboard, I have those programmed to (in order):
 + fn+h
++ (n/a)
 + fn+g
 + fn+o
 + fn+s
