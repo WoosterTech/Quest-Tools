@@ -12,8 +12,9 @@ StatusChange(keysHC, keysTeams) 			; The function that actually does the window 
 			MsgBox, 8208, Error, HipChat Timed Out, cancelling
 			return
 		}
-		SendInput, ^{Tab}					; Switch room to clear selection
-		SendInput, ^+{Tab}					; Switch back to original room
+		; SendInput, ^{Tab}					; Switch room to clear selection
+		; SendInput, ^+{Tab}					; Switch back to original room
+		; Sleep, 250
 		SendInput, ^a%keysHC%{Enter}		; Select all existing text and send command
 	}
 

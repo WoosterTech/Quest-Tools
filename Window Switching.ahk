@@ -1,3 +1,28 @@
+#SingleInstance, force
+
+^!F1::
+winid := WinExist("A")
+
+IfWinExist, HipChat
+{
+	WinActivate
+	WinActivate
+	WinWaitActive, , , 1
+	If ErrorLevel
+	{
+		MsgBox, 8208, Error, WinWaitActive Timed Out, cancelling
+		return
+	}
+} else {
+	MsgBox, 8208, Not Running, HipChat is not running, cancelling
+	return
+}
+
+Sleep, 500
+
+WinActivate, ahk_id %winid%
+return
+
 ^+F1::
 IfWinExist, HipChat
 {
