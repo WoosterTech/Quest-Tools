@@ -46,9 +46,9 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 			MsgBox, 8208, Error, 3CX Timed Out, cancelling
 			return
 		}	
-		SendInput, {Esc}
+		; SendInput, {Esc}					; Removed because this will hang up a call
 		Click, 30,45						; Click on availability button
-		Sleep, 20							; Seems to need to wait for the menu to be built, improves reliability
+		Sleep, 50							; Seems to need to wait for the menu to be built, improves reliability
 		Click, %pos3CX%						; Click on appropriate menu item based on coordinates below
 	}
 
@@ -68,7 +68,7 @@ posDND := "30,155"
 return
 
 ^F2::
-	StatusChange("/dnd On Phone", "/dnd", posAway)
+	StatusChange("/dnd On Phone", "/dnd", posAvail)
 return
 
 ^F3::
