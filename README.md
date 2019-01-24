@@ -5,10 +5,12 @@ This is a compiled [AutoHotKey](https://autohotkey.com/ "AutoHotKey's Homepage")
 
 Now also changes Teams status. Teams doesn't support messages with the status. Brackets indicate what will happen in Teams vs. what happens in HipChat.
 
+Now *also* changes 3CX status. 3CX **does** support messages, but that adds a lot of complexity, so not currently supported here. {} indicate what 3CX will do when different than Teams.
+
 + Ctrl+F1 - Available
 + Ctrl+F2 - Do Not Disturb On Phone [Do Not Disturb]
-+ Ctrl+F3 - Away Back ~{current time + 15 rounded **UP** to nearest 5 minutes} [Be Right Back]
-+ Ctrl+F4 - Away PM Me [Be Right Back]
++ Ctrl+F3 - Away Back ~{current time + 15 rounded **UP** to nearest 5 minutes} [Be Right Back] {Away}
++ Ctrl+F4 - Away PM Me [Be Right Back] {Away}
 + Ctrl+F5 - Away {prompt for message} [Away]
 + Ctrl+F6 - Do Not Disturb {prompt for message} [Do Not Disturb]
 
