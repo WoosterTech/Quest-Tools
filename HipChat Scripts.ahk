@@ -16,6 +16,7 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 		; SendInput, ^+{Tab}					; Switch back to original room
 		; Sleep, 250
 		SendInput, ^a%keysHC%{Enter}		; Select all existing text and send command
+		Sleep, 50							; Seems to be more reliable, especially when a lot of text is entered
 	}
 
 	if WinExist("ahk_exe teams.exe")		; Check to make sure Teams is running
