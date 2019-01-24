@@ -68,7 +68,7 @@ posDND := "30,155"
 return
 
 ^F2::
-	StatusChange("/dnd On Phone", "/dnd", posAvail)
+	StatusChange("/dnd On Phone", "/dnd", posDND)
 return
 
 ^F3::
