@@ -51,7 +51,11 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 		PixelGetColor, onCall, 80, 500			; Check color of window in "End Call" button area
 		if (onCall != 0x0000FF and onCall != 0x575757)	; if red (0x0000FF) or "gray" (0x575757), skip changing status
 		{
-			; SendInput, {Esc}					; Removed because this will hang up a call
+			Loop, 4								; Escape needs to be pressed multiple times if multiple levels deep
+			{
+				SendInput, {Esc}				; Works to escape any menus to get to "main" window
+				Sleep, 25						; Needs a quick moment between escape presses
+			}
 			Click, 30,45						; Click on availability button
 			Sleep, 50							; Seems to need to wait for the menu to be built, improves reliability
 			Click, %pos3CX%						; Click on appropriate menu item based on coordinates below
