@@ -45,11 +45,17 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 		{
 			MsgBox, 8208, Error, 3CX Timed Out, cancelling
 			return
-		}	
-		; SendInput, {Esc}					; Removed because this will hang up a call
-		Click, 30,45						; Click on availability button
-		Sleep, 50							; Seems to need to wait for the menu to be built, improves reliability
-		Click, %pos3CX%						; Click on appropriate menu item based on coordinates below
+		}
+
+		; Check if on a call, don't change status
+		PixelGetColor, onCall, 80, 500			; Check color of window in "End Call" button area
+		if (onCall != 0x0000FF and onCall != 0x575757)	; if red (0x0000FF) or "gray" (0x575757), skip changing status
+		{
+			; SendInput, {Esc}					; Removed because this will hang up a call
+			Click, 30,45						; Click on availability button
+			Sleep, 50							; Seems to need to wait for the menu to be built, improves reliability
+			Click, %pos3CX%						; Click on appropriate menu item based on coordinates below
+		}
 	}
 
 	WinActivate, ahk_id %winid%				; Switch back to original active window
