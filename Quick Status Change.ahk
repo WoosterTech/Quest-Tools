@@ -57,7 +57,7 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 				Sleep, 25						; Needs a quick moment between escape presses
 			}
 			Click, 30,45						; Click on availability button
-			Sleep, 50							; Seems to need to wait for the menu to be built, improves reliability
+			Sleep, 100							; Seems to need to wait for the menu to be built, improves reliability
 			Click, %pos3CX%						; Click on appropriate menu item based on coordinates below
 		}
 	}
@@ -65,7 +65,13 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 	WinActivate, ahk_id %winid%				; Switch back to original active window
 }
 
+; 3cxMessage(message)
+; {
+
+; }
+
 #SingleInstance, force 						; Forces only one instance, allows to re-run script without reloading
+; Menu, Tray, Icon, images/quick_change.ico, 0
 CoordMode, Mouse, Client
 
 ; These are the measured coordinates on a 1920x1080 screen at 100% scaling, adjust as required
