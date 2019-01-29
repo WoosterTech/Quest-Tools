@@ -1,4 +1,5 @@
 #SingleInstance, force
+Menu, Tray, Icon, images/q_on_red_bkgd.ico
 
 ^!=:: 											; ctrl+alt+= clears search in GM	
 ; winid := WinExist()
