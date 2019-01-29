@@ -71,7 +71,7 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 ; }
 
 #SingleInstance, force 						; Forces only one instance, allows to re-run script without reloading
-; Menu, Tray, Icon, images/quick_change.ico, 0
+Menu, Tray, Icon, images/quick_change.ico
 CoordMode, Mouse, Client
 
 ; These are the measured coordinates on a 1920x1080 screen at 100% scaling, adjust as required

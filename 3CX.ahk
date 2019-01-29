@@ -33,6 +33,7 @@ return
 }
 
 #SingleInstance, force
+Menu, Tray, Icon, images/3cx.ico
 
 ^!\:: 												; ctrl+alt+\ switches to 3CX and readies it for number entry (if on number page)
 F12::
