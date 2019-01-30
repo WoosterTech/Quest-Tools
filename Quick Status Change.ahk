@@ -1,6 +1,7 @@
 StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the window switching and change of status
 {
 	winid := WinExist("A")					; Store ID of current active window
+	MouseGetPos, ogMousePosX, ogMousePosY	; Store current mouse position
 
 	if WinExist("HipChat")					; Check to make sure HipChat is running
 	{
@@ -63,6 +64,7 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 	}
 
 	WinActivate, ahk_id %winid%				; Switch back to original active window
+	MouseMove, ogMousePosX, ogMousePosY, 0	; Restore original mouse position
 }
 
 ; 3cxMessage(message)
