@@ -67,12 +67,13 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 		}
 	}
 
-	WinActivate, ahk_id %winid%				; Switch back to original active window
-	MouseMove, ogMousePosX, ogMousePosY, 0	; Restore original mouse position
+	WinActivate, ahk_id %winid%					; Switch back to original active window
+	MouseMove, ogMousePosX, ogMousePosY, 0		; Restore original mouse position
 }
 
-#SingleInstance, force 						; Forces only one instance, allows to re-run script without reloading
-Menu, Tray, Icon, images/quick_change.ico 	; Icon for this script
+#SingleInstance, force 							; Forces only one instance, allows to re-run script without reloading
+Menu, Tray, Icon, images/quick_change.ico 		; Icon for this script
+Menu, Tray, Tip, QI Tools: Quick Status Change 	; Change tooltip on icon in tray
 CoordMode, Mouse, Client
 
 ; Define INI file location
