@@ -43,6 +43,8 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 	{
 		global 3cxSleep
 		global buttonAvail
+		global onCallPosXY
+		global onCallColorList
 		WinActivate
 		WinActivate 						; Not sure why this has to be sent twice, seems to be related to virtual desktops
 		WinWaitActive, , , 1				; Make sure window got activated within 1 second
@@ -53,8 +55,20 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 		}
 
 		; Check if on a call, don't change status
-		PixelGetColor, onCall, 80, 500			; Check color of window in "End Call" button area
-		if (onCall != 0x0000FF and onCall != 0x575757)	; if red (0x0000FF) or "gray" (0x575757), skip changing status
+		PixelGetColor, onCall, onCallPosXY[1], onCallPosXY[2]			; Check color of window in "End Call" button area
+
+		b_onCall := 0													; Initialize condition
+
+		Loop % onCallColorList.MaxIndex()								; Loop over all colors from INI file
+		{
+			if (onCall = onCallColorList[A_Index])						; Check to see if loop color matches button color
+			{
+				b_onCall := 1											; Set condition to "true" if colors match
+				break 													; Break loop if a color matches
+			}
+		}
+
+		if (b_onCall != 1)						; If a match was made above, don't run code below
 		{
 			Loop, 4								; Escape needs to be pressed multiple times if multiple levels deep
 			{
@@ -79,18 +93,21 @@ CoordMode, Mouse, Client
 ; Define INI file location
 pathINI = %A_AppData%\Quest Integration\QI Tools.ini
 
-; Read INI file (all times in ms)
+; Read INI file (all times in ms); last values on each line are defaults
 IniRead, hcSleep, %pathINI%, QuickStatusChange, hcSleep , 50				; Time before switching to next app after HipChat
 IniRead, teamsSleep, %pathINI%, QuickStatusChange, teamsSleep , 250			; Time between actions in Teams
 IniRead, 3cxSleep, %pathINI%, QuickStatusChange, 3cxSleep , 100				; Time to wait for availability list to populate
-IniRead, buttonAvail, %pathINI%, QuickStatusChange, buttonAvail				; Location of "Availability" button 	Default is 30,45
-IniRead, posAvail, %pathINI%, QuickStatusChange, posAvail					; Location of "Available" setting		Default is 30,80
-IniRead, posAway, %pathINI%, QuickStatusChange, posAway						; Location of "Away" setting			Default is 30,120
-IniRead, posDND, %pathINI%, QuickStatusChange, posDND						; Location of "Do not disturb" setting	Default is 30,155
+IniRead, buttonAvail, %pathINI%, QuickStatusChange, buttonAvail, 30,45		; Location of "Availability" button
+IniRead, posAvail, %pathINI%, QuickStatusChange, posAvail, 30,80			; Location of "Available" setting
+IniRead, posAway, %pathINI%, QuickStatusChange, posAway, 30,120				; Location of "Away" setting
+IniRead, posDND, %pathINI%, QuickStatusChange, posDND, 30,155				; Location of "Do not disturb" setting
 IniRead, awayInterval, %pathINI%, QuickStatusChange, awayInterval, 15		; Minutes to add to current time
 IniRead, roundInterval, %pathINI%, QuickStatusChange, roundInterval, 5		; Minutes to round time to
+IniRead, onCallPos, %pathINI%, QuickStatusChange, onCallPos, 80,500		; Location of "End Call" button
+IniRead, onCallColors, %pathINI%, QuickStatusChange, onCallColors, 0x0000FF,0x575757,0xC1C1C1,0xFF0000 ; Comma delimited list of colors when on a call
 
-; MsgBox, %teamsSleep%
+onCallPosXY := StrSplit(onCallPos, ",")										; Separate X and Y components of read value
+onCallColorList := StrSplit(onCallColors, ",")								; Separate colors into array of n-size
 
 ^F1::
 	StatusChange("/back", "/available", posAvail)
