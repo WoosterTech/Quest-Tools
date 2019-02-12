@@ -34,6 +34,7 @@ return
 
 #SingleInstance, force
 Menu, Tray, Icon, images/3cx.ico
+Menu, Tray, Tip, QI Tools: 3CX
 
 ^!\:: 												; ctrl+alt+\ switches to 3CX and readies it for number entry (if on number page)
 F12::
