@@ -42,6 +42,7 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 	if WinExist("ahk_exe 3CXWin8Phone.exe")		; Check to make sure 3CX is running
 	{
 		global 3cxSleep
+		global buttonAvail
 		WinActivate
 		WinActivate 						; Not sure why this has to be sent twice, seems to be related to virtual desktops
 		WinWaitActive, , , 1				; Make sure window got activated within 1 second
@@ -60,8 +61,8 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 				SendInput, {Esc}				; Works to escape any menus to get to "main" window
 				Sleep, 25						; Needs a quick moment between escape presses
 			}
-			Click, 30,45						; Click on availability button
-			Sleep, 3cxSleep						; Seems to need to wait for the menu to be built, improves reliability
+			Click, %buttonAvail%				; Click on availability button
+			Sleep, %3cxSleep%					; Seems to need to wait for the menu to be built, improves reliability
 			Click, %pos3CX%						; Click on appropriate menu item based on coordinates below
 		}
 	}
@@ -70,24 +71,25 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 	MouseMove, ogMousePosX, ogMousePosY, 0	; Restore original mouse position
 }
 
-; 3cxMessage(message)
-; {
-
-; }
-
 #SingleInstance, force 						; Forces only one instance, allows to re-run script without reloading
-Menu, Tray, Icon, images/quick_change.ico
+Menu, Tray, Icon, images/quick_change.ico 	; Icon for this script
 CoordMode, Mouse, Client
 
-; Read INI file
-IniRead, hcSleep, %A_ScriptDir%\QI Tools.ini, QuickStatusChange, hcSleep , 50
-IniRead, teamsSleep, %A_ScriptDir%\QI Tools.ini, QuickStatusChange, teamsSleep , 250
-IniRead, 3cxSleep, %A_ScriptDir%\QI Tools.ini, QuickStatusChange, 3cxSleep , 100
-IniRead, posAvail, %A_ScriptDir%\QI Tools.ini, QuickStatusChange, posAvail				; Default is 30,80
-IniRead, posAway, %A_ScriptDir%\QI Tools.ini, QuickStatusChange, posAway				; Default is 30,120
-IniRead, posDND, %A_ScriptDir%\QI Tools.ini, QuickStatusChange, posDND					; Default is 30,155
-IniRead, awayInterval, %A_ScriptDir%\QI Tools.ini, QuickStatusChange, awayInterval, 15
-IniRead, roundInterval, %A_ScriptDir%\QI Tools.ini, QuickStatusChange, roundInterval, 5
+; Define INI file location
+pathINI = %A_AppData%\Quest Integration\QI Tools.ini
+
+; Read INI file (all times in ms)
+IniRead, hcSleep, %pathINI%, QuickStatusChange, hcSleep , 50				; Time before switching to next app after HipChat
+IniRead, teamsSleep, %pathINI%, QuickStatusChange, teamsSleep , 250			; Time between actions in Teams
+IniRead, 3cxSleep, %pathINI%, QuickStatusChange, 3cxSleep , 100				; Time to wait for availability list to populate
+IniRead, buttonAvail, %pathINI%, QuickStatusChange, buttonAvail				; Location of "Availability" button 	Default is 30,45
+IniRead, posAvail, %pathINI%, QuickStatusChange, posAvail					; Location of "Available" setting		Default is 30,80
+IniRead, posAway, %pathINI%, QuickStatusChange, posAway						; Location of "Away" setting			Default is 30,120
+IniRead, posDND, %pathINI%, QuickStatusChange, posDND						; Location of "Do not disturb" setting	Default is 30,155
+IniRead, awayInterval, %pathINI%, QuickStatusChange, awayInterval, 15		; Minutes to add to current time
+IniRead, roundInterval, %pathINI%, QuickStatusChange, roundInterval, 5		; Minutes to round time to
+
+; MsgBox, %teamsSleep%
 
 ^F1::
 	StatusChange("/back", "/available", posAvail)
