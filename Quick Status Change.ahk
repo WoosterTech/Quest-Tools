@@ -5,6 +5,7 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 
 	if WinExist("HipChat")					; Check to make sure HipChat is running
 	{
+		global hcSleep
 		WinActivate
 		WinActivate 						; Not sure why this has to be sent twice, seems to be related to virtual desktops
 		WinWaitActive, , , 1				; Make sure window got activated within 1 second
@@ -17,11 +18,12 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 		; SendInput, ^+{Tab}					; Switch back to original room
 		; Sleep, 250
 		SendInput, ^a%keysHC%{Enter}		; Select all existing text and send command
-		Sleep, 50							; Seems to be more reliable, especially when a lot of text is entered
+		Sleep, %hcSleep%					; Seems to be more reliable, especially when a lot of text is entered
 	}
 
 	if WinExist("ahk_exe teams.exe")		; Check to make sure Teams is running
 	{
+		global teamsSleep					; Allows variable to be pulled in from outside of function
 		WinActivate
 		WinActivate 						; Not sure why this has to be sent twice, seems to be related to virtual desktops
 		WinWaitActive, , , 1				; Make sure window got activated within 1 second
@@ -32,13 +34,14 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 		}	
 		SendInput, ^e
 		SendInput, %keysTeams%
-		Sleep, 250							; Seems to need a delay before sending enter
+		Sleep, %teamsSleep%					; Seems to need a delay before sending enter
 		SendInput, {Enter}
-		Sleep, 250							; Seems to be more reliable with a delay before switching apps
+		Sleep, %teamsSleep%					; Seems to be more reliable with a delay before switching apps
 	}
 
-	if WinExist("ahk_exe 3CXWin8Phone.exe")		; Check to make sure Teams is running
+	if WinExist("ahk_exe 3CXWin8Phone.exe")		; Check to make sure 3CX is running
 	{
+		global 3cxSleep
 		WinActivate
 		WinActivate 						; Not sure why this has to be sent twice, seems to be related to virtual desktops
 		WinWaitActive, , , 1				; Make sure window got activated within 1 second
@@ -58,7 +61,7 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 				Sleep, 25						; Needs a quick moment between escape presses
 			}
 			Click, 30,45						; Click on availability button
-			Sleep, 100							; Seems to need to wait for the menu to be built, improves reliability
+			Sleep, 3cxSleep						; Seems to need to wait for the menu to be built, improves reliability
 			Click, %pos3CX%						; Click on appropriate menu item based on coordinates below
 		}
 	}
@@ -76,10 +79,15 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 Menu, Tray, Icon, images/quick_change.ico
 CoordMode, Mouse, Client
 
-; These are the measured coordinates on a 1920x1080 screen at 100% scaling, adjust as required
-posAvail := "30,80"
-posAway := "30,120"
-posDND := "30,155"
+; Read INI file
+IniRead, hcSleep, %A_ScriptDir%\QI Tools.ini, QuickStatusChange, hcSleep , 50
+IniRead, teamsSleep, %A_ScriptDir%\QI Tools.ini, QuickStatusChange, teamsSleep , 250
+IniRead, 3cxSleep, %A_ScriptDir%\QI Tools.ini, QuickStatusChange, 3cxSleep , 100
+IniRead, posAvail, %A_ScriptDir%\QI Tools.ini, QuickStatusChange, posAvail				; Default is 30,80
+IniRead, posAway, %A_ScriptDir%\QI Tools.ini, QuickStatusChange, posAway				; Default is 30,120
+IniRead, posDND, %A_ScriptDir%\QI Tools.ini, QuickStatusChange, posDND					; Default is 30,155
+IniRead, awayInterval, %A_ScriptDir%\QI Tools.ini, QuickStatusChange, awayInterval, 15
+IniRead, roundInterval, %A_ScriptDir%\QI Tools.ini, QuickStatusChange, roundInterval, 5
 
 ^F1::
 	StatusChange("/back", "/available", posAvail)
@@ -91,8 +99,8 @@ return
 
 ^F3::
 	; Determine time %increment% minutes from now
-	increment := 15 						; time to add to current time
-	rounder := 5 							; what level to round UP to nearest
+	increment := %awayInterval%				; time to add to current time
+	rounder := %roundInterval%				; what level to round UP to nearest
 	var := ;								; initialize %var% as current time
 	EnvAdd, var, %increment%, Minutes 		; current time plus increment
 	; MsgBox %var%
