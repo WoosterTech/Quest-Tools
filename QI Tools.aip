@@ -56,13 +56,14 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
     <ROW File="CX.exe" Component_="CX.exe" FileName="3CX.exe" Version="0.1" Attributes="0" SourcePath="3CX.exe" SelfReg="false" NextFile="GMSearch.exe" DigSign="true"/>
     <ROW File="GMSearch.exe" Component_="GMSearch.exe" FileName="GMSearch.exe" Version="0.1" Attributes="0" SourcePath="GMSearch.exe" SelfReg="false" NextFile="QuickStatusChange.exe" DigSign="true"/>
-    <ROW File="QITools.ini" Component_="QITools.ini_1" FileName="QITOOL~1.INI|QI Tools.ini" Attributes="0" SourcePath="QI Tools.ini" SelfReg="false"/>
+    <ROW File="QITools.ini" Component_="QITools.ini_1" FileName="QITOOL~1.INI|QI Tools.ini" Attributes="0" SourcePath="QI Tools.ini" SelfReg="false" NextFile="red_q_on_blue_bkgd.ico"/>
     <ROW File="QuickStatusChange.exe" Component_="QuickStatusChange.exe" FileName="QUICKS~1.EXE|Quick Status Change.exe" Version="0.1" Attributes="0" SourcePath="Quick Status Change.exe" SelfReg="false" NextFile="WindowSwitching.exe" DigSign="true"/>
     <ROW File="WindowSwitching.exe" Component_="WindowSwitching.exe" FileName="WINDOW~1.EXE|Window Switching.exe" Version="0.1" Attributes="0" SourcePath="Window Switching.exe" SelfReg="false" NextFile="runall.bat" DigSign="true"/>
     <ROW File="cx.ico" Component_="cx.ico" FileName="3cx.ico" Version="65535.65535.65535.65535" Attributes="0" SourcePath="images\3cx.ico" SelfReg="false" NextFile="qonly.ico"/>
     <ROW File="q_on_red_bkgd.ico" Component_="cx.ico" FileName="Q_ON_R~1.ICO|q_on_red_bkgd.ico" Version="65535.65535.65535.65535" Attributes="0" SourcePath="images\q_on_red_bkgd.ico" SelfReg="false" NextFile="QITools.ini"/>
     <ROW File="qonly.ico" Component_="cx.ico" FileName="qonly.ico" Version="65535.65535.65535.65535" Attributes="0" SourcePath="images\qonly.ico" SelfReg="false" NextFile="quick_change.ico"/>
     <ROW File="quick_change.ico" Component_="cx.ico" FileName="QUICK_~1.ICO|quick_change.ico" Version="65535.65535.65535.65535" Attributes="0" SourcePath="images\quick_change.ico" SelfReg="false" NextFile="q_on_red_bkgd.ico"/>
+    <ROW File="red_q_on_blue_bkgd.ico" Component_="cx.ico" FileName="RED_Q_~1.ICO|red_q_on_blue_bkgd.ico" Version="65535.65535.65535.65535" Attributes="0" SourcePath="images\red_q_on_blue_bkgd.ico" SelfReg="false"/>
     <ROW File="runall.bat" Component_="runall.bat" FileName="RUNALL~1.BAT|run all.bat" Version="0.1" Attributes="0" SourcePath="run all.bat" SelfReg="false" NextFile="cx.ico"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
@@ -140,10 +141,9 @@
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
-    <ROW Name="CX.exe" SourcePath="images\3cx.ico" Index="0"/>
+    <ROW Name="CX_1.exe" SourcePath="images\red_q_on_blue_bkgd.ico" Index="0"/>
     <ROW Name="GMSearch.exe" SourcePath="images\q_on_red_bkgd.ico" Index="0"/>
     <ROW Name="QITools.exe" SourcePath="images\qonly.ico" Index="0"/>
-    <ROW Name="QuickStatusChange.exe" SourcePath="images\quick_change.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -172,13 +172,13 @@
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="CX" Directory_="QITools_Dir" Name="3CX" Component_="CX.exe" Target="[#CX.exe]" Hotkey="0" Icon_="CX.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="CX_1" Directory_="StartupFolder" Name="3CX" Component_="CX.exe" Target="[#CX.exe]" Hotkey="0" Icon_="CX.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="GMSearch" Directory_="QITools_Dir" Name="GMSearch" Component_="GMSearch.exe" Target="[#GMSearch.exe]" Hotkey="0" Icon_="GMSearch.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="CX" Directory_="QITools_Dir" Name="3CX" Component_="CX.exe" Target="[#CX.exe]" Hotkey="0" Icon_="CX_1.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="CX_1" Directory_="StartupFolder" Name="3CX" Component_="CX.exe" Target="[#CX.exe]" Hotkey="0" Icon_="CX_1.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="GMSearch" Directory_="QITools_Dir" Name="GMSearch" Component_="GMSearch.exe" Target="[#GMSearch.exe]" Hotkey="0" Icon_="CX_1.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
     <ROW Shortcut="QIToolsConfiguration" Directory_="QITools_Dir" Name="QITOOL~1|QI Tools Configuration" Component_="QITools.ini_1" Target="[#QITools.ini]" Hotkey="0" Icon_="QITools.exe" IconIndex="0" ShowCmd="1" WkDir="QuestIntegration_Dir"/>
-    <ROW Shortcut="QuickStatusChange" Directory_="QITools_Dir" Name="QUICKS~1|Quick Status Change" Component_="QuickStatusChange.exe" Target="[#QuickStatusChange.exe]" Hotkey="0" Icon_="QuickStatusChange.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="QuickStatusChange_1" Directory_="StartupFolder" Name="QUICKS~1|Quick Status Change" Component_="QuickStatusChange.exe" Target="[#QuickStatusChange.exe]" Hotkey="0" Icon_="QuickStatusChange.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="WindowSwitching" Directory_="QITools_Dir" Name="WINDOW~1|Window Switching" Component_="WindowSwitching.exe" Target="[#WindowSwitching.exe]" Hotkey="0" Icon_="GMSearch.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="QuickStatusChange" Directory_="QITools_Dir" Name="QUICKS~1|Quick Status Change" Component_="QuickStatusChange.exe" Target="[#QuickStatusChange.exe]" Hotkey="0" Icon_="CX_1.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="QuickStatusChange_1" Directory_="StartupFolder" Name="QUICKS~1|Quick Status Change" Component_="QuickStatusChange.exe" Target="[#QuickStatusChange.exe]" Hotkey="0" Icon_="CX_1.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="WindowSwitching" Directory_="QITools_Dir" Name="WINDOW~1|Window Switching" Component_="WindowSwitching.exe" Target="[#WindowSwitching.exe]" Hotkey="0" Icon_="CX_1.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
