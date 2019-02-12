@@ -1,14 +1,15 @@
 #SingleInstance, force
+Menu, Tray, Icon, images/q_on_red_bkgd.ico
 
 ^!=:: 											; ctrl+alt+= clears search in GM	
 ; winid := WinExist()
-if WinExist("ahk_exe gmw.exe")
-{
+if WinExist("ahk_exe gmw.exe") {				; check if GoldMine is running
 	winid := WinExist("ahk_exe gmw.exe")
-}
-if WinExist("ahk_exe mstsc.exe")
-{
+} else if WinExist("ahk_exe mstsc.exe") {		; check if RDP is running (assumed GM is what is being run in RDP)
 	winid := WinExist("ahk_exe mstsc.exe")
+} else {
+	MsgBox, 8256, Not Running, GoldMine is not running; cancelling, 5		; task modal (8192), icon asterisk/exclamation (64), times out after 5 seconds
+	return
 }
 ; MsgBox %winid%								; debugging only
 if winid
@@ -23,9 +24,10 @@ if winid
 		return
 	}
 } else {
-	MsgBox, 8208, Not Running, GoldMine is not running, cancelling
+	MsgBox, 8256, Not Running, GoldMine is not running; cancelling, 5		; task modal (8192), icon asterisk/exclamation (64), times out after 5 seconds	
 	return
 }
+
 Click, 200, 90									; clicks in search field of GM
 SendInput, ^a%var%{Enter}						; selects all and clears text
 return

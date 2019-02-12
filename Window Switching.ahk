@@ -1,4 +1,5 @@
 #SingleInstance, force
+Menu, Tray, Icon, images/q_on_red_bkgd.ico
 
 ^!F1::
 winid := WinExist("A")
