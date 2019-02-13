@@ -87,7 +87,7 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 
 #SingleInstance, force 							; Forces only one instance, allows to re-run script without reloading
 SetTitleMatchMode, 2
-Menu, Tray, Icon, red_q_on_blue_bkgd.ico	; Icon for this script
+Menu, Tray, Icon, red_q_on_blue_bkgd.ico		; Icon for this script
 Menu, Tray, Tip, QI Tools: Quick Status Change 	; Change tooltip on icon in tray
 CoordMode, Mouse, Client
 

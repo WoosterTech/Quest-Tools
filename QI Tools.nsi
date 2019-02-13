@@ -65,6 +65,7 @@ section "install"
 	file "GMSearch.exe"
 	file "Quick Status Change.exe"
 	file "Window Switching.exe"
+	file "Basic Shortcuts.exe"
 	
 	# Add any other files for the install directory (license files, app data, etc) here
 	; CreateDirectory "$INSTDIR"
@@ -88,6 +89,7 @@ section "install"
 	createShortCut "$SMPROGRAMS\${COMPANYNAME}\GoldMine Search.lnk" "$INSTDIR\GMSearch.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
 	createShortCut "$SMPROGRAMS\${COMPANYNAME}\Quick Status Change.lnk" "$INSTDIR\Quick Status Change.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
 	createShortCut "$SMPROGRAMS\${COMPANYNAME}\Window Switching.lnk" "$INSTDIR\Window Switching.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\Basic Shortcuts.lnk" "$INSTDIR\Basic Shortcuts.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
 
 	createShortCut "$SMSTARTUP\3CX.lnk" "$INSTDIR\3cx.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
 	createShortCut "$SMSTARTUP\Quick Status Change.lnk" "$INSTDIR\Quick Status Change.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
@@ -134,12 +136,14 @@ section "uninstall"
  	${nsProcess::KillProcess} "GMSearch.exe" $R1
  	${nsProcess::KillProcess} "Quick Status Change.exe" $R2
  	${nsProcess::KillProcess} "Window Switching.exe" $R3
+ 	${nsProcess::KillProcess} "Basic Shortcuts.exe" $R4
 
 	# Remove Start Menu launcher
 	delete "$SMPROGRAMS\${COMPANYNAME}\3CX.lnk"
 	delete "$SMPROGRAMS\${COMPANYNAME}\GoldMine Search.lnk"
 	delete "$SMPROGRAMS\${COMPANYNAME}\Quick Status Change.lnk"
 	delete "$SMPROGRAMS\${COMPANYNAME}\Window Switching.lnk"
+	delete "$SMPROGRAMS\${COMPANYNAME}\Basic Shortcuts.lnk"
 	delete "$SMSTARTUP\3CX.lnk"
 	delete "$SMSTARTUP\Quick Status Change.lnk"
 	; delete "$SMPROGRAMS\${COMPANYNAME}\${APPNAME}.lnk"
@@ -152,13 +156,14 @@ section "uninstall"
 	delete "$INSTDIR\GMSearch.exe"
 	delete "$INSTDIR\Quick Status Change.exe"
 	delete "$INSTDIR\Window Switching.exe"
+	delete "$INSTDIR\Basic Shortcuts.exe"
 	delete "$INSTDIR\red_q_on_blue_bkgd.ico"
  
 	# Always delete uninstaller as the last action
 	delete $INSTDIR\uninstall.exe
  
 	# Try to remove the install directory - this will only happen if it is empty
-	rmDir $INSTDIR\images
+	; rmDir $INSTDIR\images
 	rmDir $INSTDIR
  
 	# Remove uninstaller information from the registry
