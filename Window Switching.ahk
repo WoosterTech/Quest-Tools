@@ -1,5 +1,5 @@
 #SingleInstance, force
-Menu, Tray, Icon, images/q_on_red_bkgd.ico
+Menu, Tray, Icon, red_q_on_blue_bkgd.ico
 Menu, Tray, Tip, QI Tools: Window Switching
 
 ^!F1::
