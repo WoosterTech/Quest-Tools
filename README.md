@@ -41,16 +41,17 @@ Make sure to have GM running or you'll get an error message
 ## Window Switching Script
 Quick switching to commonly open windows
 
-+ Ctrl+Shift+F1 - HipChat
-+ Ctrl+Alt+F1	- View HipChat for 500ms (quick-check status)
-+ Ctrl+Shift+F2 - Remote Desktop (must include "gm rdp" in title bar)
-+ Ctrl+Shift+F3 - Outlook
-+ Ctrl+Shift+F4 - slack
-+ Ctrl+Shift+F5 - Firefox
-+ Ctrl+Shift+F6 - GoToMeeting
-+ Ctrl+Shift+F7 - Chrome
-+ Ctrl+Shift+F8 - SOLIDWORKS
-+ Ctrl+Shift+F9 - 3CX
++ Ctrl+Shift+F1  - HipChat
++ Ctrl+Alt+F1	 - View HipChat for 500ms (quick-check status)
++ Ctrl+Shift+F2  - Remote Desktop (must include "gm rdp" in title bar)
++ Ctrl+Shift+F3  - Outlook
++ Ctrl+Shift+F4  - slack
++ Ctrl+Shift+F5  - Firefox
++ Ctrl+Shift+F6  - GoToMeeting
++ Ctrl+Shift+F7  - Chrome
++ Ctrl+Shift+F8  - SOLIDWORKS
++ Ctrl+Shift+F9  - 3CX
++ Ctrl+Shift+F10 - Teams
 
 On my keyboard, I have those programmed to (in order):
 + fn+h
@@ -63,6 +64,7 @@ On my keyboard, I have those programmed to (in order):
 + fn+c
 + fn+w
 + fn+x
++ fn+t
 
 **_Please submit issues/comments/suggests using Issues on GitHub_**
 

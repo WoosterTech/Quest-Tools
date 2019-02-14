@@ -197,3 +197,20 @@ IfWinExist, ahk_exe 3CXWin8Phone.exe
 	return
 }
 return
+
+^+F10::											; ctrl+F10 switch to Teams if open
+IfWinExist, "Microsoft Teams"
+{
+	WinActivate
+	WinActivate
+	WinWaitActive, , , 1 
+	If ErrorLevel
+	{
+		MsgBox, 8208, Error, WinWaitActive Timed Out, cancelling
+		return
+	}
+} else {
+	MsgBox, 8208, Not Running, Teams is not running, cancelling
+	return
+}
+return

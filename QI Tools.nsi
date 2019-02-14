@@ -70,6 +70,7 @@ section "install"
 	# Add any other files for the install directory (license files, app data, etc) here
 	; CreateDirectory "$INSTDIR"
 	file "images\red_q_on_blue_bkgd.ico"
+	file "images\q_on_red_bkgd.ico"
 
 	${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
 	IntFmt $0 "0x%08X" $0
@@ -158,6 +159,7 @@ section "uninstall"
 	delete "$INSTDIR\Window Switching.exe"
 	delete "$INSTDIR\Basic Shortcuts.exe"
 	delete "$INSTDIR\red_q_on_blue_bkgd.ico"
+	delete "$INSTDIR\q_on_red_bkgd.ico"
  
 	# Always delete uninstaller as the last action
 	delete $INSTDIR\uninstall.exe

@@ -52,8 +52,6 @@ return
 
 copyNumber:											; copy text in active window and paste into 3CX
 
-	MsgBox, you pressed %A_ThisHotkey%
-
 	SendInput, {End}+{Home}^c 						; select all text in active box
 
 	3CXFocus(1)

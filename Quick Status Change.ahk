@@ -75,7 +75,21 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 				SendInput, {Esc}				; Works to escape any menus to get to "main" window
 				Sleep, 25						; Needs a quick moment between escape presses
 			}
-			Click, %buttonAvail%				; Click on availability button
+			ImageSearch, availX, availY, 0, 0, 260, 100, %A_WorkingDir%\available.png
+			if (ErrorLevel == 1)
+			{
+				ImageSearch, availX, availY, 0, 0, 260, 100, %A_WorkingDir%\available_hover.png
+			}
+			If (ErrorLevel)
+			{
+				MsgBox, % "ErrorLevel: " ErrorLevel
+				Return
+			}
+			Click, %availX%, %availY%				; Click on availability button
+			Return
+			Sleep, 1000
+			MsgBox, , Image Location, % "The image was found at " availX ", " availY
+			Return
 			Sleep, %3cxSleep%					; Seems to need to wait for the menu to be built, improves reliability
 			Click, %pos3CX%						; Click on appropriate menu item based on coordinates below
 		}
@@ -90,6 +104,11 @@ SetTitleMatchMode, 2
 Menu, Tray, Icon, red_q_on_blue_bkgd.ico		; Icon for this script
 Menu, Tray, Tip, QI Tools: Quick Status Change 	; Change tooltip on icon in tray
 CoordMode, Mouse, Client
+
+PixelGetColor, 3cxTheme, 130, 70
+MsgBox, % "Color is " 3cxTheme
+Return
+black 0xEFEDEB
 
 ; Define INI file location
 pathINI = %A_AppData%\Quest Integration\QI Tools.ini
@@ -112,10 +131,12 @@ onCallColorList := StrSplit(onCallColors, ",")								; Separate colors into arr
 
 ^F1::
 	StatusChange("/back", "/available", posAvail)
+	Menu, Tray, Icon, q_on_green_bkgd.ico
 return
 
 ^F2::
 	StatusChange("/dnd On Phone", "/dnd", posDND)
+	Menu, Tray, Icon, q_on_red_bkgd.ico
 return
 
 ^F3::
@@ -137,10 +158,12 @@ return
 	FormatTime, var, %var%, h:mm 			; format for easy human digestion
 
 	StatusChange("/away Back ~" var, "/brb", posAway)
+	Menu, Tray, Icon, q_on_yellow_bkgd.ico
 return
 
 ^F4::
 	StatusChange("/away PM Me", "/brb", posAway)
+	Menu, Tray, Icon, q_on_yellow_bkgd.ico
 return
 
 ^F5::
@@ -152,6 +175,7 @@ return
 	}
 
 	StatusChange("/away " var, "/away", posAway)
+	Menu, Tray, Icon, q_on_yellow_bkgd.ico
 return
 
 ^F6::
@@ -163,4 +187,5 @@ return
 	}
 	
 	StatusChange("/dnd " var, "/dnd", posDND)
+	Menu, Tray, Icon, q_on_red_bkgd.ico
 return
