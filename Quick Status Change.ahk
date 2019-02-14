@@ -75,10 +75,11 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 				SendInput, {Esc}				; Works to escape any menus to get to "main" window
 				Sleep, 25						; Needs a quick moment between escape presses
 			}
-			ImageSearch, availX, availY, 0, 0, 260, 100, %A_WorkingDir%\available.png
+			
+			ImageSearch, availX, availY, 0, 0, 260, 100, %A_WorkingDir%\availability_default_at_rest.png
 			if (ErrorLevel == 1)
 			{
-				ImageSearch, availX, availY, 0, 0, 260, 100, %A_WorkingDir%\available_hover.png
+				ImageSearch, availX, availY, 0, 0, 260, 100, %A_WorkingDir%\available_default_hover.png
 			}
 			If (ErrorLevel)
 			{
@@ -86,10 +87,6 @@ StatusChange(keysHC, keysTeams, pos3CX)		; The function that actually does the w
 				Return
 			}
 			Click, %availX%, %availY%				; Click on availability button
-			Return
-			Sleep, 1000
-			MsgBox, , Image Location, % "The image was found at " availX ", " availY
-			Return
 			Sleep, %3cxSleep%					; Seems to need to wait for the menu to be built, improves reliability
 			Click, %pos3CX%						; Click on appropriate menu item based on coordinates below
 		}
@@ -105,10 +102,13 @@ Menu, Tray, Icon, red_q_on_blue_bkgd.ico		; Icon for this script
 Menu, Tray, Tip, QI Tools: Quick Status Change 	; Change tooltip on icon in tray
 CoordMode, Mouse, Client
 
-PixelGetColor, 3cxTheme, 130, 70
-MsgBox, % "Color is " 3cxTheme
-Return
-black 0xEFEDEB
+; PixelGetColor, 3cxTheme, 130, 70
+; MsgBox, % "Color is " 3cxTheme
+; Return
+; black 0x242424
+; white 0xFFFFFF
+; gray 0x333333
+; default 0x404040
 
 ; Define INI file location
 pathINI = %A_AppData%\Quest Integration\QI Tools.ini
