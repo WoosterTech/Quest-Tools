@@ -16,9 +16,9 @@
 !define VERSIONBUILD 11
 # These will be displayed by the "Click here for support information" link in "Add/Remove Programs"
 # It is possible to use "mailto:" links in here to open the email client
-!define HELPURL "http://..." # "Support Information" link
-!define UPDATEURL "http://..." # "Product Updates" link
-!define ABOUTURL "http://..." # "Publisher" link
+; !define HELPURL "http://..." # "Support Information" link
+; !define UPDATEURL "http://..." # "Product Updates" link
+; !define ABOUTURL "http://..." # "Publisher" link
 # This is the size (in kB) of all the files copied into "Program Files"
 ; !define INSTALLSIZE 7233
  
@@ -36,9 +36,17 @@ outFile "QI Tools-installer.exe"
 !include LogicLib.nsh
 !include FileFunc.nsh
 !include nsProcess.nsh
+!include nsDialogs.nsh
+!include Sections.nsh
+
+Insttype "Standard Install"
+Insttype "Full Install"
+; Insttype "Custom Install"
  
 # Just three pages - license agreement, install location, and installation
 ; page license
+; page custom nsDialogsCustom
+page components
 page directory
 Page instfiles
  
@@ -56,7 +64,25 @@ Page instfiles
 ; 	setShellVarContext all
 ; 	; !insertmacro VerifyUserIsAdmin
 ; functionEnd
+
+Function .onInit
+	
+FunctionEnd
  
+Section "Common Files (Required)"
+	SectionIn RO
+
+SectionEnd
+
+Section "GoldMine Search"
+	SectionIn 2
+
+	setOutPath $INSTDIR
+
+	file "GMSearch.exe"
+
+SectionEnd
+
 section "install"
 	# Files for the install directory - to build the installer, these should be in the same directory as the install script (this file)
 	setOutPath $INSTDIR
@@ -102,9 +128,9 @@ section "install"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "InstallLocation" "$\"$INSTDIR$\""
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "DisplayIcon" "$\"$INSTDIR\images\red_q_on_blue_bkgd.ico$\""
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "Publisher" "$\"${COMPANYNAME}$\""
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "HelpLink" "$\"${HELPURL}$\""
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "URLUpdateInfo" "$\"${UPDATEURL}$\""
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "URLInfoAbout" "$\"${ABOUTURL}$\""
+	; WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "HelpLink" "$\"${HELPURL}$\""
+	; WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "URLUpdateInfo" "$\"${UPDATEURL}$\""
+	; WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "URLInfoAbout" "$\"${ABOUTURL}$\""
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "DisplayIcon" "$\"$INSTDIR\red_q_on_blue_bkgd.ico$\""
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "DisplayVersion" "${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONBUILD}"
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "VersionMajor" ${VERSIONMAJOR}
