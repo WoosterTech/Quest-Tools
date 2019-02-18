@@ -66,32 +66,33 @@ Page instfiles
 ; functionEnd
 
 Function .onInit
-	
+	setOutPath $INSTDIR
 FunctionEnd
  
-Section "Common Files (Required)"
+; Section "Common Files (Required)"
+; 	SectionIn RO
+
+; 	setOutPath $INSTDIR
+
+; 	file "images\red_q_on_blue_bkgd.ico"
+
+; 	setOutPath "$APPDATA\${COMPANYNAME}"
+
+; 	file "QI Tools.ini"
+
+; SectionEnd
+
+section "Common Files (Required)"
 	SectionIn RO
 
-SectionEnd
-
-Section "GoldMine Search"
-	SectionIn 2
-
-	setOutPath $INSTDIR
-
-	file "GMSearch.exe"
-
-SectionEnd
-
-section "install"
 	# Files for the install directory - to build the installer, these should be in the same directory as the install script (this file)
 	setOutPath $INSTDIR
 	# Files added here should be removed by the uninstaller (see section "uninstall")
-	file "3cx.exe"
-	file "GMSearch.exe"
-	file "Quick Status Change.exe"
-	file "Window Switching.exe"
-	file "Basic Shortcuts.exe"
+	; file "3cx.exe"
+	; file "GMSearch.exe"
+	; file "Quick Status Change.exe"
+	; file "Window Switching.exe"
+	; file "Basic Shortcuts.exe"
 	
 	# Add any other files for the install directory (license files, app data, etc) here
 	; CreateDirectory "$INSTDIR"
@@ -112,7 +113,6 @@ section "install"
  
 	# Start Menu
 	createDirectory "$SMPROGRAMS\${COMPANYNAME}"
-	createShortCut "$SMPROGRAMS\${COMPANYNAME}\3CX.lnk" "$INSTDIR\3cx.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
 	createShortCut "$SMPROGRAMS\${COMPANYNAME}\GoldMine Search.lnk" "$INSTDIR\GMSearch.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
 	createShortCut "$SMPROGRAMS\${COMPANYNAME}\Quick Status Change.lnk" "$INSTDIR\Quick Status Change.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
 	createShortCut "$SMPROGRAMS\${COMPANYNAME}\Window Switching.lnk" "$INSTDIR\Window Switching.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
@@ -143,6 +143,83 @@ section "install"
 	# Set the INSTALLSIZE constant (!defined at the top of this script) so Add/Remove Programs can accurately report the size
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "EstimatedSize" ${INSTALLSIZE}
 sectionEnd
+
+Section "3CX Click-to-Dial"
+	SectionIn 1 2
+
+	!define MODULENAME 3CX
+	!define SHORTCUTNAME 3CX
+
+	setOutPath $INSTDIR
+
+	file "${MODULENAME}.exe"
+
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\${SHORTCUTNAME}.lnk" "$INSTDIR\${MODULENAME}.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"		; Add to start menu
+	createShortCut "$SMSTARTUP\${SHORTCUTNAME}.lnk" "$INSTDIR\${MODULENAME}.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"						; Launch on startup
+
+SectionEnd
+
+Section "Teams Status Change"
+	SectionIn 1 2
+
+	!define MODULENAME "Teams Status"
+	!define SHORTCUTNAME "Teams Status"
+
+	setOutPath $INSTDIR
+
+	file "${MODULENAME}.exe"
+
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\${SHORTCUTNAME}.lnk" "$INSTDIR\${MODULENAME}.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"		; Add to start menu
+	createShortCut "$SMSTARTUP\${SHORTCUTNAME}.lnk" "$INSTDIR\${MODULENAME}.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"						; Launch on startup
+
+SectionEnd
+
+Section "GoldMine Search"
+	SectionIn 2
+
+	!define MODULENAME GMSearch
+	!define SHORTCUTNAME "GoldMine Search"
+
+	setOutPath $INSTDIR
+
+	file "${MODULENAME}.exe"
+
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\${SHORTCUTNAME}.lnk" "$INSTDIR\${MODULENAME}.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"		; Add to start menu
+	createShortCut "$SMSTARTUP\${SHORTCUTNAME}.lnk" "$INSTDIR\${MODULENAME}.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"						; Launch on startup
+
+SectionEnd
+
+Section "Window Switching"
+	SectionIn 2
+
+	!define MODULENAME "Window Switching"
+	!define SHORTCUTNAME "Window Switching"
+
+	setOutPath $INSTDIR
+
+	file "${MODULENAME}.exe"
+
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\${SHORTCUTNAME}.lnk" "$INSTDIR\${MODULENAME}.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"		; Add to start menu
+	createShortCut "$SMSTARTUP\${SHORTCUTNAME}.lnk" "$INSTDIR\${MODULENAME}.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"						; Launch on startup
+
+SectionEnd
+
+Section "Basic Shortcuts"
+	SectionIn 2
+
+	!define MODULENAME "Basic Shortcuts"
+	!define SHORTCUTNAME "Basic Shortcuts"
+
+	setOutPath $INSTDIR
+
+	file "${MODULENAME}.exe"
+
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\${SHORTCUTNAME}.lnk" "$INSTDIR\${MODULENAME}.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"		; Add to start menu
+	createShortCut "$SMSTARTUP\${SHORTCUTNAME}.lnk" "$INSTDIR\${MODULENAME}.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"						; Launch on startup
+
+SectionEnd
+
+
  
 # Uninstaller
  
