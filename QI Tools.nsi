@@ -16,9 +16,9 @@
 !define VERSIONBUILD 11
 # These will be displayed by the "Click here for support information" link in "Add/Remove Programs"
 # It is possible to use "mailto:" links in here to open the email client
-!define HELPURL "http://..." # "Support Information" link
-!define UPDATEURL "http://..." # "Product Updates" link
-!define ABOUTURL "http://..." # "Publisher" link
+; !define HELPURL "http://..." # "Support Information" link
+; !define UPDATEURL "http://..." # "Product Updates" link
+; !define ABOUTURL "http://..." # "Publisher" link
 # This is the size (in kB) of all the files copied into "Program Files"
 ; !define INSTALLSIZE 7233
  
@@ -30,17 +30,33 @@ InstallDir "$PROGRAMFILES\${COMPANYNAME}\${APPNAME}"
 ; LicenseData "license.rtf"
 # This will be in the installer/uninstaller's title bar
 Name "${COMPANYNAME} - ${APPNAME}"
-Icon "red_q_on_blue_bkgd.ico"
-outFile "QI Tools-installer.exe"
+Icon "images\red_q_on_blue_bkgd.ico"
+outFile "QI Tools.exe"
+RequestExecutionLevel admin
  
 !include LogicLib.nsh
 !include FileFunc.nsh
 !include nsProcess.nsh
+!include nsDialogs.nsh
+!include Sections.nsh
+!include MUI2.nsh
+
+!define MUI_ICON "images\red_q_on_blue_bkgd.ico"
+!define MUI_HEADERIMAGE
+!define MUI_HEADERIMAGE_BITMAP "image\red_q_on_blue_bkgd.bmp"
+!define MUI_FINISHPAGE_RUN "$INSTDIR\run all.bat"
+!define MUI_FINISHPAGE_RUN_TEXT "Run All Installed Scripts"
+
+Insttype "Standard Install"
+Insttype "Full Install"
+; Insttype "Custom Install"
  
 # Just three pages - license agreement, install location, and installation
 ; page license
-page directory
-Page instfiles
+; page custom nsDialogsCustom
+; page components
+; page directory
+; Page instfiles
  
 ; !macro VerifyUserIsAdmin
 ; UserInfo::GetAccountType
@@ -56,19 +72,41 @@ Page instfiles
 ; 	setShellVarContext all
 ; 	; !insertmacro VerifyUserIsAdmin
 ; functionEnd
- 
-section "install"
-	# Files for the install directory - to build the installer, these should be in the same directory as the install script (this file)
+
+Function .onInit
 	setOutPath $INSTDIR
+FunctionEnd
+ 
+; Section "Common Files (Required)"
+; 	SectionIn RO
+
+; 	setOutPath $INSTDIR
+
+; 	file "images\red_q_on_blue_bkgd.ico"
+
+; 	setOutPath "$APPDATA\${COMPANYNAME}"
+
+; 	file "QI Tools.ini"
+
+; SectionEnd
+
+section "Common Files (Required)"
+	SectionIn RO
+
+	# Files for the install directory - to build the installer, these should be in the same directory as the install script (this file)
+	; setOutPath $INSTDIR
 	# Files added here should be removed by the uninstaller (see section "uninstall")
-	file "3cx.exe"
-	file "GMSearch.exe"
-	file "Quick Status Change.exe"
-	file "Window Switching.exe"
+	; file "3cx.exe"
+	; file "GMSearch.exe"
+	; file "Quick Status Change.exe"
+	; file "Window Switching.exe"
+	; file "Basic Shortcuts.exe"
 	
 	# Add any other files for the install directory (license files, app data, etc) here
 	; CreateDirectory "$INSTDIR"
-	file "images\red_q_on_blue_bkgd.ico"
+	file "run all.bat"
+	file /oname=images\red_q_on_blue_bkgd.ico images\red_q_on_blue_bkgd.ico
+	file /oname=images\q_on_red_bkgd.ico images\q_on_red_bkgd.ico
 
 	${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
 	IntFmt $0 "0x%08X" $0
@@ -84,13 +122,14 @@ section "install"
  
 	# Start Menu
 	createDirectory "$SMPROGRAMS\${COMPANYNAME}"
-	createShortCut "$SMPROGRAMS\${COMPANYNAME}\3CX.lnk" "$INSTDIR\3cx.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
-	createShortCut "$SMPROGRAMS\${COMPANYNAME}\GoldMine Search.lnk" "$INSTDIR\GMSearch.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
-	createShortCut "$SMPROGRAMS\${COMPANYNAME}\Quick Status Change.lnk" "$INSTDIR\Quick Status Change.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
-	createShortCut "$SMPROGRAMS\${COMPANYNAME}\Window Switching.lnk" "$INSTDIR\Window Switching.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\Run All.lnk" "$INSTDIR\run all.bat" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
+	; createShortCut "$SMPROGRAMS\${COMPANYNAME}\GoldMine Search.lnk" "$INSTDIR\GMSearch.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
+	; createShortCut "$SMPROGRAMS\${COMPANYNAME}\Quick Status Change.lnk" "$INSTDIR\Quick Status Change.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
+	; createShortCut "$SMPROGRAMS\${COMPANYNAME}\Window Switching.lnk" "$INSTDIR\Window Switching.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
+	; createShortCut "$SMPROGRAMS\${COMPANYNAME}\Basic Shortcuts.lnk" "$INSTDIR\Basic Shortcuts.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
 
-	createShortCut "$SMSTARTUP\3CX.lnk" "$INSTDIR\3cx.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
-	createShortCut "$SMSTARTUP\Quick Status Change.lnk" "$INSTDIR\Quick Status Change.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
+	; createShortCut "$SMSTARTUP\3CX.lnk" "$INSTDIR\3cx.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
+	; createShortCut "$SMSTARTUP\Quick Status Change.lnk" "$INSTDIR\Quick Status Change.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
  
 	# Registry information for add/remove programs
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "DisplayName" "${APPNAME}"
@@ -99,10 +138,10 @@ section "install"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "InstallLocation" "$\"$INSTDIR$\""
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "DisplayIcon" "$\"$INSTDIR\images\red_q_on_blue_bkgd.ico$\""
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "Publisher" "$\"${COMPANYNAME}$\""
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "HelpLink" "$\"${HELPURL}$\""
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "URLUpdateInfo" "$\"${UPDATEURL}$\""
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "URLInfoAbout" "$\"${ABOUTURL}$\""
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "DisplayIcon" "$\"$INSTDIR\red_q_on_blue_bkgd.ico$\""
+	; WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "HelpLink" "$\"${HELPURL}$\""
+	; WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "URLUpdateInfo" "$\"${UPDATEURL}$\""
+	; WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "URLInfoAbout" "$\"${ABOUTURL}$\""
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "DisplayIcon" "$\"$INSTDIR\images\red_q_on_blue_bkgd.ico$\""
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "DisplayVersion" "${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONBUILD}"
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "VersionMajor" ${VERSIONMAJOR}
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "VersionMinor" ${VERSIONMINOR}
@@ -114,11 +153,79 @@ section "install"
 	# Set the INSTALLSIZE constant (!defined at the top of this script) so Add/Remove Programs can accurately report the size
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "EstimatedSize" ${INSTALLSIZE}
 sectionEnd
+
+Section "3CX Click-to-Dial"
+	SectionIn 1 2
+
+	setOutPath $INSTDIR
+
+	file "3cx.exe"
+
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\3CX Click-to-Dial.lnk" "$INSTDIR\3cx.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"		; Add to start menu
+	createShortCut "$SMSTARTUP\3CX Click-to-Dial.lnk" "$INSTDIR\3cx.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"						; Launch on startup
+
+SectionEnd
+
+Section "Teams Status Change"
+	SectionIn 1 2
+
+	setOutPath $INSTDIR
+
+	file "Teams Status.exe"
+	file /oname=images\q_on_green_bkgd.ico images\q_on_green_bkgd.ico
+	file /oname=images\q_on_red_bkgd.ico images\q_on_red_bkgd.ico
+	file /oname=images\q_on_yellow_bkgd.ico images\q_on_yellow_bkgd.ico
+
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\Teams Status Change.lnk" "$INSTDIR\Teams Status.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"		; Add to start menu
+	createShortCut "$SMSTARTUP\Teams Status Change.lnk" "$INSTDIR\Teams Status.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"						; Launch on startup
+
+SectionEnd
+
+Section "GoldMine Search"
+	SectionIn 2
+
+	setOutPath $INSTDIR
+
+	file "GMSearch.exe"
+
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\GoldMine Search.lnk" "$INSTDIR\GMSearch.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"		; Add to start menu
+	createShortCut "$SMSTARTUP\GoldMine Search.lnk" "$INSTDIR\GMSearch.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"						; Launch on startup
+
+SectionEnd
+
+Section "Window Switching"
+	SectionIn 2
+
+	setOutPath $INSTDIR
+
+	file "Window Switching.exe"
+
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\Window Switching.lnk" "$INSTDIR\Window Switching.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"		; Add to start menu
+	createShortCut "$SMSTARTUP\Window Switching.lnk" "$INSTDIR\Window Switching.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"						; Launch on startup
+
+SectionEnd
+
+Section "Basic Shortcuts"
+	SectionIn 2
+
+	setOutPath $INSTDIR
+
+	file "Basic Shortcuts.exe"
+
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\Basic Shortcuts.lnk" "$INSTDIR\Basic Shortcuts.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"		; Add to start menu
+	createShortCut "$SMSTARTUP\Basic Shortcuts.lnk" "$INSTDIR\Basic Shortcuts.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"						; Launch on startup
+
+SectionEnd
+
+; !insertmacro MUI_PAGE_WELCOME
+!insertmacro MUI_PAGE_COMPONENTS
+!insertmacro MUI_PAGE_INSTFILES
+!insertmacro MUI_PAGE_FINISH
  
 # Uninstaller
  
 function un.onInit
-	SetShellVarContext all
+	; SetShellVarContext all
  
 	#Verify the uninstaller - last chance to back out
 	MessageBox MB_OKCANCEL "Permanantly remove ${APPNAME}?" IDOK next
@@ -132,16 +239,22 @@ section "uninstall"
  	# Kill all processes
  	${nsProcess::KillProcess} "3cx.exe" $R0
  	${nsProcess::KillProcess} "GMSearch.exe" $R1
- 	${nsProcess::KillProcess} "Quick Status Change.exe" $R2
+ 	${nsProcess::KillProcess} "Teams Status.exe" $R2
  	${nsProcess::KillProcess} "Window Switching.exe" $R3
+ 	${nsProcess::KillProcess} "Basic Shortcuts.exe" $R4
 
 	# Remove Start Menu launcher
-	delete "$SMPROGRAMS\${COMPANYNAME}\3CX.lnk"
+	delete "$SMPROGRAMS\${COMPANYNAME}\3CX Click-to-Dial.lnk"
 	delete "$SMPROGRAMS\${COMPANYNAME}\GoldMine Search.lnk"
-	delete "$SMPROGRAMS\${COMPANYNAME}\Quick Status Change.lnk"
+	delete "$SMPROGRAMS\${COMPANYNAME}\Teams Status Change.lnk"
 	delete "$SMPROGRAMS\${COMPANYNAME}\Window Switching.lnk"
-	delete "$SMSTARTUP\3CX.lnk"
-	delete "$SMSTARTUP\Quick Status Change.lnk"
+	delete "$SMPROGRAMS\${COMPANYNAME}\Basic Shortcuts.lnk"
+	delete "$SMPROGRAMS\${COMPANYNAME}\Run All.lnk"
+	delete "$SMSTARTUP\3CX Click-to-Dial.lnk"
+	delete "$SMSTARTUP\Teams Status Change.lnk"
+	delete "$SMSTARTUP\GoldMine Search.lnk"
+	delete "$SMSTARTUP\Window Switching.lnk"
+	delete "$SMSTARTUP\Basic Shortcuts.lnk"
 	; delete "$SMPROGRAMS\${COMPANYNAME}\${APPNAME}.lnk"
 
 	# Try to remove the Start Menu folder - this will only happen if it is empty
@@ -150,9 +263,14 @@ section "uninstall"
 	# Remove files
 	delete "$INSTDIR\3cx.exe"
 	delete "$INSTDIR\GMSearch.exe"
-	delete "$INSTDIR\Quick Status Change.exe"
+	delete "$INSTDIR\Teams Status.exe"
 	delete "$INSTDIR\Window Switching.exe"
-	delete "$INSTDIR\red_q_on_blue_bkgd.ico"
+	delete "$INSTDIR\Basic Shortcuts.exe"
+	delete "$INSTDIR\run all.bat"
+	delete "$INSTDIR\images\red_q_on_blue_bkgd.ico"
+	delete "$INSTDIR\images\q_on_red_bkgd.ico"
+	delete "$INSTDIR\images\q_on_yellow_bkgd.ico"
+	delete "$INSTDIR\images\q_on_green_bkgd.ico"
  
 	# Always delete uninstaller as the last action
 	delete $INSTDIR\uninstall.exe

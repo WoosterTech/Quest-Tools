@@ -1,18 +1,19 @@
 #SingleInstance, force
-Menu, Tray, Icon, red_q_on_blue_bkgd.ico
+Menu, Tray, Icon, images\red_q_on_blue_bkgd.ico
 Menu, Tray, Tip, QI Tools: GoldMine Search
+; SetTitleMatchMode, 2
 
-^!=:: 											; ctrl+alt+= clears search in GM	
+^!=:: 													; ctrl+alt+= clears search in GM	
 ; winid := WinExist()
-if WinExist("ahk_exe gmw.exe") {				; check if GoldMine is running
+if WinExist("ahk_exe gmw.exe") {						; check if GoldMine is running
 	winid := WinExist("ahk_exe gmw.exe")
-} else if WinExist("ahk_exe mstsc.exe") {		; check if RDP is running (assumed GM is what is being run in RDP)
-	winid := WinExist("ahk_exe mstsc.exe")
+} else if WinExist("gm rdp ahk_exe mstsc.exe") {		; check if RDP is running (assumed GM is what is being run in RDP)
+	winid := WinExist("gm rdp ahk_exe mstsc.exe")
 } else {
 	MsgBox, 8256, Not Running, GoldMine is not running; cancelling, 5		; task modal (8192), icon asterisk/exclamation (64), times out after 5 seconds
 	return
 }
-; MsgBox %winid%								; debugging only
+; MsgBox %winid%										; debugging only
 if winid
 {
 	InputBox, var, Name, Name to Search For
@@ -29,6 +30,6 @@ if winid
 	return
 }
 
-Click, 200, 90									; clicks in search field of GM
-SendInput, ^a%var%{Enter}						; selects all and clears text
+Click, 200, 90											; clicks in search field of GM
+SendInput, ^a%var%{Enter}								; selects all and clears text
 return
