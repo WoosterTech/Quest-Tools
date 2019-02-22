@@ -1,4 +1,12 @@
-Start "" "C:\Program Files (x86)\Quest Integration\QI Tools\3CX.exe"
-rem Start "" "C:\Program Files (x86)\Quest Integration\QI Tools\GMSearch.exe"
-Start "" "C:\Program Files (x86)\Quest Integration\QI Tools\Quick Status Change.exe"
-rem Start "" "C:\Program Files (x86)\Quest Integration\QI Tools\Window Switching.exe"
+@echo off
+
+for /r "." %%a in (*.exe) do (
+	rem echo %%~na
+	if %%~na EQU uninstall (
+		echo "No need to run the uninstaller!"
+	) else (
+		start "" "%%~fa"
+	)
+)
+
+rem pause

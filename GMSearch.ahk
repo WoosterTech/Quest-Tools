@@ -1,5 +1,5 @@
 #SingleInstance, force
-Menu, Tray, Icon, red_q_on_blue_bkgd.ico
+Menu, Tray, Icon, images\red_q_on_blue_bkgd.ico
 Menu, Tray, Tip, QI Tools: GoldMine Search
 ; SetTitleMatchMode, 2
 

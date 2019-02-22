@@ -29,7 +29,7 @@ StatusChange(keysTeams)		; The function that actually does the window switching 
 
 #SingleInstance, force 							; Forces only one instance, allows to re-run script without reloading
 SetTitleMatchMode, 2
-Menu, Tray, Icon, red_q_on_blue_bkgd.ico		; Icon for this script
+Menu, Tray, Icon, images\red_q_on_blue_bkgd.ico		; Icon for this script
 Menu, Tray, Tip, QI Tools: Teams Status 	; Change tooltip on icon in tray
 CoordMode, Mouse, Client
 
@@ -44,12 +44,12 @@ IniRead, roundInterval, %pathINI%, TeamsStatus, roundInterval, 5		; Minutes to r
 
 ^F1::		; Available
 	StatusChange("/available")
-	Menu, Tray, Icon, q_on_green_bkgd.ico
+	Menu, Tray, Icon, images\q_on_green_bkgd.ico
 return
 
 ^F2::		; Do not disturb
 	StatusChange("/dnd")
-	Menu, Tray, Icon, q_on_red_bkgd.ico
+	Menu, Tray, Icon, images\q_on_red_bkgd.ico
 return
 
 ^F3::		; Away
@@ -73,12 +73,12 @@ return
 	; FormatTime, var, %var%, h:mm 			; format for easy human digestion
 
 	StatusChange("/brb")
-	Menu, Tray, Icon, q_on_yellow_bkgd.ico
+	Menu, Tray, Icon, images\q_on_yellow_bkgd.ico
 return
 
 ^F4::		; Busy
 	StatusChange("/busy")
-	Menu, Tray, Icon, q_on_red_bkgd.ico
+	Menu, Tray, Icon, images\q_on_red_bkgd.ico
 return
 
 ; ^F5::
