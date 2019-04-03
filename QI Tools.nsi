@@ -166,18 +166,18 @@ Section "3CX Click-to-Dial"
 
 SectionEnd
 
-Section "Teams Status Change"
+Section "Quick Status Change"
 	SectionIn 1 2
 
 	setOutPath $INSTDIR
 
-	file "Teams Status.exe"
+	file "Quick Status Change.exe"
 	file /oname=images\q_on_green_bkgd.ico images\q_on_green_bkgd.ico
 	file /oname=images\q_on_red_bkgd.ico images\q_on_red_bkgd.ico
 	file /oname=images\q_on_yellow_bkgd.ico images\q_on_yellow_bkgd.ico
 
-	createShortCut "$SMPROGRAMS\${COMPANYNAME}\Teams Status Change.lnk" "$INSTDIR\Teams Status.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"		; Add to start menu
-	createShortCut "$SMSTARTUP\Teams Status Change.lnk" "$INSTDIR\Teams Status.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"						; Launch on startup
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\Quick Status Change.lnk" "$INSTDIR\Quick Status Change.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"		; Add to start menu
+	createShortCut "$SMSTARTUP\Quick Status Change.lnk" "$INSTDIR\Quick Status Change.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"						; Launch on startup
 
 SectionEnd
 
@@ -239,19 +239,20 @@ section "uninstall"
  	# Kill all processes
  	${nsProcess::KillProcess} "3cx.exe" $R0
  	${nsProcess::KillProcess} "GMSearch.exe" $R1
- 	${nsProcess::KillProcess} "Teams Status.exe" $R2
+ 	${nsProcess::KillProcess} "Quick Status Change.exe" $R2
  	${nsProcess::KillProcess} "Window Switching.exe" $R3
  	${nsProcess::KillProcess} "Basic Shortcuts.exe" $R4
 
 	# Remove Start Menu launcher
 	delete "$SMPROGRAMS\${COMPANYNAME}\3CX Click-to-Dial.lnk"
 	delete "$SMPROGRAMS\${COMPANYNAME}\GoldMine Search.lnk"
+	delete "$SMPROGRAMS\${COMPANYNAME}\Quick Status Change.lnk"
 	delete "$SMPROGRAMS\${COMPANYNAME}\Teams Status Change.lnk"
 	delete "$SMPROGRAMS\${COMPANYNAME}\Window Switching.lnk"
 	delete "$SMPROGRAMS\${COMPANYNAME}\Basic Shortcuts.lnk"
 	delete "$SMPROGRAMS\${COMPANYNAME}\Run All.lnk"
 	delete "$SMSTARTUP\3CX Click-to-Dial.lnk"
-	delete "$SMSTARTUP\Teams Status Change.lnk"
+	delete "$SMSTARTUP\Quick Status Change.lnk"
 	delete "$SMSTARTUP\GoldMine Search.lnk"
 	delete "$SMSTARTUP\Window Switching.lnk"
 	delete "$SMSTARTUP\Basic Shortcuts.lnk"
@@ -266,6 +267,7 @@ section "uninstall"
 	delete "$INSTDIR\Teams Status.exe"
 	delete "$INSTDIR\Window Switching.exe"
 	delete "$INSTDIR\Basic Shortcuts.exe"
+	delete "$INSTDIR\Quick Status Change.exe"
 	delete "$INSTDIR\run all.bat"
 	delete "$INSTDIR\images\red_q_on_blue_bkgd.ico"
 	delete "$INSTDIR\images\q_on_red_bkgd.ico"
