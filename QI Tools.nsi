@@ -154,17 +154,17 @@ section "Common Files (Required)"
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "EstimatedSize" ${INSTALLSIZE}
 sectionEnd
 
-Section "3CX Click-to-Dial"
-	SectionIn 1 2
+; Section "3CX Click-to-Dial"
+; 	SectionIn 1 2
 
-	setOutPath $INSTDIR
+; 	setOutPath $INSTDIR
 
-	file "3cx.exe"
+; 	file "3cx.exe"
 
-	createShortCut "$SMPROGRAMS\${COMPANYNAME}\3CX Click-to-Dial.lnk" "$INSTDIR\3cx.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"		; Add to start menu
-	createShortCut "$SMSTARTUP\3CX Click-to-Dial.lnk" "$INSTDIR\3cx.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"						; Launch on startup
+; 	createShortCut "$SMPROGRAMS\${COMPANYNAME}\3CX Click-to-Dial.lnk" "$INSTDIR\3cx.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"		; Add to start menu
+; 	createShortCut "$SMSTARTUP\3CX Click-to-Dial.lnk" "$INSTDIR\3cx.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"						; Launch on startup
 
-SectionEnd
+; SectionEnd
 
 Section "Quick Status Change"
 	SectionIn 1 2
@@ -181,17 +181,17 @@ Section "Quick Status Change"
 
 SectionEnd
 
-Section "GoldMine Search"
-	SectionIn 2
+; Section "GoldMine Search"
+; 	SectionIn 2
 
-	setOutPath $INSTDIR
+; 	setOutPath $INSTDIR
 
-	file "GMSearch.exe"
+; 	file "GMSearch.exe"
 
-	createShortCut "$SMPROGRAMS\${COMPANYNAME}\GoldMine Search.lnk" "$INSTDIR\GMSearch.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"		; Add to start menu
-	createShortCut "$SMSTARTUP\GoldMine Search.lnk" "$INSTDIR\GMSearch.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"						; Launch on startup
+; 	createShortCut "$SMPROGRAMS\${COMPANYNAME}\GoldMine Search.lnk" "$INSTDIR\GMSearch.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"		; Add to start menu
+; 	createShortCut "$SMSTARTUP\GoldMine Search.lnk" "$INSTDIR\GMSearch.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"						; Launch on startup
 
-SectionEnd
+; SectionEnd
 
 Section "Window Switching"
 	SectionIn 2
