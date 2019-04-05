@@ -180,7 +180,7 @@ IfWinExist, ahk_exe 3CXWin8Phone.exe
 return
 
 ^+F10::											; ctrl+F10 switch to Teams if open
-IfWinExist, "Microsoft Teams"
+IfWinExist, ahk_exe teams.exe
 {
 	WinActivate
 	WinActivate
