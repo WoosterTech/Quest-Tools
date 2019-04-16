@@ -55,6 +55,9 @@ QIFunctions_StatusChange(keysTeams, pos3CX, teams := 1, 3CX := 1)	; The function
 			Goto, teamsSkip
 		}	
 		SendInput, ^e
+		Sleep, 50
+		SendInput, /
+		Sleep, 50
 		Send, %keysTeams%
 		Sleep, %teamsSleep%					; Seems to need a delay before sending enter
 		SendInput, {Enter}
