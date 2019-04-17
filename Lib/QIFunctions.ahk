@@ -28,6 +28,8 @@ QIFunctions_StatusChange(keysTeams, pos3CX, teams := 1, 3CX := 1)	; The function
 			Goto, 3cxSkip
 		}
 
+		MouseMove, onCallPosXY[1], onCallPosXY[2], 0
+
 		; Check if on a call, don't change status
 		PixelGetColor, onCall, onCallPosXY[1], onCallPosXY[2]			; Check color of window in "End Call" button area
 
