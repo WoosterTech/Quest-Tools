@@ -13,7 +13,7 @@
 # These three must be integers
 !define VERSIONMAJOR 0
 !define VERSIONMINOR 0
-!define VERSIONBUILD 14
+!define VERSIONBUILD 15
 # These will be displayed by the "Click here for support information" link in "Add/Remove Programs"
 # It is possible to use "mailto:" links in here to open the email client
 ; !define HELPURL "http://..." # "Support Information" link
@@ -154,17 +154,17 @@ section "Common Files (Required)"
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "EstimatedSize" ${INSTALLSIZE}
 sectionEnd
 
-; Section "3CX Click-to-Dial"
-; 	SectionIn 1 2
+Section "3CX Click-to-Dial"
+	SectionIn 1 2
 
-; 	setOutPath $INSTDIR
+	setOutPath $INSTDIR
 
-; 	file "3cx.exe"
+	file "3cx.exe"
 
-; 	createShortCut "$SMPROGRAMS\${COMPANYNAME}\3CX Click-to-Dial.lnk" "$INSTDIR\3cx.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"		; Add to start menu
-; 	createShortCut "$SMSTARTUP\3CX Click-to-Dial.lnk" "$INSTDIR\3cx.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"						; Launch on startup
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\3CX Click-to-Dial.lnk" "$INSTDIR\3cx.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"		; Add to start menu
+	createShortCut "$SMSTARTUP\3CX Click-to-Dial.lnk" "$INSTDIR\3cx.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"						; Launch on startup
 
-; SectionEnd
+SectionEnd
 
 Section "Quick Status Change"
 	SectionIn 1 2

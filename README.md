@@ -1,12 +1,5 @@
 # Quest Tools
 
-## GMSearch Script
-This is a compiled [AutoHotKey](https://autohotkey.com/ "AutoHotKey's Homepage") script that makes it easy to search for a contact in GM.
-
-Simply press CTRL+ALT+= to get a message box asking for the contact's name (same as you would in the search field in the upper left corner of GM). It will then do the search for you and return the results in GM.
-
-Make sure to have GM running or you'll get an error message
-
 ## Quick Status Change
 Changes status in both MS Teams and 3CX Desktop. Teams doesn't seem to be perfectly reliable, seems to be a timing issue. Find INI file in **%APPDATA%\QI Tools** and increase (and un-comment) *teamsSleep* value.
 
@@ -18,6 +11,14 @@ Changes status in both MS Teams and 3CX Desktop. Teams doesn't seem to be perfec
 + Ctrl+F4  - *Busy* (**DND** in 3CX)
 + Ctrl+F5  - *Lunch* (**Away** in Teams)
 + Ctrl+F6  - *SB* (**DND** in Teams)
+
+## 3CX Click-to-Call
+Copies selected text into 3CX. **Must** have text highlighted to start.
+
++ F11 - Copy text
++ F12 - Brings 3CX into focus (does not copy anything)
+
+_See notes in Quick Status Change above for notes on modifying the shortcuts (INI file)_
 
 ## Window Switching Script
 Quick switching to commonly open windows
