@@ -2,4 +2,8 @@
 Menu, Tray, Icon, images\red_q_on_blue_bkgd.ico		; Icon for this script
 Menu, Tray, Tip, QI Tools: Basic Shortcuts	 		; Change tooltip on icon in tray
 
-SetNumLockState, AlwaysOn
+#Include BSC_Properties.ahk
+
+if numLockOn {
+	SetNumLockState, AlwaysOn
+}
