@@ -20,6 +20,14 @@ Copies selected text into 3CX. **Must** have text highlighted to start.
 
 _See notes in Quick Status Change above for notes on modifying the shortcuts (INI file)_
 
+## SOLIDWORKS Reset
+Kills and restarts SOLIDWORKS. Version that gets started is controlled in INI file (see notes in Quick Status Change above). Change to appropriate shortcut or EXE.
+
+I suggest pinning the icon (benign looking) onto your taskbar.
+
+## 3DConnexion Reset
+Automates running **Stop Driver** followed by **Start Driver**. Will make sure the driver is fully stopped before trying to start it.
+
 ## Window Switching Script
 Quick switching to commonly open windows
 

@@ -9,11 +9,11 @@
 # All the other settings can be tweaked by editing the !defines at the top of this script
 !define APPNAME "QI Tools"
 !define COMPANYNAME "Quest Integration"
-!define DESCRIPTION "Helpful tools for Quest employees"
+!define DESCRIPTION "Helpful tools for Quest Integration employees"
 # These three must be integers
 !define VERSIONMAJOR 0
 !define VERSIONMINOR 0
-!define VERSIONBUILD 16
+!define VERSIONBUILD 17
 # These will be displayed by the "Click here for support information" link in "Add/Remove Programs"
 # It is possible to use "mailto:" links in here to open the email client
 ; !define HELPURL "http://..." # "Support Information" link
@@ -44,7 +44,7 @@ RequestExecutionLevel admin
 !define MUI_ICON "images\red_q_on_blue_bkgd.ico"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_BITMAP "image\red_q_on_blue_bkgd.bmp"
-!define MUI_FINISHPAGE_RUN "$INSTDIR\run all.bat"
+!define MUI_FINISHPAGE_RUN "$INSTDIR\Run All.exe"
 !define MUI_FINISHPAGE_RUN_TEXT "Run All Installed Scripts"
 
 Insttype "Standard Install"
@@ -122,7 +122,7 @@ section "Common Files (Required)"
  
 	# Start Menu
 	createDirectory "$SMPROGRAMS\${COMPANYNAME}"
-	createShortCut "$SMPROGRAMS\${COMPANYNAME}\Run All.lnk" "$INSTDIR\run all.bat" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\Run All.lnk" "$INSTDIR\Run All.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
 	; createShortCut "$SMPROGRAMS\${COMPANYNAME}\GoldMine Search.lnk" "$INSTDIR\GMSearch.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
 	; createShortCut "$SMPROGRAMS\${COMPANYNAME}\Quick Status Change.lnk" "$INSTDIR\Quick Status Change.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
 	; createShortCut "$SMPROGRAMS\${COMPANYNAME}\Window Switching.lnk" "$INSTDIR\Window Switching.exe" "" "$INSTDIR\red_q_on_blue_bkgd.ico"
@@ -181,17 +181,27 @@ Section "Quick Status Change"
 
 SectionEnd
 
-; Section "GoldMine Search"
-; 	SectionIn 2
+Section "SOLIDWORKS Reset"
+	SectionIn 2
 
-; 	setOutPath $INSTDIR
+	setOutPath $INSTDIR
 
-; 	file "GMSearch.exe"
+	file "SOLIDWORKS Reset.exe"
 
-; 	createShortCut "$SMPROGRAMS\${COMPANYNAME}\GoldMine Search.lnk" "$INSTDIR\GMSearch.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"		; Add to start menu
-; 	createShortCut "$SMSTARTUP\GoldMine Search.lnk" "$INSTDIR\GMSearch.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"						; Launch on startup
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\SOLIDWORKS Reset.lnk" "$INSTDIR\SOLIDWORKS Reset.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"		; Add to start menu
 
-; SectionEnd
+SectionEnd
+
+Section "3DConnexion Reset"
+	SectionIn 2
+
+	setOutPath $INSTDIR
+
+	file "3DConnexion Reset.exe"
+
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\3DConnexion Reset.lnk" "$INSTDIR\3DConnexion Reset.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"		; Add to start menu
+
+SectionEnd
 
 Section "Window Switching"
 	SectionIn 2
@@ -251,6 +261,8 @@ section "uninstall"
 	delete "$SMPROGRAMS\${COMPANYNAME}\Window Switching.lnk"
 	delete "$SMPROGRAMS\${COMPANYNAME}\Basic Shortcuts.lnk"
 	delete "$SMPROGRAMS\${COMPANYNAME}\Run All.lnk"
+	delete "$SMPROGRAMS\${COMPANYNAME}\3DConnexion Reset.lnk"
+	delete "$SMPROGRAMS\${COMPANYNAME}\SOLIDWORKS Reset.lnk"
 	delete "$SMSTARTUP\3CX Click-to-Dial.lnk"
 	delete "$SMSTARTUP\Quick Status Change.lnk"
 	delete "$SMSTARTUP\GoldMine Search.lnk"
@@ -268,7 +280,10 @@ section "uninstall"
 	delete "$INSTDIR\Window Switching.exe"
 	delete "$INSTDIR\Basic Shortcuts.exe"
 	delete "$INSTDIR\Quick Status Change.exe"
+	delete "$INSTDIR\3DConnexion Reset.exe"
+	delete "$INSTDIR\SOLIDWORKS Reset.exe"
 	delete "$INSTDIR\run all.bat"
+	delete "$INSTDIR\Run All.exe"
 	delete "$INSTDIR\images\red_q_on_blue_bkgd.ico"
 	delete "$INSTDIR\images\q_on_red_bkgd.ico"
 	delete "$INSTDIR\images\q_on_yellow_bkgd.ico"
