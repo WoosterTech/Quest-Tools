@@ -1,10 +1,8 @@
 #SingleInstance, force 								; Forces only one instance, allows to re-run script without reloading
-Menu, Tray, Icon, images\red_q_on_blue_bkgd.ico		; Icon for this script
+; Menu, Tray, Icon, images\red_q_on_blue_bkgd.ico		; Icon for this script
 Menu, Tray, Tip, QI Tools: Run All 			 		; Change tooltip on icon in tray
 
 #Include ra_properties.ahk
-
-counter := 0
 
 Loop, Files, % A_ProgramFiles "\" runPath "\*.exe", R 	; Loop over all EXE files in Quest folder
 {
@@ -17,29 +15,14 @@ Loop, Files, % A_ProgramFiles "\" runPath "\*.exe", R 	; Loop over all EXE files
 
 	If not f_skip									; If no match (to excluded list) is found
 	{
-		Process, Exist, %A_LoopFileName%			; Check if already running
-		While ErrorLevel
+		try
 		{
-			ToolTip, % "Closing`n`" A_LoopFileName
-			Process, Close, %A_LoopFileName%		; Close (but only if already running), and only 1 instance
-			Process, Exist, %A_LoopFileName%
-
-			counter += 1
+			ToolTip, % "Starting`n" A_LoopFileName
+			Run, %A_LoopFileName% /restart 						; Run app
+		} catch e {
+			MsgBox, 16, Error, % "Failed to start """ A_LoopFileName """`n" e.message
 		}
-
-		Process, WaitClose, %A_LoopFileName%, 5 ; Wait 5 seconds for app to close
-		If ErrorLevel 							; If not closed in 5 seconds (often if multiple instances were open)
-		{
-			MsgBox, % "Unable to close " A_LoopFileName "`n`nEnding Run All"
-			Exit
-		}
-
-		ToolTip, % "Starting`n" A_LoopFileName
-		Run, %A_LoopFileName% 						; Run app
 	}
 }
-
-ToolTip, % counter " script(s) closed"
-Sleep, 2000
 
 ToolTip

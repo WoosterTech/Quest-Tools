@@ -103,8 +103,9 @@ section "Common Files (Required)"
 	; file "Basic Shortcuts.exe"
 	
 	# Add any other files for the install directory (license files, app data, etc) here
-	; CreateDirectory "$INSTDIR"
-	file "run all.bat"
+	CreateDirectory "$INSTDIR"
+	CreateDirectory "$INSTDIR\images"
+	file "Run All.exe"
 	file /oname=images\red_q_on_blue_bkgd.ico images\red_q_on_blue_bkgd.ico
 	file /oname=images\q_on_red_bkgd.ico images\q_on_red_bkgd.ico
 
