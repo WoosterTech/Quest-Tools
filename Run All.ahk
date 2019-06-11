@@ -4,34 +4,42 @@ Menu, Tray, Tip, QI Tools: Run All 			 		; Change tooltip on icon in tray
 
 #Include ra_properties.ahk
 
-Loop, Files, %A_ProgramFiles%\%runPath%\*.exe, R 	; Loop over all EXE files in Quest folder
+counter := 0
+
+Loop, Files, % A_ProgramFiles "\" runPath "\*.exe", R 	; Loop over all EXE files in Quest folder
 {
 	f_skip := false 								; Set "skip" value to false (assume we WILL be running by default)
 	Loop % fName_List.MaxIndex()					; Loop over list of excluded files
 	{
 		If fName_List[A_Index] == A_LoopFileName 	; Check if EXE matches excluded list
-		{
 			f_skip := true 							; Set "skip" to true if a match
-		}
 	}
 
 	If not f_skip									; If no match (to excluded list) is found
 	{
 		Process, Exist, %A_LoopFileName%			; Check if already running
-		If ErrorLevel
+		While ErrorLevel
 		{
-			ToolTip, Closing`nFilename: %A_LoopFileName%
+			ToolTip, % "Closing`n`" A_LoopFileName
 			Process, Close, %A_LoopFileName%		; Close (but only if already running), and only 1 instance
-			Process, WaitClose, %A_LoopFileName%, 5 ; Wait 5 seconds for app to close
-			If ErrorLevel 							; If not closed in 5 seconds (often if multiple instances were open)
-			{
-				MsgBox, Unable to close A_LoopFileName`nCheck for multiple sessions`nEnding Run All
-				Exit
-			}
+			Process, Exist, %A_LoopFileName%
+
+			counter += 1
 		}
-		ToolTip, Starting`nFilename: %A_LoopFileName%
+
+		Process, WaitClose, %A_LoopFileName%, 5 ; Wait 5 seconds for app to close
+		If ErrorLevel 							; If not closed in 5 seconds (often if multiple instances were open)
+		{
+			MsgBox, % "Unable to close " A_LoopFileName "`n`nEnding Run All"
+			Exit
+		}
+
+		ToolTip, % "Starting`n" A_LoopFileName
 		Run, %A_LoopFileName% 						; Run app
 	}
 }
 
-ToolTip 											; Clear ToolTip
+ToolTip, % counter " script(s) closed"
+Sleep, 2000
+
+ToolTip
