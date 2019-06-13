@@ -4,6 +4,13 @@ Menu, Tray, Tip, QI Tools: Basic Shortcuts	 		; Change tooltip on icon in tray
 
 #Include BSC_Properties.ahk
 
+#HotkeyInterval %hkInterval%						; Defines interval for next line
+#MaxHotkeysPerInterval %hkMaxPerInt%				; Sets maximum number of presses of hotkey per interval
+
 if numLockOn {
 	SetNumLockState, AlwaysOn
 }
+
+#If zoomEnable										; Only set these hotkeys if zoomEnable is '1' in ini file
+WheelRight::#=										; Zooms in with Windows Magnifier
+WheelLeft::#-										; Zooms out with Windows Magnifier

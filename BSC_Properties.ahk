@@ -9,7 +9,13 @@ iniProps := {}
 
 ; Properties from INI file with their defaults
 iniProps["numLockOn"] := 0
+iniProps["hkInterval"] := 1000
+iniProps["hkMaxPerInt"] := 210
+iniProps["zoomEnable"] := 0
 
 iniProps := QIFunctions_readINI(pathINI, iniProps, iniSection)
 
 numLockOn := iniProps["numLockOn"]
+hkInterval := iniProps["hkInterval"]
+hkMaxPerInt := iniProps["hkMaxPerInt"]
+zoomEnable := iniProps["zoomEnable"]
