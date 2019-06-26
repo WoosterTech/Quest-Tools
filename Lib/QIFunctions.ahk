@@ -70,33 +70,3 @@ QIFunctions_StatusChange(keysTeams, pos3CX, teams := 1, 3CX := 1)	; The function
 	WinActivate, ahk_id %winid%					; Switch back to original active window
 	MouseMove, ogMousePosX, ogMousePosY, 0		; Restore original mouse position
 }
-
-QIFunctions_3CXFocus(paste:=0)									; function that actually does stuff... defaults to just clearing any existing input
-{
-	global 3cxSleep
-	if WinExist("ahk_exe 3CXWin8Phone.exe")
-	{
-		WinActivate
-		WinActivate
-		WinWaitActive, , , 1
-		If ErrorLevel
-		{
-			MsgBox, 8208, Error, WinWaitActive Timed Out, cancelling
-			return
-		}
-	} else {
-		MsgBox, 8208, Not Running, 3CX is not running, cancelling
-		return
-	}
-
-	Sleep, %3cxSleep%
-
-	SendInput, {Esc}								; clear text from 3CX window
-
-	if paste
-	{
-		SendInput, ^v 								; send copied text if 'paste' value is set
-	}
-
-return
-}
