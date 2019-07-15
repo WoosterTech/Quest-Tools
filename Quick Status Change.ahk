@@ -34,3 +34,11 @@ return
 	QIFunctions_StatusChange("dnd", codeF6, changeTeams, change3CX)
 	Menu, Tray, Icon, images\q_on_red_bkgd.ico
 return
+
+^F7::		; Queue log in
+	QIFunctions_StatusChange("", codeF7, 0, change3CX)
+return
+
+^F8::		; Queue log out
+	QIFunctions_StatusChange("", codeF8, 0, change3CX)
+return

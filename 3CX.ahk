@@ -18,7 +18,7 @@ copyNumber:											; copy text in active window and paste into 3CX
 		return
 	}
 
-	pnMatch := RegExMatch(Clipboard, pnregex, 1)
+	pnMatch := RegExMatch(Clipboard, pnRegEx, 1)
 	if !pnMatch
 	{
 		MsgBox, % "Not able to format as phone number`n`nSelection: " clipboard

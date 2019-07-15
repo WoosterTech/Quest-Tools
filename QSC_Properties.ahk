@@ -25,6 +25,8 @@ codeF2 = % "*" iniProps["codeIndex"] "1"									; Away
 codeF3 = % "*" iniProps["codeIndex"] "2"									; DND
 codeF5 = % "*" iniProps["codeIndex"] "3"									; Lunch
 codeF6 = % "*" iniProps["codeIndex"] "4"									; SB
+codeF7 = % "*62"															; Queue log in
+codeF8 = % "*63"															; Queue log out
 
 teamsSleep := iniProps["teamsSleep"]
 changeTeams := iniProps["changeTeams"]
