@@ -23,8 +23,8 @@ onCallColorList := StrSplit(iniProps["onCallColors"], ",")					; Separate colors
 codeF1 = % "*" iniProps["codeIndex"] "0"									; Available
 codeF2 = % "*" iniProps["codeIndex"] "1"									; Away
 codeF3 = % "*" iniProps["codeIndex"] "2"									; DND
-codeF5 = % "*" iniProps["codeIndex"] "3"									; Lunch
-codeF6 = % "*" iniProps["codeIndex"] "4"									; SB
+codeF5 = % "*" iniProps["codeIndex"] "3"									; n/a
+codeF6 = % "*" iniProps["codeIndex"] "4"									; Lunch
 codeF7 = % "*62"															; Queue log in
 codeF8 = % "*63"															; Queue log out
 

@@ -26,12 +26,12 @@ return
 return
 
 ^F5::		; Lunch
-	QIFunctions_StatusChange("brb", codeF5, changeTeams, change3CX)
+	QIFunctions_StatusChange("available", codeF5, changeTeams, change3CX)
 	Menu, Tray, Icon, images\q_on_yellow_bkgd.ico
 return
 
 ^F6::		; SB
-	QIFunctions_StatusChange("dnd", codeF6, changeTeams, change3CX)
+	QIFunctions_StatusChange("brb", codeF6, changeTeams, change3CX)
 	Menu, Tray, Icon, images\q_on_red_bkgd.ico
 return
 
