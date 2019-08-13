@@ -13,7 +13,7 @@
 # These three must be integers
 !define VERSIONMAJOR 0
 !define VERSIONMINOR 0
-!define VERSIONBUILD 19
+!define VERSIONBUILD 20
 # These will be displayed by the "Click here for support information" link in "Add/Remove Programs"
 # It is possible to use "mailto:" links in here to open the email client
 ; !define HELPURL "http://..." # "Support Information" link
@@ -117,6 +117,9 @@ section "Common Files (Required)"
 	setOutPath "$APPDATA\${COMPANYNAME}"
 
 	file "QI Tools.ini"
+	file sounds\ringtone_-20db.wav
+	file sounds\ringtone_og.wav
+
  
 	# Uninstaller - See function un.onInit and section "uninstall" for configuration
 	writeUninstaller "$INSTDIR\uninstall.exe"
