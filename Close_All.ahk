@@ -10,7 +10,7 @@ For index, AHK in listAHK
 	Process, Exist, % ahkEXE
 	While ErrorLevel
 	{
-		MsgBox, % ErrorLevel
+		; MsgBox, % ErrorLevel
 		ToolTip, % "Closing " AHK
 		Process, Close, % ErrorLevel
 		MsgBox, % ErrorLevel

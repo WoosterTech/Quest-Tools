@@ -117,9 +117,7 @@ section "Common Files (Required)"
 	setOutPath "$APPDATA\${COMPANYNAME}"
 
 	file "QI Tools.ini"
-	file sounds\ringtone_-20db.wav
-	file sounds\ringtone_og.wav
-
+	file /nonfatal /a /r "sounds\"
  
 	# Uninstaller - See function un.onInit and section "uninstall" for configuration
 	writeUninstaller "$INSTDIR\uninstall.exe"
