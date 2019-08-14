@@ -14,7 +14,7 @@ if numLockOn {
 ; Overwrites ringtone wav file with file indicated in ini file
 ; Source wav file must be located in %appdata%\Quest Integration
 if setVol {
-	sFile := % A_AppData "\Quest Integration\" ringWav												; Sets source file location
+	sFile := % ProgramFiles "\Quest Integration\QI Tools\sounds\" ringWav												; Sets source file location
 	dFile := % A_AppDataCommon "\3CXPhone for Windows\PhoneApp\Sounds\ringtone.wav"					; Sets destination location (hard coded)
 
 	fExist := FileExist(sFile)																		; Verify source file exists

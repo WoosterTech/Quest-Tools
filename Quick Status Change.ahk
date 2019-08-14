@@ -10,15 +10,23 @@ CoordMode, Mouse, Client
 	Menu, Tray, Icon, images\q_on_green_bkgd.ico
 return
 
+
 ^F2::		; Away/BRB
 	QIFunctions_StatusChange("brb", codeF2, changeTeams, change3CX)
 	Menu, Tray, Icon, images\q_on_yellow_bkgd.ico
+
+	MsgBox, 4132, Timer, 5 Seconds until lock., 5
+	IfMsgBox, No
+		return
+	else
+		DllCall("LockWorkStation")
 return
 
 ^F3::		; Do not disturb (generic)
 	QIFunctions_StatusChange("dnd", codeF3, changeTeams, change3CX)
 	Menu, Tray, Icon, images\q_on_red_bkgd.ico
 return
+
 
 ^F4::		; Busy/On-phone
 	QIFunctions_StatusChange("busy", codeF3, changeTeams, change3CX)

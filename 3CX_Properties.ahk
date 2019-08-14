@@ -4,6 +4,8 @@ pathINI = %A_AppData%\Quest Integration\QI Tools.ini
 ; Section of INI file for 3CX
 iniSection = 3CX
 
+; secList := []
+
 ; Initialize iniProps
 iniProps := {}
 
@@ -14,6 +16,17 @@ iniProps["phoneFocus"] := "F12"
 iniProps["pnRegEx"] := "^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$"
 iniProps["RegExOut"] := "($2) $3-$4"
 iniProps["debug0"] := 0
+
+; keyList := ["3cxSleep","numEnter","phoneFocus","pnRegEx","RegExOut","debug0"]
+
+; MsgBox, % keyList[1]
+
+; Loop % keyList.MaxIndex()
+; {
+; 	IniWrite, % iniProps[keyList[A_Index]], %A_AppData%\Quest Integration\QI Tools1.ini, %iniSection%, % keyList[A_Index]
+; }
+
+; IniWrite, % iniProps[keyList[1]], %A_AppData%\Quest Integration\QI Tools1.ini, %iniSection%, % keyList[1]
 
 iniProps := QIFunctions_readINI(pathINI, iniProps, iniSection)
 
