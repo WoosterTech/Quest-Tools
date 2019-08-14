@@ -2,8 +2,13 @@ QIFunctions_readINI(iniPath, iniKeys, ini_section)					; Reads keys from defined
 {
 	For key, value in iniKeys
 	{
-		IniRead, value, %iniPath%, %ini_section%, %key%, %value%
-		iniKeys[(key)] := value
+		IniRead, valCheck, %iniPath%, %ini_section%, %key%
+		if (valCheck = "ERROR") {
+			IniWrite, %value%, %iniPath%, %ini_Section%, %key%
+			iniKeys[(key)] := value
+		} else {
+			iniKeys[(key)] := valCheck
+		}
 	}
 
 	return iniKeys
