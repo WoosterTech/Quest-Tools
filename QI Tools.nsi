@@ -13,7 +13,7 @@
 # These three must be integers
 !define VERSIONMAJOR 0
 !define VERSIONMINOR 0
-!define VERSIONBUILD 19
+!define VERSIONBUILD 22
 # These will be displayed by the "Click here for support information" link in "Add/Remove Programs"
 # It is possible to use "mailto:" links in here to open the email client
 ; !define HELPURL "http://..." # "Support Information" link
@@ -92,15 +92,6 @@ FunctionEnd
 
 section "Common Files (Required)"
 	SectionIn RO
-
-	# Files for the install directory - to build the installer, these should be in the same directory as the install script (this file)
-	; setOutPath $INSTDIR
-	# Files added here should be removed by the uninstaller (see section "uninstall")
-	; file "3cx.exe"
-	; file "GMSearch.exe"
-	; file "Quick Status Change.exe"
-	; file "Window Switching.exe"
-	; file "Basic Shortcuts.exe"
 	
 	# Add any other files for the install directory (license files, app data, etc) here
 	CreateDirectory "$INSTDIR"
@@ -113,10 +104,7 @@ section "Common Files (Required)"
 	IntFmt $0 "0x%08X" $0
 	!define INSTALLSIZE $0
 
-
-	setOutPath "$APPDATA\${COMPANYNAME}"
-
-	file "QI Tools.ini"
+	CreateDirectory %ProgramData%\"Quest"
  
 	# Uninstaller - See function un.onInit and section "uninstall" for configuration
 	writeUninstaller "$INSTDIR\uninstall.exe"
@@ -223,6 +211,9 @@ Section "Basic Shortcuts"
 
 	file "Basic Shortcuts.exe"
 
+	; setOutPath $INSTDIR\sounds
+	file /nonfatal /a /r sounds\
+
 	createShortCut "$SMPROGRAMS\${COMPANYNAME}\Basic Shortcuts.lnk" "$INSTDIR\Basic Shortcuts.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"		; Add to start menu
 	createShortCut "$SMSTARTUP\Basic Shortcuts.lnk" "$INSTDIR\Basic Shortcuts.exe" "" "$INSTDIR\images\red_q_on_blue_bkgd.ico"						; Launch on startup
 
@@ -269,10 +260,14 @@ section "uninstall"
 	delete "$SMSTARTUP\GoldMine Search.lnk"
 	delete "$SMSTARTUP\Window Switching.lnk"
 	delete "$SMSTARTUP\Basic Shortcuts.lnk"
+	delete "$APPDATA\*.wav"
+	; delete "$APPDATA\ringtone_-20db.wav"
+	; delete "$APPDATA\stranger_things"
 	; delete "$SMPROGRAMS\${COMPANYNAME}\${APPNAME}.lnk"
 
 	# Try to remove the Start Menu folder - this will only happen if it is empty
 	rmDir "$SMPROGRAMS\${COMPANYNAME}"
+	
  
 	# Remove files
 	delete "$INSTDIR\3cx.exe"
@@ -285,16 +280,17 @@ section "uninstall"
 	delete "$INSTDIR\SOLIDWORKS Reset.exe"
 	delete "$INSTDIR\run all.bat"
 	delete "$INSTDIR\Run All.exe"
-	delete "$INSTDIR\images\red_q_on_blue_bkgd.ico"
-	delete "$INSTDIR\images\q_on_red_bkgd.ico"
-	delete "$INSTDIR\images\q_on_yellow_bkgd.ico"
-	delete "$INSTDIR\images\q_on_green_bkgd.ico"
+	; delete "$INSTDIR\images\red_q_on_blue_bkgd.ico"
+	; delete "$INSTDIR\images\q_on_red_bkgd.ico"
+	; delete "$INSTDIR\images\q_on_yellow_bkgd.ico"
+	; delete "$INSTDIR\images\q_on_green_bkgd.ico"
  
 	# Always delete uninstaller as the last action
 	delete $INSTDIR\uninstall.exe
  
 	# Try to remove the install directory - this will only happen if it is empty
-	rmDir $INSTDIR\images
+	rmDir /r $INSTDIR\images
+	rmDir /r $INSTDIR\sounds
 	rmDir $INSTDIR
  
 	# Remove uninstaller information from the registry
