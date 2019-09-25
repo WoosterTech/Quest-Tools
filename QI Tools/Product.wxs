@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="B80655E5-283C-4098-9F84-BA23A6A12C45" Name="QI Tools" Language="1033" Version="0.0.24.0" Manufacturer="Quest Integration" UpgradeCode="67685DE7-5CB2-426E-8173-695978DD4D7F">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+	<Product Id="B80655E5-283C-4098-9F84-BA23A6A12C45"
+           Name="QI Tools"
+           Language="1033"
+           Version="0.0.25.0"
+           Manufacturer="Quest Integration"
+           UpgradeCode="67685DE7-5CB2-426E-8173-695978DD4D7F">
+    
+		<Package Id="*"
+             Keywords="Installer"
+             Description="QI Tools Installer"
+             Manufacturer="Quest Integration"
+             InstallerVersion="200"
+             Compressed="yes"
+             InstallScope="perMachine" />
+
+    <Upgrade Id="67685DE7-5CB2-426E-8173-695978DD4D7F">
+      <UpgradeVersion OnlyDetect="no"
+                      Property="PREVIOUSFOUND"
+                      Minimum="0.0.24.0" IncludeMinimum="yes"
+                      Maximum="0.0.25.0" IncludeMaximum="no" />
+      <!--<UpgradeVersion OnlyDetect="yes"
+                      Property="SELFFOUND"
+                      Minimum="0.0.25.0"
+                      IncludeMinimum="yes"
+                      Maximum="0.0.25.0"
+                      IncludeMaximum="yes" />
+      <UpgradeVersion OnlyDetect="yes"
+                      Property="NEWERFOUND"
+                      Minimum="0.0.25.0"
+                      IncludeMinimum="no" />-->
+    </Upgrade>
+
+    <CustomAction Id="AlreadyUpdated" Error="[ProductName] is already installed" />
+    <CustomAction Id="NoDowngrade" Error="A later version of [ProductName] is already installed" />
+             
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 		<MediaTemplate />
@@ -121,6 +154,18 @@
       <ComponentRef Id="commonFiles"/>
       <ComponentRef Id="ProgramMenuDir" />
 		</Feature>
+
+    <InstallExecuteSequence>
+      <!--<Custom Action="AlreadyUpdated" After="FindRelatedProducts">SELFFOUND</Custom>
+      <Custom Action="NoDowngrade" After="FindRelatedProducts">NEWERFOUND</Custom>-->
+      <Custom Action="LaunchQU" After="InstallFinalize">NOT Installed</Custom>
+    </InstallExecuteSequence>
+
+    <CustomAction Id="LaunchBSC" FileKey="bscEXE" ExeCommand="" Return="asyncNoWait" />
+    <CustomAction Id="LaunchQSC" FileKey="qscEXE" ExeCommand="" Return="asyncNoWait" />
+    <CustomAction Id="LaunchQU" FileKey="quBAT" ExeCommand="[SourceDir]\sounds\ringtone_-20db.wav" Return="asyncNoWait" />
+    <CustomAction Id="Launch3CX" FileKey="_3cxEXE" ExeCommand="" Return="asyncNoWait" />
+    
 	</Product>
 
 
