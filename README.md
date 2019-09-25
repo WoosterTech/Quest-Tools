@@ -1,60 +1,54 @@
 # Quest Tools
 
-## HipChat Script
-This is a compiled [AutoHotKey](https://autohotkey.com/ "AutoHotKey's Homepage") script that makes it easy to change HipChat status. Automatically switches back to active window.
+## Quick Status Change
+Changes status in both MS Teams and 3CX Desktop. Teams doesn't seem to be perfectly reliable, seems to be a timing issue. Click **Settings** in Start Menu>QI Tools and increase *teamsSleep* value.
 
-Now also changes Teams status. Teams doesn't support messages with the status. Brackets indicate what will happen in Teams vs. what happens in HipChat.
+3CX actually dials a number (e.g. **\*30** for *Available*) to change its status. That makes it slow and it "announces" the change over your headset, but it should be almost perfectly reliable.
 
-Now *also* changes 3CX status. 3CX **does** support messages, but that adds a lot of complexity, so not currently supported here. {} indicate what 3CX will do when different than Teams.
++ Ctrl+F1  - *Available*
++ Ctrl+F2  - *Away*
++ Ctrl+F3  - *Do Not Disturb* (**NO** notifications in MS Teams)
++ Ctrl+F4  - *Busy* (**DND** in 3CX)
++ Ctrl+F5  - *SB* (**DND** in Teams)
++ Ctrl+F6  - *Lunch* (**Away** in Teams)
 
-+ Ctrl+F1 - Available
-+ Ctrl+F2 - Do Not Disturb On Phone [Do Not Disturb]
-+ Ctrl+F3 - Away Back ~{current time + 15 rounded **UP** to nearest 5 minutes} [Be Right Back] {Away}
-+ Ctrl+F4 - Away PM Me [Be Right Back] {Away}
-+ Ctrl+F5 - Away {prompt for message} [Away]
-+ Ctrl+F6 - Do Not Disturb {prompt for message} [Do Not Disturb]
+## 3CX Click-to-Call
+Copies selected text into 3CX. **Must** have text copied to clipboard.
 
-## 3CX Script
-This is a compiled [AutoHotKey](https://autohotkey.com/ "AutoHotKey's Homepage") script that makes it easy to switch to 3CX and enter a number.
++ NumLock - Dials number on clipboard (must copy number using ctrl+c *before* pressing numlock)
++ F12 - Brings 3CX into focus (does not copy anything)
 
-Simply press CTRL+ALT+\ (the one above the Enter key) to switch to the open 3CX window and clear any existing number and get ready to input a number.
+_See notes in Quick Status Change above for notes on modifying the shortcuts (INI file)_
 
-Ability to copy-paste text into 3CX. Same restrictions apply (see below)
+## Basic Shortcuts
+Provides an option to **lock** the numlock on. This means that you *cannot* turn off numlock. May not be necessary if {numlock} is left as the default click-to-call option.
 
-__Usage__
-+ Click in a number field in GM
-+ Press _F11_
+By default, this option is disabled. Follow instructions in **Quick Status Change** to set the *numLockOn* value to **1**.
 
-Make sure to have 3CX running or you'll get an error message
+## SOLIDWORKS Reset - *Not currently implemented*
+Kills and restarts SOLIDWORKS. Version that gets started is controlled in INI file (see notes in Quick Status Change above). Change to appropriate shortcut or EXE.
 
-Also, a real limitation is that it must be on the screen that allows direct number entry:
+I suggest pinning the icon (benign looking) onto your taskbar.
 
-![only 3CX screen that this works for](images/3CX_screen.png)
+## 3DConnexion Reset - *Not currently implemented*
+Automates running **Stop Driver** followed by **Start Driver**. Will make sure the driver is fully stopped before trying to start it.
 
-## GMSearch Script
-This is a compiled [AutoHotKey](https://autohotkey.com/ "AutoHotKey's Homepage") script that makes it easy to search for a contact in GM.
-
-Simply press CTRL+ALT+= to get a message box asking for the contact's name (same as you would in the search field in the upper left corner of GM). It will then do the search for you and return the results in GM.
-
-Make sure to have GM running or you'll get an error message
-
-## Window Switching Script
+## Window Switching Script - *Not currently implemented*
 Quick switching to commonly open windows
 
-+ Ctrl+Shift+F1 - HipChat
-+ Ctrl+Alt+F1	- View HipChat for 500ms (quick-check status)
-+ Ctrl+Shift+F2 - Remote Desktop (must include "gm rdp" in title bar)
-+ Ctrl+Shift+F3 - Outlook
-+ Ctrl+Shift+F4 - slack
-+ Ctrl+Shift+F5 - Firefox
-+ Ctrl+Shift+F6 - GoToMeeting
-+ Ctrl+Shift+F7 - Chrome
-+ Ctrl+Shift+F8 - SOLIDWORKS
-+ Ctrl+Shift+F9 - 3CX
++ Ctrl+Shift+F1  - Chrome (open new instance if not running)
++ Ctrl+Shift+F2  - Remote Desktop (must include "gm rdp" in title bar)
++ Ctrl+Shift+F3  - Outlook
++ Ctrl+Shift+F4  - slack
++ Ctrl+Shift+F5  - Firefox
++ Ctrl+Shift+F6  - GoToMeeting
++ Ctrl+Shift+F7  - Chrome
++ Ctrl+Shift+F8  - SOLIDWORKS
++ Ctrl+Shift+F9  - 3CX
++ Ctrl+Shift+F10 - Teams
 
 On my keyboard, I have those programmed to (in order):
 + fn+h
-+ (n/a)
 + fn+g
 + fn+o
 + fn+s
@@ -63,6 +57,7 @@ On my keyboard, I have those programmed to (in order):
 + fn+c
 + fn+w
 + fn+x
++ fn+t
 
 **_Please submit issues/comments/suggests using Issues on GitHub_**
 

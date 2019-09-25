@@ -1,51 +1,45 @@
-3CXFocus(paste:=0)									; function that actually does stuff... defaults to just clearing any existing input
-{
-	if WinExist("ahk_exe 3CXWin8Phone.exe")
-	{
-		winid := WinExist("ahk_exe 3CXWin8Phone.exe")
-	}
+#SingleInstance, force
+Menu, Tray, Icon,  images\red_q_on_blue_bkgd.ico
+Menu, Tray, Tip, QI Tools: 3CX
 
-	if winid
+#Include 3CX_Properties.ahk
+
+Hotkey, %numEnter%, copyNumber
+return
+
+copyNumber:											; copy text in active window and paste into 3CX
+
+	SendInput, ^c
+
+	ClipWait, 2
+	if ErrorLevel
 	{
-		WinActivate
-		WinActivate
-		WinWaitActive, , , 1
-		If ErrorLevel
-		{
-			MsgBox, 8208, Error, WinWaitActive Timed Out, cancelling
-			return
-		}
-	} else {
-		MsgBox, 8208, Not Running, 3CX is not running, cancelling
+		MsgBox, 8208, Error, Selection does not contain text, 2
 		return
 	}
 
-	Sleep, 500
-
-	SendInput, {Esc}								; clear text from 3CX window
-
-	if paste
+	pnMatch := RegExMatch(Clipboard, pnRegEx, 1)
+	if !pnMatch
 	{
-		SendInput, ^v 								; send copied text if 'paste' value is set
+		MsgBox, % "Not able to format as phone number`n`nSelection: " clipboard
+		return
 	}
 
-return
-}
+	pNumber := RegExReplace(Clipboard, pnRegEx, RegExOut, 1)
 
-#SingleInstance, force
-Menu, Tray, Icon, images/3cx.ico
+	MsgBox, 4132, Number, % "Is this the correct number?`n`n" pNumber, 3
+	IfMsgBox, No
+		return
+	else
+		Goto dial
 
-^!\:: 												; ctrl+alt+\ switches to 3CX and readies it for number entry (if on number page)
-F12::
+	dial:
+		if !debug0
+			Run, "C:\ProgramData\3CXPhone for Windows\PhoneApp\3CXClickToCall.exe" "%pNumber%"
 
-	3CXFocus()
-
-return
-
-F11::												; copy text in active window and paste into 3CX
-
-	SendInput, {End}+{Home}^c 						; select all text in active box
-
-	3CXFocus(1)
+		if WinExist("ahk_exe 3CXWin8Phone.exe")
+		{
+			WinActivate
+		}
 
 return
