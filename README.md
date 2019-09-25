@@ -1,7 +1,7 @@
 # Quest Tools
 
 ## Quick Status Change
-Changes status in both MS Teams and 3CX Desktop. Teams doesn't seem to be perfectly reliable, seems to be a timing issue. Find INI file in **%APPDATA%\QI Tools** and increase (and un-comment) *teamsSleep* value.
+Changes status in both MS Teams and 3CX Desktop. Teams doesn't seem to be perfectly reliable, seems to be a timing issue. Click **Settings** in Start Menu>QI Tools and increase *teamsSleep* value.
 
 3CX actually dials a number (e.g. **\*30** for *Available*) to change its status. That makes it slow and it "announces" the change over your headset, but it should be almost perfectly reliable.
 
@@ -9,26 +9,31 @@ Changes status in both MS Teams and 3CX Desktop. Teams doesn't seem to be perfec
 + Ctrl+F2  - *Away*
 + Ctrl+F3  - *Do Not Disturb* (**NO** notifications in MS Teams)
 + Ctrl+F4  - *Busy* (**DND** in 3CX)
-+ Ctrl+F5  - *Lunch* (**Away** in Teams)
-+ Ctrl+F6  - *SB* (**DND** in Teams)
++ Ctrl+F5  - *SB* (**DND** in Teams)
++ Ctrl+F6  - *Lunch* (**Away** in Teams)
 
 ## 3CX Click-to-Call
-Copies selected text into 3CX. **Must** have text highlighted to start.
+Copies selected text into 3CX. **Must** have text copied to clipboard.
 
-+ F11 - Copy text
++ NumLock - Dials number on clipboard (must copy number using ctrl+c *before* pressing numlock)
 + F12 - Brings 3CX into focus (does not copy anything)
 
 _See notes in Quick Status Change above for notes on modifying the shortcuts (INI file)_
 
-## SOLIDWORKS Reset
+## Basic Shortcuts
+Provides an option to **lock** the numlock on. This means that you *cannot* turn off numlock. May not be necessary if {numlock} is left as the default click-to-call option.
+
+By default, this option is disabled. Follow instructions in **Quick Status Change** to set the *numLockOn* value to **1**.
+
+## SOLIDWORKS Reset - *Not currently implemented*
 Kills and restarts SOLIDWORKS. Version that gets started is controlled in INI file (see notes in Quick Status Change above). Change to appropriate shortcut or EXE.
 
 I suggest pinning the icon (benign looking) onto your taskbar.
 
-## 3DConnexion Reset
+## 3DConnexion Reset - *Not currently implemented*
 Automates running **Stop Driver** followed by **Start Driver**. Will make sure the driver is fully stopped before trying to start it.
 
-## Window Switching Script
+## Window Switching Script - *Not currently implemented*
 Quick switching to commonly open windows
 
 + Ctrl+Shift+F1  - Chrome (open new instance if not running)

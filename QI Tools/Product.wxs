@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="B80655E5-283C-4098-9F84-BA23A6A12C45"
+	<Product Id="48A6387B-B63A-44B0-A32B-245FE84D07CD"
            Name="QI Tools"
            Language="1033"
-           Version="0.0.25.0"
+           Version="0.0.30.0"
            Manufacturer="Quest Integration"
            UpgradeCode="67685DE7-5CB2-426E-8173-695978DD4D7F">
     
@@ -19,31 +19,24 @@
       <UpgradeVersion OnlyDetect="no"
                       Property="PREVIOUSFOUND"
                       Minimum="0.0.24.0" IncludeMinimum="yes"
-                      Maximum="0.0.25.0" IncludeMaximum="no" />
-      <!--<UpgradeVersion OnlyDetect="yes"
-                      Property="SELFFOUND"
-                      Minimum="0.0.25.0"
-                      IncludeMinimum="yes"
-                      Maximum="0.0.25.0"
-                      IncludeMaximum="yes" />
-      <UpgradeVersion OnlyDetect="yes"
-                      Property="NEWERFOUND"
-                      Minimum="0.0.25.0"
-                      IncludeMinimum="no" />-->
+                      Maximum="0.0.30.0" IncludeMaximum="no" />
     </Upgrade>
-
-    <CustomAction Id="AlreadyUpdated" Error="[ProductName] is already installed" />
-    <CustomAction Id="NoDowngrade" Error="A later version of [ProductName] is already installed" />
              
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-		<MediaTemplate />
+		<MediaTemplate EmbedCab="yes" />
     
     <UIRef Id="WixUI_Mondo"/>
     <UIRef Id="WixUI_ErrorProgressText"/>
 
+    <WixVariable Id="WixUILicenseRtf" Value="licenseagrmt.rtf" />
+    <WixVariable Id="WixUISupportPerUser" Value="0" />
+
     <Icon Id="redqblueb.exe" SourceFile="red_q_on_blue_bkgd.ico"/>
+    
     <Property Id="ARPPRODUCTICON" Value="redqblueb.exe"/>
+    <Property Id="ApplicationFolderName" Value="Quest Integration" />
+    <Property Id="WixAppFolder" Value="WixPerMachineFolder" />
 
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="AppDataFolder">
@@ -53,14 +46,14 @@
             <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Name="INI Path" Type="string" Value="[progfiledir]" KeyPath="yes" />
             <RemoveFolder Id="commonFiles" On="uninstall"/>
             <File Id="INItemp" Name="QI Tools.ini" Source="QI Tools.ini">
-              <Shortcut Id="iniEdit" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="Options" Advertise="no"/>
+              <Shortcut Id="iniEdit" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="Settings" Advertise="no"/>
             </File>
           </Component>
           
         </Directory>
       </Directory>
       <Directory Id="ProgramFilesFolder" Name="PFiles">
-        <Directory Id="QuestIntegration" Name="Quest Integration">
+        <Directory Id="APPLICATIONFOLDER" Name="Quest Integration">
           <Directory Id="INSTALLDIR" Name="QI Tools">
             <Directory Id="images" Name="images">
 
@@ -105,8 +98,8 @@
 
             <Component Id="QuestUp" Guid="D5FE9E94-81AA-4A86-82ED-02731CF02C45">
               <File Id="quBAT" Name="QuestUp.bat" Source="QuestUp.bat" KeyPath="yes">
-                <Shortcut Id="startmenuQU" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="QuestUp" Arguments="ringtone_-20db.wav" Advertise="yes"/>
-                <Shortcut Id="startupQU" Directory="StartupFolder" Icon="redqblueb.exe" Name="QuestUp" Arguments="ringtone_-20db.wav" Advertise="yes"/>
+                <Shortcut Id="startmenuQU" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="QuestUp" Arguments='ringtone_-20db.wav' WorkingDirectory='INSTALLDIR' Advertise="yes"/>
+                <Shortcut Id="startupQU" Directory="StartupFolder" Icon="redqblueb.exe" Name="QuestUp" Arguments="ringtone_-20db.wav" WorkingDirectory="INSTALLDIR" Advertise="yes"/>
               </File>
             </Component>
             
@@ -128,10 +121,6 @@
     </Directory>
     
 		<Feature Id="Complete" Title="QI_Tools" Description="The complete package." Display="expand" Level="1" ConfigurableDirectory="INSTALLDIR">
-      <!--<Feature Id="commons" Title="Common Files" Description="Needed for all scripts" Level="1">
-        <ComponentRef Id="qIcons"/>
-        <ComponentRef Id="commonFiles"/>
-      </Feature>-->
 
       <Feature Id="qsc" Title="Quick Status Change" Description="Allows for hotkeys for changing presence in 3CX and Teams" Level="1">
         <ComponentRef Id="QuickStatusChange"/>
@@ -156,14 +145,15 @@
 		</Feature>
 
     <InstallExecuteSequence>
-      <!--<Custom Action="AlreadyUpdated" After="FindRelatedProducts">SELFFOUND</Custom>
-      <Custom Action="NoDowngrade" After="FindRelatedProducts">NEWERFOUND</Custom>-->
-      <Custom Action="LaunchQU" After="InstallFinalize">NOT Installed</Custom>
+      <Custom Action="LaunchQSC" After="InstallFinalize"><![CDATA[&qsc = 3]]></Custom>
+      <Custom Action="LaunchBSC" After="InstallFinalize"><![CDATA[&bsc = 3]]></Custom>
+      <Custom Action="LaunchQU" After="InstallFinalize"><![CDATA[&qu = 3]]></Custom>
+      <Custom Action="Launch3CX" After="InstallFinalize"><![CDATA[&_3CXfeat = 3]]></Custom>
     </InstallExecuteSequence>
 
     <CustomAction Id="LaunchBSC" FileKey="bscEXE" ExeCommand="" Return="asyncNoWait" />
     <CustomAction Id="LaunchQSC" FileKey="qscEXE" ExeCommand="" Return="asyncNoWait" />
-    <CustomAction Id="LaunchQU" FileKey="quBAT" ExeCommand="[SourceDir]\sounds\ringtone_-20db.wav" Return="asyncNoWait" />
+    <CustomAction Id="LaunchQU" Directory="INSTALLDIR" ExeCommand="[INSTALLDIR]QuestUp.bat ringtone_-20db.wav" Return="asyncNoWait" />
     <CustomAction Id="Launch3CX" FileKey="_3cxEXE" ExeCommand="" Return="asyncNoWait" />
     
 	</Product>
