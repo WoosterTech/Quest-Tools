@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='windows-1252'?>
-<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
-    <Product Name='Foobar 1.0' Manufacturer='Acme Ltd.'
-        Id='9B976A31-03D8-4A72-B645-A1D3F394EB7C' 
-        UpgradeCode='E15D125C-336E-4B2F-A323-16554B27F024'
-        Language='1033' Codepage='1252' Version='1.0.0'>
-    <Package Id='*' Keywords='Installer' Description="Acme's Foobar 1.0 Installer"
-        Comments='Foobar is a registered trademark of Acme Ltd.' Manufacturer='Acme Ltd.'
-        InstallerVersion='100' Languages='1033' Compressed='yes' SummaryCodepage='1252' />
