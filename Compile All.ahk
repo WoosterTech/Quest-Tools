@@ -1,6 +1,6 @@
 #SingleInstance, force 												; Forces only one instance, allows to re-run script without reloading
 
-listAHK := ["3CX", "3DConnexion Reset", "Basic Shortcuts", "Quick Status Change", "Run All", "SOLIDWORKS Reset", "Window Switching"]
+listAHK := ["3CX", "3DConnexion Reset", "Basic Shortcuts", "Quick Status Change", "Run All", "SOLIDWORKS Reset"]
 pathNSIS := % A_ProgramFiles "\NSIS\makensis.exe"
 optionsNSIS := "/OC:\Users\karl\Documents\GitHub\AutoHotKey\compile_log.log"
 pathIN := % A_WorkingDir "\QI Tools.nsi"
@@ -31,14 +31,19 @@ For index, AHK in listAHK
 	try
 	{
 		ToolTip, % "Compiling " AHK
-		RunWait, % "Ahk2Exe.exe /in """ AHK ".ahk"" /icon images/red_q_on_blue_bkgd.ico"					; Run compiler for AHK files
+		; RunWait, % "Ahk2Exe.exe /in """ AHK ".ahk"" /icon images/red_q_on_blue_bkgd.ico"					; Run compiler for AHK files
+		RunWait, % "Ahk2Exe.exe /in """ AHK ".ahk"" /out ""QI Tools\" AHK ".exe"" /icon images/red_q_on_blue_bkgd.ico"					; Run compiler for AHK files
 	} catch e {
 		MsgBox, % "Unable to compile """ AHK """, exiting"
 		ExitApp
 	}
 }
 
-ToolTip, Compiling Installer
-RunWait, % """" pathNSIS """ """ optionsNSIS """ """ pathIN """"	; Compile NSIS file, writing log to file
+; FileCopy, QuestUp.bat, "C:\Users\karl\Documents\GitHub\AutoHotKey\QI Tools\", 1
+; If ErrorLevel
+; 	MsgBox, % ErrorLevel
+
+; ToolTip, Compiling Installer
+; RunWait, % """" pathNSIS """ """ optionsNSIS """ """ pathIN """"	; Compile NSIS file, writing log to file
 
 ToolTip

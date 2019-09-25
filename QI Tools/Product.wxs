@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="B80655E5-283C-4098-9F84-BA23A6A12C45" Name="QI Tools" Language="1033" Version="0.0.24.0" Manufacturer="Quest Integration" UpgradeCode="67685DE7-5CB2-426E-8173-695978DD4D7F">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate />
+    
+    <UIRef Id="WixUI_Mondo"/>
+    <UIRef Id="WixUI_ErrorProgressText"/>
+
+    <Icon Id="redqblueb.exe" SourceFile="red_q_on_blue_bkgd.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="redqblueb.exe"/>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="AppDataFolder">
+        <Directory Id="progfiledir" Name="Quest Integration">
+
+          <Component Id="commonFiles" Guid="008D6F3F-A719-4A59-977C-4B8072F04F7D" Permanent="yes">
+            <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Name="INI Path" Type="string" Value="[progfiledir]" KeyPath="yes" />
+            <RemoveFolder Id="commonFiles" On="uninstall"/>
+            <File Id="INItemp" Name="QI Tools.ini" Source="QI Tools.ini">
+              <Shortcut Id="iniEdit" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="Options" Advertise="no"/>
+            </File>
+          </Component>
+          
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramFilesFolder" Name="PFiles">
+        <Directory Id="QuestIntegration" Name="Quest Integration">
+          <Directory Id="INSTALLDIR" Name="QI Tools">
+            <Directory Id="images" Name="images">
+
+              <Component Id="qIcons" Guid="94927050-8B72-45B0-B77B-745F503D97B1">
+                <File Id="mainicon" Name="red_q_on_blue_bkgd.ico" Source="red_q_on_blue_bkgd.ico"/>
+                <File Id="ongreen" Name="q_on_green_bkgd.ico" Source="q_on_green_bkgd.ico"/>
+                <File Id="onyellow" Name="q_on_yellow_bkgd.ico" Source="q_on_yellow_bkgd.ico"/>
+                <File Id="onred" Name="q_on_red_bkgd.ico" Source="q_on_red_bkgd.ico"/>
+              </Component>
+              
+            </Directory>
+
+            <Directory Id="sounds" Name="sounds">
+              
+              <Component Id="sounds" Guid="7EDC80C1-E055-4D19-A6BC-3C8F212719DE">
+                <File Id="lowVol" Name="ringtone_-20db.wav" Source="ringtone_-20db.wav"/>
+                <File Id="ogVol" Name="ringtone_og.wav" Source="ringtone_og.wav"/>
+              </Component>
+              
+            </Directory>
+            
+            <Component Id="BasicShortcuts" Guid="26D70B5E-1D5F-45F7-8A1C-6044F9C7C420">
+              <File Id="bscEXE" Name="Basic Shortcuts.exe" Source="Basic Shortcuts.exe" KeyPath="yes">
+                <Shortcut Id="startmenuBSC" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="Basic Shortcuts" Advertise="yes"/>
+                <Shortcut Id="startupBSC" Directory="StartupFolder" Icon="redqblueb.exe" Name="Basic Shortcuts" Advertise="yes"/>
+              </File>
+            </Component>
+
+            <Component Id="_3CX" Guid="4A70566B-BB0E-4BA1-A34F-1A84C23F5C8E">
+              <File Id="_3cxEXE" Name="3cx.exe" Source="3cx.exe" KeyPath="yes">
+                <Shortcut Id="startmenu3cx" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="3CX" Advertise="yes"/>
+                <Shortcut Id="startup3cx" Directory="StartupFolder" Icon="redqblueb.exe" Name="3CX" Advertise="yes"/>
+              </File>
+            </Component>
+
+            <Component Id="QuickStatusChange" Guid="4E17B44D-6FA0-41AF-9BA5-A428FD41F126">
+              <File Id="qscEXE" Name="Quick Status Change.exe" Source="Quick Status Change.exe" KeyPath="yes">
+                <Shortcut Id="startmenuQSC" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="Quick Status Change" Advertise="yes"/>
+                <Shortcut Id="startupQSC" Directory="StartupFolder" Icon="redqblueb.exe" Name="Quick Status Change" Advertise="yes"/>
+              </File>
+            </Component>
+
+            <Component Id="QuestUp" Guid="D5FE9E94-81AA-4A86-82ED-02731CF02C45">
+              <File Id="quBAT" Name="QuestUp.bat" Source="QuestUp.bat" KeyPath="yes">
+                <Shortcut Id="startmenuQU" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="QuestUp" Arguments="ringtone_-20db.wav" Advertise="yes"/>
+                <Shortcut Id="startupQU" Directory="StartupFolder" Icon="redqblueb.exe" Name="QuestUp" Arguments="ringtone_-20db.wav" Advertise="yes"/>
+              </File>
+            </Component>
+            
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="ProgramMenuDir" Name="QI Tools">
+          <Component Id="ProgramMenuDir" Guid="BA8F6D64-347A-49D4-814C-C07A7E29914C">
+            <RemoveFolder Id="ProgramMenuDir" On="uninstall"/>
+            <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Name="Start Menu Location" Value="[ProgramMenuDir]" KeyPath="yes" />
+          </Component>
+        </Directory>
+      </Directory>
+      
+      <Directory Id="StartupFolder" Name="Startup">
+      </Directory>
+    </Directory>
+    
+		<Feature Id="Complete" Title="QI_Tools" Description="The complete package." Display="expand" Level="1" ConfigurableDirectory="INSTALLDIR">
+      <!--<Feature Id="commons" Title="Common Files" Description="Needed for all scripts" Level="1">
+        <ComponentRef Id="qIcons"/>
+        <ComponentRef Id="commonFiles"/>
+      </Feature>-->
+
+      <Feature Id="qsc" Title="Quick Status Change" Description="Allows for hotkeys for changing presence in 3CX and Teams" Level="1">
+        <ComponentRef Id="QuickStatusChange"/>
+      </Feature>
+
+      <Feature Id="bsc" Title="Basic Shortcuts" Description="Locks numlock" Level="1000">
+        <ComponentRef Id="BasicShortcuts" />
+      </Feature>
+
+      <Feature Id="_3CXfeat" Title="3CX Press-to-Call" Description="Easily copy and dial numbers from anywhere" Level="1000">
+        <ComponentRef Id="_3CX"/>
+      </Feature>
+
+      <Feature Id="qu" Title="QuestUp" Description="A startup script to set up your environment (e.g. lower ringtone volume)" Level="1000">
+        <ComponentRef Id="QuestUp"/>
+      </Feature>
+
+      <ComponentRef Id="qIcons"/>
+      <ComponentRef Id="sounds"/>
+      <ComponentRef Id="commonFiles"/>
+      <ComponentRef Id="ProgramMenuDir" />
+		</Feature>
+	</Product>
+
+
+</Wix>
