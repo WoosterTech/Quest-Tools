@@ -1,7 +1,0 @@
-obj\Debug\Product.wixobj
-C:\Users\karl\Documents\GitHub\AutoHotKey\QI Tools\bin\Debug\cab1.cab
-C:\Users\karl\Documents\GitHub\AutoHotKey\QI Tools\bin\Debug\QI_Tools.msi
-C:\Users\karl\Documents\GitHub\AutoHotKey\QI Tools\bin\Debug\QI_Tools.wixpdb
-obj\Debug\QI Tools.wixproj.BindContentsFileListnull.txt
-obj\Debug\QI Tools.wixproj.BindOutputsFileListnull.txt
-obj\Debug\QI Tools.wixproj.BindBuiltOutputsFileListnull.txt
