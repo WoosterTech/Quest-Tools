@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="48A6387B-B63A-44B0-A32B-245FE84D07CD"
+	<Product Id="D361842A-B9F1-44B6-A570-A3AF0540523D"
            Name="QI Tools"
            Language="1033"
-           Version="0.0.30.0"
+           Version="0.0.32.0"
            Manufacturer="Quest Integration"
            UpgradeCode="67685DE7-5CB2-426E-8173-695978DD4D7F">
     
@@ -19,7 +19,7 @@
       <UpgradeVersion OnlyDetect="no"
                       Property="PREVIOUSFOUND"
                       Minimum="0.0.24.0" IncludeMinimum="yes"
-                      Maximum="0.0.30.0" IncludeMaximum="no" />
+                      Maximum="0.0.32.0" IncludeMaximum="no" />
     </Upgrade>
              
 
@@ -102,6 +102,18 @@
                 <Shortcut Id="startupQU" Directory="StartupFolder" Icon="redqblueb.exe" Name="QuestUp" Arguments="ringtone_-20db.wav" WorkingDirectory="INSTALLDIR" Advertise="yes"/>
               </File>
             </Component>
+
+            <Component Id="SOLIDWORKSReset" Guid="74D86364-8321-4852-BDD5-53CF72EE3342">
+              <File Id="swReset" Name="SOLIDWORKS Reset.exe" Source="SOLIDWORKS Reset.exe" KeyPath="yes">
+                <Shortcut Id="startmenuSWR" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="SOLIDWORKS Reset" Advertise="yes"/>
+              </File>
+            </Component>
+
+            <Component Id="_3DConnexionReset" Guid="C349A7B8-2877-4ABD-9694-0C7E37466893">
+              <File Id="_3dcReset" Name="3DConnexion Reset.exe" Source="3DConnexion Reset.exe" KeyPath="yes">
+                <Shortcut Id="startmenu3DCR" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="3DConnexion Reset" Advertise="yes"/>
+              </File>
+            </Component>
             
           </Directory>
         </Directory>
@@ -136,6 +148,14 @@
 
       <Feature Id="qu" Title="QuestUp" Description="A startup script to set up your environment (e.g. lower ringtone volume)" Level="1000">
         <ComponentRef Id="QuestUp"/>
+      </Feature>
+
+      <Feature Id="swr" Title="SOLIDWORKS Reset" Description="A shortcut for restarting SOLIDWORKS if hung" Level="1000">
+        <ComponentRef Id="SOLIDWORKSReset"/>
+      </Feature>
+
+      <Feature Id="_3dc" Title="3DConnexion Reset" Description="A quick shortcut for restarting the 3DConnexion drivers" Level="1000">
+        <ComponentRef Id="_3DConnexionReset"/>
       </Feature>
 
       <ComponentRef Id="qIcons"/>

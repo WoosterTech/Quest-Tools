@@ -1,9 +1,6 @@
 #SingleInstance, force 												; Forces only one instance, allows to re-run script without reloading
 
-listAHK := ["3CX", "3DConnexion Reset", "Basic Shortcuts", "Quick Status Change", "Run All", "SOLIDWORKS Reset"]
-pathNSIS := % A_ProgramFiles "\NSIS\makensis.exe"
-optionsNSIS := "/OC:\Users\karl\Documents\GitHub\AutoHotKey\compile_log.log"
-pathIN := % A_WorkingDir "\QI Tools.nsi"
+listAHK := ["3CX", "3DConnexion Reset", "Basic Shortcuts", "Quick Status Change", "SOLIDWORKS Reset"]
 
 For index, AHK in listAHK
 {
@@ -38,12 +35,5 @@ For index, AHK in listAHK
 		ExitApp
 	}
 }
-
-; FileCopy, QuestUp.bat, "C:\Users\karl\Documents\GitHub\AutoHotKey\QI Tools\", 1
-; If ErrorLevel
-; 	MsgBox, % ErrorLevel
-
-; ToolTip, Compiling Installer
-; RunWait, % """" pathNSIS """ """ optionsNSIS """ """ pathIN """"	; Compile NSIS file, writing log to file
 
 ToolTip
