@@ -18,3 +18,4 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
+*.wixproj.BindContentsFileListnull.txt
