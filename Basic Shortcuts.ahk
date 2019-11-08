@@ -14,19 +14,15 @@ iniProps := {}
 
 ; Properties from INI file with their defaults
 iniProps["numLockOn"] := 0
-iniProps["hkInterval"] := 1000
-iniProps["hkMaxPerInt"] := 210
 
 iniProps := QIFunctions_readINI(pathINI, iniProps, iniSection)
 
 numLockOn := iniProps["numLockOn"]
-hkInterval := iniProps["hkInterval"]
-hkMaxPerInt := iniProps["hkMaxPerInt"]
-
-#HotkeyInterval %hkInterval%						; Defines interval for next line
-#MaxHotkeysPerInterval %hkMaxPerInt%				; Sets maximum number of presses of hotkey per interval
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Main Code ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 if numLockOn {
 	SetNumLockState, AlwaysOn
 }
+
+; Opens a G2M prompt to start or join a meeting
+^!g::Run, "gotomeeting://SALaunch?Action=Host"

@@ -1,4 +1,5 @@
 3cx.exe
+3DConnexion Reset.exe
 Basic Shortcuts.exe
 QI Tools.ini
 ringtone_-20db.wav
@@ -9,3 +10,4 @@ q_on_red_bkgd.ico
 q_on_yellow_bkgd.ico
 Quick Status Change.exe
 QuestUp.bat
+SOLIDWORKS Reset.exe
