@@ -10,4 +10,6 @@ q_on_red_bkgd.ico
 q_on_yellow_bkgd.ico
 Quick Status Change.exe
 QuestUp.bat
+QuestStart.exe
+qonlybig-edited.png
 SOLIDWORKS Reset.exe

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="8605E003-F462-4A19-B5CF-A2A96A54585C"
+	<Product Id="C09BDD0F-F619-40F5-92DD-D9F5A11AF8FD"
            Name="QI Tools"
            Language="1033"
-           Version="0.0.33.0"
+           Version="0.0.34.0"
            Manufacturer="Quest Integration"
            UpgradeCode="67685DE7-5CB2-426E-8173-695978DD4D7F">
     
@@ -19,7 +19,7 @@
       <UpgradeVersion OnlyDetect="no"
                       Property="PREVIOUSFOUND"
                       Minimum="0.0.24.0" IncludeMinimum="yes"
-                      Maximum="0.0.33.0" IncludeMaximum="no" />
+                      Maximum="0.0.34.0" IncludeMaximum="no" />
     </Upgrade>
              
 
@@ -62,6 +62,7 @@
                 <File Id="ongreen" Name="q_on_green_bkgd.ico" Source="q_on_green_bkgd.ico"/>
                 <File Id="onyellow" Name="q_on_yellow_bkgd.ico" Source="q_on_yellow_bkgd.ico"/>
                 <File Id="onred" Name="q_on_red_bkgd.ico" Source="q_on_red_bkgd.ico"/>
+                <File Id="splash" Name="qonlybig-edited.png" Source="qonlybig-edited.png"/>
               </Component>
               
             </Directory>
@@ -78,21 +79,21 @@
             <Component Id="BasicShortcuts" Guid="26D70B5E-1D5F-45F7-8A1C-6044F9C7C420">
               <File Id="bscEXE" Name="Basic Shortcuts.exe" Source="Basic Shortcuts.exe" KeyPath="yes">
                 <Shortcut Id="startmenuBSC" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="Basic Shortcuts" Advertise="yes"/>
-                <Shortcut Id="startupBSC" Directory="StartupFolder" Icon="redqblueb.exe" Name="Basic Shortcuts" Advertise="yes"/>
+                <!--<Shortcut Id="startupBSC" Directory="StartupFolder" Icon="redqblueb.exe" Name="Basic Shortcuts" Advertise="yes"/>-->
               </File>
             </Component>
 
             <Component Id="_3CX" Guid="4A70566B-BB0E-4BA1-A34F-1A84C23F5C8E">
               <File Id="_3cxEXE" Name="3cx.exe" Source="3cx.exe" KeyPath="yes">
                 <Shortcut Id="startmenu3cx" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="3CX" Advertise="yes"/>
-                <Shortcut Id="startup3cx" Directory="StartupFolder" Icon="redqblueb.exe" Name="3CX" Advertise="yes"/>
+                <!--<Shortcut Id="startup3cx" Directory="StartupFolder" Icon="redqblueb.exe" Name="3CX" Advertise="yes"/>-->
               </File>
             </Component>
 
             <Component Id="QuickStatusChange" Guid="4E17B44D-6FA0-41AF-9BA5-A428FD41F126">
               <File Id="qscEXE" Name="Quick Status Change.exe" Source="Quick Status Change.exe" KeyPath="yes">
                 <Shortcut Id="startmenuQSC" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="Quick Status Change" Advertise="yes"/>
-                <Shortcut Id="startupQSC" Directory="StartupFolder" Icon="redqblueb.exe" Name="Quick Status Change" Advertise="yes"/>
+                <!--<Shortcut Id="startupQSC" Directory="StartupFolder" Icon="redqblueb.exe" Name="Quick Status Change" Advertise="yes"/>-->
               </File>
             </Component>
 
@@ -112,6 +113,13 @@
             <Component Id="_3DConnexionReset" Guid="C349A7B8-2877-4ABD-9694-0C7E37466893">
               <File Id="_3dcReset" Name="3DConnexion Reset.exe" Source="3DConnexion Reset.exe" KeyPath="yes">
                 <Shortcut Id="startmenu3DCR" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="3DConnexion Reset" Advertise="yes"/>
+              </File>
+            </Component>
+
+            <Component Id="QuestStart" Guid="75D34901-E89B-4FE7-AB30-3A574D80F915">
+              <File Id="quStart" Name="QuestStart.exe" Source="QuestStart.exe" KeyPath="yes">
+                <Shortcut Id="startmenuquStart" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="QuestStart" WorkingDirectory="INSTALLDIR" Advertise="yes"/>
+                <Shortcut Id="startupquStart" Directory="StartupFolder" Icon="redqblueb.exe" Name="QuestStart" WorkingDirectory="INSTALLDIR" Advertise="yes"/>
               </File>
             </Component>
             
@@ -134,6 +142,10 @@
     
 		<Feature Id="Complete" Title="QI_Tools" Description="The complete package." Display="expand" Level="1" ConfigurableDirectory="INSTALLDIR">
 
+      <Feature Id="qst" Title="QuestStart" Description="Runs at startup to get all scripts started up cleanly" Level="1">
+        <ComponentRef Id="QuestStart"/>
+      </Feature>
+      
       <Feature Id="qsc" Title="Quick Status Change" Description="Allows for hotkeys for changing presence in 3CX and Teams" Level="1">
         <ComponentRef Id="QuickStatusChange"/>
       </Feature>
@@ -165,16 +177,18 @@
 		</Feature>
 
     <InstallExecuteSequence>
-      <Custom Action="LaunchQSC" After="InstallFinalize"><![CDATA[&qsc = 3]]></Custom>
-      <Custom Action="LaunchBSC" After="InstallFinalize"><![CDATA[&bsc = 3]]></Custom>
+      <Custom Action="LaunchQST" After="InstallFinalize"><![CDATA[&qst = 3]]></Custom>
+      <!--<Custom Action="LaunchQSC" After="InstallFinalize"><![CDATA[&qsc = 3]]></Custom>-->
+      <!--<Custom Action="LaunchBSC" After="InstallFinalize"><![CDATA[&bsc = 3]]></Custom>-->
       <Custom Action="LaunchQU" After="InstallFinalize"><![CDATA[&qu = 3]]></Custom>
-      <Custom Action="Launch3CX" After="InstallFinalize"><![CDATA[&_3CXfeat = 3]]></Custom>
+      <!--<Custom Action="Launch3CX" After="InstallFinalize"><![CDATA[&_3CXfeat = 3]]></Custom>-->
     </InstallExecuteSequence>
 
-    <CustomAction Id="LaunchBSC" FileKey="bscEXE" ExeCommand="" Return="asyncNoWait" />
-    <CustomAction Id="LaunchQSC" FileKey="qscEXE" ExeCommand="" Return="asyncNoWait" />
+    <CustomAction Id="LaunchQST" Directory="INSTALLDIR" ExeCommand="[INSTALLDIR]QuestStart.exe" Return="asyncNoWait" />
+    <!--<CustomAction Id="LaunchBSC" FileKey="bscEXE" ExeCommand="" Return="asyncNoWait" />-->
+    <!--<CustomAction Id="LaunchQSC" FileKey="qscEXE" ExeCommand="" Return="asyncNoWait" />-->
     <CustomAction Id="LaunchQU" Directory="INSTALLDIR" ExeCommand="[INSTALLDIR]QuestUp.bat ringtone_-20db.wav" Return="asyncNoWait" />
-    <CustomAction Id="Launch3CX" FileKey="_3cxEXE" ExeCommand="" Return="asyncNoWait" />
+    <!--<CustomAction Id="Launch3CX" FileKey="_3cxEXE" ExeCommand="" Return="asyncNoWait" />-->
     
 	</Product>
 
