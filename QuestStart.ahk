@@ -16,6 +16,7 @@ iniProps := {}
 iniProps["runBSC"] := 1
 iniProps["runQSC"] := 1
 iniProps["run3CX"] := 1
+iniProps["runWW"] := 0
 iniProps["delay"] := 100
 
 iniProps := QIFunctions_readINI(pathINI, iniProps, iniSection)
@@ -23,6 +24,7 @@ iniProps := QIFunctions_readINI(pathINI, iniProps, iniSection)
 runBSC := iniProps["runBSC"]
 runQSC := iniProps["runQSC"]
 run3CX := iniProps["run3CX"]
+runWW := iniProps["runWW"]
 delay := iniProps["delay"]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Main Code ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -44,6 +46,11 @@ Sleep, %delay%
 
 If FileExist("3CX.exe") and run3CX
 	Run, "3CX.exe"
+
+Sleep, %delay%
+
+If FileExist("Window Wizard") and runWW
+	Run, "Window Wizard.exe"
 
 Sleep, 500
 SplashImage, Off

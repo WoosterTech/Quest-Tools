@@ -30,3 +30,24 @@ QIFunctions_winTogg()
 
 	return
 }
+
+QIFunctions_winShow(WindHide := true)
+{
+	WinGet, Style, Style
+
+	; MsgBox, %WindHide%
+
+	IfWinNotActive
+	{
+		If !(Style & 0x10000000)
+			WinRestore
+		; MsgBox, % "Style: " Style "`n`nDid it work?"
+		WinActivate
+	} else {
+		WinMinimize
+		If WindHide
+			WinHide
+	}
+
+	return
+}
