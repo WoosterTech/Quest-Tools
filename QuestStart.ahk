@@ -1,56 +1,47 @@
 #SingleInstance, force
-; Menu, Tray, Icon, images\red_q_on_blue_bkgd.ico
 Menu, Tray, Tip, QuestStart
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Initialization ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Define INI file location
 pathINI = %A_AppData%\Quest Integration\QI Tools.ini
 
-; Section of INI file for 3CX
+; Section of INI file
 iniSection = QuestStart
 
 ; Initialize iniProps
 iniProps := {}
 
 ; Properties from INI file with their defaults
-iniProps["runBSC"] := 1
-iniProps["runQSC"] := 1
-iniProps["run3CX"] := 1
-iniProps["runWW"] := 0
+iniProps["fullList"] := "Basic Shortcuts,Quick Status Change,3CX,Window Wizard"
+iniProps["startList"] := "Basic Shortcuts,Quick Status Change,3CX,Window Wizard"
 iniProps["delay"] := 100
 
 iniProps := QIFunctions_readINI(pathINI, iniProps, iniSection)
 
-runBSC := iniProps["runBSC"]
-runQSC := iniProps["runQSC"]
-run3CX := iniProps["run3CX"]
-runWW := iniProps["runWW"]
+startList := StrSplit(iniProps["startList"], ",")
 delay := iniProps["delay"]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Main Code ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-SplashImage, images/qonlybig-edited.png, b CWFF0000
-WinSet, TransColor, FF0000, Splash
+SplashImage, images/qonlybig-edited.png, b CWC40233, %A_Space%
 Sleep, 500
 
-If FileExist("Basic Shortcuts.exe") and runBSC
-	Run, "Basic Shortcuts.exe"
+For index, program in startList
+{
+	Start(program, , %delay%)
+}
 
-Sleep, %delay%
-
-If FileExist("Quick Status Change.exe") and runQSC
-	Run, "Quick Status Change.exe"
-
-Sleep, %delay%
-
-If FileExist("3CX.exe") and run3CX
-	Run, "3CX.exe"
-
-Sleep, %delay%
-
-If FileExist("Window Wizard") and runWW
-	Run, "Window Wizard.exe"
-
-Sleep, 500
 SplashImage, Off
+
+Start(file, type := "exe", fDelay := 100)
+{
+	fFile := % file "." type
+	If FileExist(fFile)
+	{
+		SplashImage, , , % "Starting: " file
+		Run, %fFile%
+		Sleep, %fDelay%
+	}
+	Sleep, 500
+}

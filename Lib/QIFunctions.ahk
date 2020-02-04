@@ -14,38 +14,17 @@ QIFunctions_readINI(iniPath, iniKeys, ini_section)					; Reads keys from defined
 	return iniKeys
 }
 
-QIFunctions_winTogg()
-{
-	WinGet, Style, Style
-
-	IfWinNotActive
-	{
-		If !(Style & 0x10000000)
-			WinRestore
-		WinActivate
-	} else {
-		WinMinimize
-		WinHide
-	}
-
-	return
-}
-
 QIFunctions_winShow(WindHide := true)
 {
 	WinGet, Style, Style
 
-	; MsgBox, %WindHide%
-
 	IfWinNotActive
 	{
-		If !(Style & 0x10000000)
-			WinRestore
-		; MsgBox, % "Style: " Style "`n`nDid it work?"
-		WinActivate
+		WinGet, winid, ID
+		DllCall("SwitchToThisWindow", "UInt", winid, "UInt", 1)		; This seems to be more reliable than WinRestore, woohoo!
 	} else {
 		WinMinimize
-		If WindHide
+		If WindHide													; Allows for the INI file to control hiding if the app doesn't like it (fixed with DllCall I think)
 			WinHide
 	}
 
