@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="E8E5C9F0-3E16-41DF-81A9-B2159D7BAC33"
+  <!--replace this Id-->
+	<Product Id="7C260589-DEAC-449B-9E19-F7A08DD0D8F4"
            Name="QI Tools"
            Language="1033"
-           Version="0.0.37.0"
+           Version="0.0.38.0"
            Manufacturer="Quest Integration"
            UpgradeCode="67685DE7-5CB2-426E-8173-695978DD4D7F">
     
@@ -19,7 +20,7 @@
       <UpgradeVersion OnlyDetect="no"
                       Property="PREVIOUSFOUND"
                       Minimum="0.0.24.0" IncludeMinimum="yes"
-                      Maximum="0.0.37.0" IncludeMaximum="no" />
+                      Maximum="0.0.38.0" IncludeMaximum="no" />
     </Upgrade>
              
 

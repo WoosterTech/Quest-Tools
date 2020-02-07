@@ -23,6 +23,13 @@ iniProps["onCallColors"] := "0x0000FF,0x575757,0xC1C1C1,0xFF0000"
 iniProps["codeIndex"] := 3
 iniProps["changeTeams"] := 1
 iniProps["change3CX"] := 1
+iniProps["availKey"] := "^F1"
+iniProps["awayKey"] := "^F2"
+iniProps["dndKey"] := "^F3"
+iniProps["busyKey"] := "^F4"
+iniProps["lunchKey"] := "^F6"
+iniProps["qLoginKey"] := "^F7"
+iniProps["qLogoutKey"] := "^F8"
 
 iniProps := QIFunctions_readINI(pathINI, iniProps, iniSection)
 
@@ -40,23 +47,53 @@ codeF8 = % "*63"															; Queue log out
 teamsSleep := iniProps["teamsSleep"]
 changeTeams := iniProps["changeTeams"]
 change3CX := iniProps["change3CX"]
+availKey := iniProps["availKey"]
+awayKey := iniProps["awayKey"]
+dndKey := iniProps["dndKey"]
+busyKey := iniProps["busyKey"]
+lunchKey := iniProps["lunchKey"]
+qLoginKey := iniProps["qLoginKey"]
+qLogoutKey := iniProps["qLogoutKey"]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Main Code ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-^F1::StatusChange("available", codeF1, "green", changeTeams, change3CX)
+Hotkey, %availKey%, availLabel
+Hotkey, %awayKey%, awayLabel
+Hotkey, %dndKey%, dndLabel
+Hotkey, %busyKey%, busyLabel
+Hotkey, %lunchKey%, lunchLabel
+Hotkey, %qLoginKey%, qLogin
+Hotkey, %qLogoutKey%, qLogout
+return
 
-^F2::StatusChange("brb", codeF2, "yellow", changeTeams, change3CX, 1)
+availLabel:
+StatusChange("available", codeF1, "green", changeTeams, change3CX)
+return
 
-^F3::StatusChange("dnd", codeF3, "red", changeTeams, change3CX)
+awayLabel:
+StatusChange("brb", codeF2, "yellow", changeTeams, change3CX, 1)
+return
 
-^F4::StatusChange("busy", codeF3, "red", changeTeams, change3CX)
+dndLabel:
+StatusChange("dnd", codeF3, "red", changeTeams, change3CX)
+return
 
-^F5::StatusChange("available", codeF5, "yellow", changeTeams, change3CX)
+busyLabel:
+StatusChange("busy", codeF3, "red", changeTeams, change3CX)
+return
 
-^F6::StatusChange("brb", codeF6, "red", changeTeams, change3CX)
+lunchLabel:
+StatusChange("brb", codeF6, "red", changeTeams, change3CX)
+return
 
-^F7::StatusChange("", codeF7, , 0, change3CX)
+; ^F5::StatusChange("available", codeF5, "yellow", changeTeams, change3CX)
 
-^F8::StatusChange("", codeF8, , 0, change3CX)
+qLogin:
+StatusChange("", codeF7, , 0, change3CX)
+return
+
+qLogout:
+StatusChange("", codeF8, , 0, change3CX)
+return
 
 ;############### Actual work being done ###################
 StatusChange(keysTeams, pos3CX, icoColor := "default", teams := 1, 3CX := 1, winLock := 0)	; The function that actually does the window switching and change of status

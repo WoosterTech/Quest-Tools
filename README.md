@@ -5,6 +5,8 @@ Changes status in both MS Teams and 3CX Desktop. Teams doesn't seem to be perfec
 
 3CX actually dials a number (e.g. **\*30** for *Available*) to change its status. That makes it slow and it "announces" the change over your headset, but it should be almost perfectly reliable.
 
+The shortcuts below are editable in the **Settings**. See me for tips on changing these.
+
 + Ctrl+F1  - *Available*
 + Ctrl+F2  - *Away*
 + Ctrl+F3  - *Do Not Disturb* (**NO** notifications in MS Teams)
@@ -16,7 +18,6 @@ Changes status in both MS Teams and 3CX Desktop. Teams doesn't seem to be perfec
 Copies selected text into 3CX. **Must** have text copied to clipboard.
 
 + NumLock - Dials number on clipboard (must copy number using ctrl+c *before* pressing numlock)
-+ F12 - Brings 3CX into focus (does not copy anything)
 
 _See below for notes on modifying Settings (INI file)_
 
