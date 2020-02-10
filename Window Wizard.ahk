@@ -20,6 +20,12 @@ iniProps["SlackHide"] := true
 iniProps["OutlookHide"] := true
 iniProps["TeamsHide"] := true
 iniProps["3cxHide"] := true
+iniProps["outlookKey"] := "F10"
+iniProps["3cxKey"] := "F7"
+iniProps["slackKey"] := "F8"
+iniProps["teamsKey"] := "F9"
+iniProps["teamsCommand"] := """C:\Users\karl\AppData\Local\Microsoft\Teams\Update.exe"" --processStart ""Teams.exe"""
+iniProps["3cxCommand"] := "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\3CXPhone for Windows\3CXPhone for Windows.lnk"
 
 iniProps := QIFunctions_readINI(pathINI, iniProps, iniSection)
 
@@ -27,10 +33,21 @@ TeamsHide := iniProps["TeamsHide"]
 SlackHide := iniProps["SlackHide"]
 OutlookHide := iniProps["TeamsHide"]
 3cxHide := iniProps["3cxHide"]
+outlookKey := iniProps["outlookKey"]
+3cxKey := iniProps["3cxKey"]
+slackKey := iniProps["slackKey"]
+teamsKey := iniProps["teamsKey"]
+teamsCommand := iniProps["teamsCommand"]
+3cxCommand := iniProps["3cxCommand"]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Main Code ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+Hotkey, %outlookKey%, outlook
+Hotkey, %teamsKey%, teams
+Hotkey, %3cxKey%, 3cx
+Hotkey, %slackKey%, slack
+return
 
-F6::
+outlook:
 IfWinExist, - Outlook
 {
 	QIFunctions_winShow(OutlookHide)
@@ -39,26 +56,25 @@ IfWinExist, - Outlook
 }
 return
 
-F9::
+teams:
 IfWinExist, | Microsoft Teams
 {
 	QIFunctions_winShow(TeamsHide)
 } else {
-	; run "C:\Users\karl\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Microsoft Teams.lnk"
-	run "C:\Users\karl\AppData\Local\Microsoft\Teams\Update.exe" --processStart "Teams.exe"
+	run %teamsCommand%
 }
 return
 
-F7::
+3cx:
 IfWinExist, 3CX -
 {
 	QIFunctions_winShow(3cxHide)
 } else {
-	run "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\3CXPhone for Windows\3CXPhone for Windows.lnk"
+	run %3cxCommand%
 }
 return
 
-F8::
+slack:
 IfWinExist, Slack |
 {
 	QIFunctions_winShow(SlackHide)
