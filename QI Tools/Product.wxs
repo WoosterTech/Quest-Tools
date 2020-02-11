@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <!--replace this Id-->
-	<Product Id="C9BD26DA-D933-46F0-BBB3-688559139A89"
+	<Product Id="1911843E-6506-42ED-ADDF-BAECF902C038"
            Name="QI Tools"
            Language="1033"
-           Version="0.0.39.0"
+           Version="0.0.40.0"
            Manufacturer="Quest Integration"
            UpgradeCode="67685DE7-5CB2-426E-8173-695978DD4D7F">
     
@@ -20,7 +20,7 @@
       <UpgradeVersion OnlyDetect="no"
                       Property="PREVIOUSFOUND"
                       Minimum="0.0.24.0" IncludeMinimum="yes"
-                      Maximum="0.0.39.0" IncludeMaximum="no" />
+                      Maximum="0.0.40.0" IncludeMaximum="no" />
     </Upgrade>
              
 
@@ -134,6 +134,12 @@
               </File>
             </Component>
             
+            <Component Id="AppKill" Guid="EE0F8B59-DF22-4491-BCA8-D771FC799C82">
+              <File Id="akEXE" Name="AppKill.exe" Source="AppKill.exe" KeyPath="yes">
+                <Shortcut Id="startmenuAK" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="AppKill" Advertise="yes"/>
+              </File>
+            </Component>
+            
           </Directory>
         </Directory>
       </Directory>
@@ -183,6 +189,10 @@
 
       <Feature Id="ww" Title="Window Wizard" Description="Use Function keys to hide/show applications" Level="1000">
         <ComponentRef Id="WindowWizard"/>
+      </Feature>
+      
+      <Feature Id="ak" Title="AppKill" Description="Kill Teams with a hotkey" Level="1000">
+        <ComponentRef Id="AppKill"/>
       </Feature>
 
       <ComponentRef Id="qIcons"/>

@@ -12,8 +12,8 @@ iniSection = QuestStart
 iniProps := {}
 
 ; Properties from INI file with their defaults
-iniProps["fullList"] := "Basic Shortcuts,Quick Status Change,3CX,Window Wizard"
-iniProps["startList"] := "Basic Shortcuts,Quick Status Change,3CX,Window Wizard"
+iniProps["fullList"] := "Basic Shortcuts,Quick Status Change,3CX,Window Wizard,AppKill"
+iniProps["startList"] := "Basic Shortcuts,Quick Status Change,3CX,Window Wizard,AppKill"
 iniProps["delay"] := 100
 
 iniProps := QIFunctions_readINI(pathINI, iniProps, iniSection)

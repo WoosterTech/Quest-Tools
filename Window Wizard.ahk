@@ -1,6 +1,6 @@
 #SingleInstance, force
 Menu, Tray, Icon, images\red_q_on_blue_bkgd.ico
-Menu, Tray, Tip, Window Wizard
+Menu, Tray, Tip, QI Tools: Window Wizard
 
 SetTitleMatchMode 2
 DetectHiddenWindows, On
@@ -24,7 +24,7 @@ iniProps["outlookKey"] := "F10"
 iniProps["3cxKey"] := "F7"
 iniProps["slackKey"] := "F8"
 iniProps["teamsKey"] := "F9"
-iniProps["teamsCommand"] := """C:\Users\karl\AppData\Local\Microsoft\Teams\Update.exe"" --processStart ""Teams.exe"""
+iniProps["teamsCommand"] := """""C:\Users\" A_UserName "\AppData\Local\Microsoft\Teams\Update.exe"" --processStart ""Teams.exe"""""
 iniProps["3cxCommand"] := "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\3CXPhone for Windows\3CXPhone for Windows.lnk"
 
 iniProps := QIFunctions_readINI(pathINI, iniProps, iniSection)
@@ -48,38 +48,46 @@ Hotkey, %slackKey%, slack
 return
 
 outlook:
-IfWinExist, - Outlook
+if WinExist("- Outlook")
 {
 	QIFunctions_winShow(OutlookHide)
 } else {
-	run Outlook.exe
+	try run Outlook.exe
+	catch e
+		MsgBox, 16, Outlook Error, Didn't find Outlook Window`nUnable to run Outlook`n%e%
 }
 return
 
 teams:
-IfWinExist, | Microsoft Teams
+if WinExist("| Microsoft Teams") or WinExist("ahk_exe Teams.exe")
 {
 	QIFunctions_winShow(TeamsHide)
 } else {
-	run %teamsCommand%
+	try run %teamsCommand%
+	catch e
+		MsgBox, 16, Teams Error, Didn't find Teams window`nUnable to run Teams`n%e%
 }
 return
 
 3cx:
-IfWinExist, 3CX -
+if WinExist("3CX -")
 {
 	QIFunctions_winShow(3cxHide)
 } else {
-	run %3cxCommand%
+	try run %3cxCommand%
+	catch e
+		MsgBox, 16, 3CX Error, Didn't find 3CX window`nUnable to run 3CX`n%e%
 }
 return
 
 slack:
-IfWinExist, Slack |
+if WinExist("Slack |")
 {
 	QIFunctions_winShow(SlackHide)
 } else {
-	run Slack.exe
+	try run Slack.exe
+	catch e
+		MsgBox, 16, Slack Error, Didn't find Slack window`nUnable to run Slack`n%e%
 }
 return
 

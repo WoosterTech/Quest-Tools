@@ -11,8 +11,8 @@ The shortcuts below are editable in the **Settings**. See me for tips on changin
 + Ctrl+F2  - *Away*
 + Ctrl+F3  - *Do Not Disturb* (**NO** notifications in MS Teams)
 + Ctrl+F4  - *Busy* (**DND** in 3CX)
-+ Ctrl+F5  - *SB* (**DND** in Teams)
-+ Ctrl+F6  - *Lunch* (**Away** in Teams)
++ Ctrl+F5  - *Custom 1* (**DND** in Teams)
++ Ctrl+F6  - *Custom 2* (**Away** in Teams)
 
 ## 3CX Click-to-Call
 Copies selected text into 3CX. **Must** have text copied to clipboard.
@@ -29,10 +29,19 @@ By default, this option is disabled. Follow instructions in **Edit Settings** to
 ## Window Wizard
 Hides and shows different windows. Will always bring focus to the window.
 
-+ F6 - Outlook
 + F7 - 3CX
 + F8 - Slack (I've had issues with hiding this, edit Settings file [see below] to set *SlackHide* to **0**)
 + F9 - Teams
++ F10 - Outlook
+
+_Commands for 3CX and Teams are configured in **Settings**, if 3CX or Teams change how their programs launch, these may need to be updated._
+
+## AppKill
+Sometimes killing Teams from the System Tray doesn't work (Teams starts itself again). This kills the process. If you get an warning message that it couldn't kill Teams, run it a second time, that seems to work.
+
++ Left Ctrl+Left Alt+Numpad 5 - *Kill Teams*
+
+_Hotkeys can be modified using **Edit Settings** below_
 
 ## Edit Settings
 Click **Settings** in Start Menu>QI Tools and modify affected value.
