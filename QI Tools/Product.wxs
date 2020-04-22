@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <!--replace this Id-->
-	<Product Id="1911843E-6506-42ED-ADDF-BAECF902C038"
+	<Product Id="F1EEEA26-F618-4498-8ADC-3127709E00D9"
            Name="QI Tools"
            Language="1033"
-           Version="0.0.40.0"
+           Version="0.0.41.0"
            Manufacturer="Quest Integration"
            UpgradeCode="67685DE7-5CB2-426E-8173-695978DD4D7F">
     
@@ -20,7 +20,7 @@
       <UpgradeVersion OnlyDetect="no"
                       Property="PREVIOUSFOUND"
                       Minimum="0.0.24.0" IncludeMinimum="yes"
-                      Maximum="0.0.40.0" IncludeMaximum="no" />
+                      Maximum="0.0.41.0" IncludeMaximum="no" />
     </Upgrade>
              
 
@@ -115,6 +115,12 @@
               </File>
             </Component>
 
+            <Component Id="SOLIDWORKSKill" Guid="D03FD1B6-47CD-4821-B203-74D2DFA7A4D2">
+              <File Id="swKill" Name="SOLIDWORKS Kill.exe" Source="SOLIDWORKS Kill.exe" KeyPath="yes">
+                <Shortcut Id="startmenuSWK" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="SOLIDWORKS Kill" Advertise="yes"/>
+              </File>
+            </Component>
+
             <Component Id="_3DConnexionReset" Guid="C349A7B8-2877-4ABD-9694-0C7E37466893">
               <File Id="_3dcReset" Name="3DConnexion Reset.exe" Source="3DConnexion Reset.exe" KeyPath="yes">
                 <Shortcut Id="startmenu3DCR" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="3DConnexion Reset" Advertise="yes"/>
@@ -181,6 +187,10 @@
 
       <Feature Id="swr" Title="SOLIDWORKS Reset" Description="A shortcut for restarting SOLIDWORKS if hung" Level="1000">
         <ComponentRef Id="SOLIDWORKSReset"/>
+      </Feature>
+
+      <Feature Id="swk" Title="SOLIDWORKS Kill" Description="A shortcut for killing ALL SOLIDWORKS processes if hung" Level="1000">
+        <ComponentRef Id="SOLIDWORKSKill"/>
       </Feature>
 
       <Feature Id="_3dc" Title="3DConnexion Reset" Description="A quick shortcut for restarting the 3DConnexion drivers" Level="1000">

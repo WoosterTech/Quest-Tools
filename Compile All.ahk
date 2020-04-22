@@ -1,6 +1,6 @@
 #SingleInstance, force 												; Forces only one instance, allows to re-run script without reloading
 
-listAHK := ["3CX", "3DConnexion Reset", "Basic Shortcuts", "Quick Status Change", "SOLIDWORKS Reset", "QuestStart", "Window Wizard", "AppKill"]
+listAHK := ["3CX", "3DConnexion Reset", "Basic Shortcuts", "Quick Status Change", "SOLIDWORKS Reset", "QuestStart", "Window Wizard", "AppKill", "SOLIDWORKS Kill"]
 
 For index, AHK in listAHK
 {
