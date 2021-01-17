@@ -1,13 +1,13 @@
 #SingleInstance, force
-Menu, Tray, Icon, images\red_q_on_blue_bkgd.ico
-Menu, Tray, Tip, QI Tools: Window Wizard
+Menu, Tray, Icon, images\WoosterGraphic.ico
+Menu, Tray, Tip, WTS: Window Wizard
 
 SetTitleMatchMode 2
 DetectHiddenWindows, On
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Initialization ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Define INI file location
-pathINI = %A_AppData%\Quest Integration\QI Tools.ini
+pathINI = % A_AppData "\Wooster Technical Solutions\WoosterTech.ini"
 
 ; Section of INI file for 3CX
 iniSection = WindowWizard
@@ -19,7 +19,7 @@ iniProps := {}
 iniProps["SlackHide"] := true
 iniProps["OutlookHide"] := true
 iniProps["TeamsHide"] := true
-iniProps["3cxHide"] := true
+iniProps["3cxHide"] := false
 iniProps["outlookKey"] := "F10"
 iniProps["3cxKey"] := "F7"
 iniProps["slackKey"] := "F8"
@@ -91,9 +91,9 @@ if WinExist("Slack |")
 }
 return
 
-^!p::gotoChannel("DE{space}-{space}TS")					; Direct access to DE - TS "general" channel
+; ^!p::gotoChannel("DE{space}-{space}TS")					; Direct access to DE - TS "general" channel
 
-^!l::gotoChannel("Lunch")								; Direct access to DE - TS "lunch" channel
+; ^!l::gotoChannel("Lunch")								; Direct access to DE - TS "lunch" channel
 
 ^!1::													; Opens "Activities"
 error := activateTeams()

@@ -1,6 +1,6 @@
 #SingleInstance, force 							; Forces only one instance, allows to re-run script without reloading
-Menu, Tray, Icon, images\red_q_on_blue_bkgd.ico	; Icon for this script
-Menu, Tray, Tip, QI Tools: Quick Status Change 	; Change tooltip on icon in tray
+Menu, Tray, Icon, images\WoosterGraphic.ico		; Icon for this script
+Menu, Tray, Tip, WTS: Quick Status Change 		; Change tooltip on icon in tray
 CoordMode, Mouse, Client
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Initialization ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -8,7 +8,7 @@ DetectHiddenWindows, On
 SetTitleMatchMode, 2
 
 ; Define INI file location
-pathINI = %A_AppData%\Quest Integration\QI Tools.ini
+pathINI = %A_AppData%\WoosterTech\WoosterTech.ini
 
 ; Section of INI file for QSC
 iniSection = QuickStatusChange
@@ -22,7 +22,7 @@ iniProps["onCallPos"] := "80,500"
 iniProps["onCallColors"] := "0x0000FF,0x575757,0xC1C1C1,0xFF0000"
 iniProps["codeIndex"] := 3
 iniProps["changeTeams"] := 1
-iniProps["change3CX"] := 1
+iniProps["change3CX"] := 0
 iniProps["availKey"] := "^F1"
 iniProps["awayKey"] := "^F2"
 iniProps["dndKey"] := "^F3"
@@ -31,7 +31,7 @@ iniProps["lunchKey"] := "^F6"
 iniProps["qLoginKey"] := "^F7"
 iniProps["qLogoutKey"] := "^F8"
 
-iniProps := QIFunctions_readINI(pathINI, iniProps, iniSection)
+iniProps := WTSFunctions_readINI(pathINI, iniProps, iniSection)
 
 onCallPosXY := StrSplit(iniProps["onCallPos"], ",")							; Separate X and Y components of read value
 onCallColorList := StrSplit(iniProps["onCallColors"], ",")					; Separate colors into array of n-size

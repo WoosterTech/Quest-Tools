@@ -1,22 +1,22 @@
 #SingleInstance, force
-Menu, Tray, Tip, QuestStart
+Menu, Tray, Tip, ScriptStart
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Initialization ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Define INI file location
-pathINI = %A_AppData%\Quest Integration\QI Tools.ini
+pathINI = % A_AppData "\Wooster Technical Solutions\WoosterTech.ini"
 
 ; Section of INI file
-iniSection = QuestStart
+iniSection = ScriptStart
 
 ; Initialize iniProps
 iniProps := {}
 
 ; Properties from INI file with their defaults
-iniProps["fullList"] := "Basic Shortcuts,Quick Status Change,3CX,Window Wizard,AppKill"
-iniProps["startList"] := "Basic Shortcuts,Quick Status Change,3CX,Window Wizard,AppKill"
+iniProps["fullList"] := "Master,Basic Shortcuts,Quick Status Change,3CX,Window Wizard,AppKill"
+iniProps["startList"] := "Master,Basic Shortcuts,Quick Status Change,3CX,Window Wizard,AppKill"
 iniProps["delay"] := 100
 
-iniProps := QIFunctions_readINI(pathINI, iniProps, iniSection)
+iniProps := WTSFunctions_readINI(pathINI, iniProps, iniSection)
 
 startList := StrSplit(iniProps["startList"], ",")
 delay := iniProps["delay"]

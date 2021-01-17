@@ -1,6 +1,6 @@
 #SingleInstance, force 								; Forces only one instance, allows to re-run script without reloading
-Menu, Tray, Icon, images\red_q_on_blue_bkgd.ico		; Icon for this script
-Menu, Tray, Tip, QI Tools: 3DConnexion Reset	 	; Change tooltip on icon in tray
+Menu, Tray, Icon, images\WoosterGraphic.ico			; Icon for this script
+Menu, Tray, Tip, WTS: 3DConnexion Reset	 	; Change tooltip on icon in tray
 
 ; #Include BSC_Properties.ahk
 

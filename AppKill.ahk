@@ -1,11 +1,11 @@
 #SingleInstance, force 								; Forces only one instance, allows to re-run script without reloading
-Menu, Tray, Icon, images\red_q_on_blue_bkgd.ico		; Icon for this script
-Menu, Tray, Tip, QI Tools: AppKill	 		; Change tooltip on icon in tray
+Menu, Tray, Icon, images\WoosterGraphic.ico			; Icon for this script
+Menu, Tray, Tip, WTS: AppKill	 					; Change tooltip on icon in tray
 
 DetectHiddenWindows, On
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Initialization ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Define INI file location
-pathINI = %A_AppData%\Quest Integration\QI Tools.ini
+pathINI = % A_AppData "\Wooster Technical Solutions\WoosterTech.ini"
 
 ; Section of INI file for 3CX
 iniSection = AppKill
@@ -20,7 +20,7 @@ iniProps["wait_time"] := 3
 iniProps["enableAppKill"] := true
 iniProps["keyAppKill"] := "<^<!Numpad5"
 
-iniProps := QIFunctions_readINI(pathINI, iniProps, iniSection)
+iniProps := WTSFunctions_readINI(pathINI, iniProps, iniSection)
 
 process_name := iniProps["process_name"]
 program_name := iniProps["program_name"]
