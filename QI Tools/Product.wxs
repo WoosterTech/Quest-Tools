@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="D361842A-B9F1-44B6-A570-A3AF0540523D"
-           Name="QI Tools"
+	<Product Id="2DA9487C-8FB5-4646-8EA7-078A32AD3868"
+           Name="Wooster AHK Scripts"
            Language="1033"
-           Version="0.0.32.0"
-           Manufacturer="Quest Integration"
-           UpgradeCode="67685DE7-5CB2-426E-8173-695978DD4D7F">
+           Version="0.0.01.0"
+           Manufacturer="Wooster Technical Solutions"
+	       UpgradeCode="86121779-204E-4E0B-9EB4-4AD531529E26">
     
 		<Package Id="*"
              Keywords="Installer"
-             Description="QI Tools Installer"
-             Manufacturer="Quest Integration"
+             Description="Wooster AHK Installer"
+             Manufacturer="Wooster Technical Solutions"
              InstallerVersion="200"
              Compressed="yes"
              InstallScope="perMachine" />
 
-    <Upgrade Id="67685DE7-5CB2-426E-8173-695978DD4D7F">
+    <Upgrade Id="86121779-204E-4E0B-9EB4-4AD531529E26">
       <UpgradeVersion OnlyDetect="no"
                       Property="PREVIOUSFOUND"
-                      Minimum="0.0.24.0" IncludeMinimum="yes"
-                      Maximum="0.0.32.0" IncludeMaximum="no" />
+                      Minimum="0.0.0.0" IncludeMinimum="yes"
+                      Maximum="0.0.01.0" IncludeMaximum="no" />
     </Upgrade>
              
 
@@ -32,96 +32,87 @@
     <WixVariable Id="WixUILicenseRtf" Value="licenseagrmt.rtf" />
     <WixVariable Id="WixUISupportPerUser" Value="0" />
 
-    <Icon Id="redqblueb.exe" SourceFile="red_q_on_blue_bkgd.ico"/>
+    <Icon Id="WoosterGraphic.exe" SourceFile="WoosterGraphic.ico"/>
     
-    <Property Id="ARPPRODUCTICON" Value="redqblueb.exe"/>
-    <Property Id="ApplicationFolderName" Value="Quest Integration" />
+    <Property Id="ARPPRODUCTICON" Value="WoosterGraphic.exe"/>
+    <Property Id="ApplicationFolderName" Value="WoosterTech" />
     <Property Id="WixAppFolder" Value="WixPerMachineFolder" />
 
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="AppDataFolder">
-        <Directory Id="progfiledir" Name="Quest Integration">
+        <Directory Id="progfiledir" Name="WoosterTech">
 
-          <Component Id="commonFiles" Guid="008D6F3F-A719-4A59-977C-4B8072F04F7D" Permanent="yes">
+          <Component Id="commonFiles" Guid="86121779-204E-4E0B-9EB4-4AD531529E26" Permanent="yes">
             <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Name="INI Path" Type="string" Value="[progfiledir]" KeyPath="yes" />
             <RemoveFolder Id="commonFiles" On="uninstall"/>
-            <File Id="INItemp" Name="QI Tools.ini" Source="QI Tools.ini">
-              <Shortcut Id="iniEdit" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="Settings" Advertise="no"/>
+            <File Id="INItemp" Name="WoosterTech.ini" Source="WoosterTech.ini">
+              <Shortcut Id="iniEdit" Directory="ProgramMenuDir" Icon="WoosterGraphic.exe" Name="Settings" Advertise="no"/>
             </File>
           </Component>
           
         </Directory>
       </Directory>
       <Directory Id="ProgramFilesFolder" Name="PFiles">
-        <Directory Id="APPLICATIONFOLDER" Name="Quest Integration">
-          <Directory Id="INSTALLDIR" Name="QI Tools">
+        <Directory Id="APPLICATIONFOLDER" Name="WoosterTech">
+          <Directory Id="INSTALLDIR" Name="Wooster AHK Scripts">
             <Directory Id="images" Name="images">
 
-              <Component Id="qIcons" Guid="94927050-8B72-45B0-B77B-745F503D97B1">
-                <File Id="mainicon" Name="red_q_on_blue_bkgd.ico" Source="red_q_on_blue_bkgd.ico"/>
-                <File Id="ongreen" Name="q_on_green_bkgd.ico" Source="q_on_green_bkgd.ico"/>
+              <Component Id="qIcons" Guid="6C6088E4-4D31-4691-9EE2-1750995F6605">
+                <File Id="mainicon" Name="WoosterGraphic.ico" Source="WoosterGraphic.ico"/>
+                <!--<File Id="ongreen" Name="q_on_green_bkgd.ico" Source="q_on_green_bkgd.ico"/>
                 <File Id="onyellow" Name="q_on_yellow_bkgd.ico" Source="q_on_yellow_bkgd.ico"/>
-                <File Id="onred" Name="q_on_red_bkgd.ico" Source="q_on_red_bkgd.ico"/>
-              </Component>
-              
-            </Directory>
-
-            <Directory Id="sounds" Name="sounds">
-              
-              <Component Id="sounds" Guid="7EDC80C1-E055-4D19-A6BC-3C8F212719DE">
-                <File Id="lowVol" Name="ringtone_-20db.wav" Source="ringtone_-20db.wav"/>
-                <File Id="ogVol" Name="ringtone_og.wav" Source="ringtone_og.wav"/>
+                <File Id="onred" Name="q_on_red_bkgd.ico" Source="q_on_red_bkgd.ico"/>-->
               </Component>
               
             </Directory>
             
-            <Component Id="BasicShortcuts" Guid="26D70B5E-1D5F-45F7-8A1C-6044F9C7C420">
+            <Component Id="BasicShortcuts" Guid="756F6273-9AAA-406E-91FE-32097F8A83CE">
               <File Id="bscEXE" Name="Basic Shortcuts.exe" Source="Basic Shortcuts.exe" KeyPath="yes">
-                <Shortcut Id="startmenuBSC" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="Basic Shortcuts" Advertise="yes"/>
-                <Shortcut Id="startupBSC" Directory="StartupFolder" Icon="redqblueb.exe" Name="Basic Shortcuts" Advertise="yes"/>
+                <Shortcut Id="startmenuBSC" Directory="ProgramMenuDir" Icon="WoosterGraphic.exe" Name="Basic Shortcuts" Advertise="yes"/>
+                <Shortcut Id="startupBSC" Directory="StartupFolder" Icon="WoosterGraphic.exe" Name="Basic Shortcuts" Advertise="yes"/>
               </File>
             </Component>
 
-            <Component Id="_3CX" Guid="4A70566B-BB0E-4BA1-A34F-1A84C23F5C8E">
-              <File Id="_3cxEXE" Name="3cx.exe" Source="3cx.exe" KeyPath="yes">
-                <Shortcut Id="startmenu3cx" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="3CX" Advertise="yes"/>
-                <Shortcut Id="startup3cx" Directory="StartupFolder" Icon="redqblueb.exe" Name="3CX" Advertise="yes"/>
-              </File>
-            </Component>
-
-            <Component Id="QuickStatusChange" Guid="4E17B44D-6FA0-41AF-9BA5-A428FD41F126">
+            <Component Id="QuickStatusChange" Guid="26E887B8-B7AA-4A77-97E8-286819E2D8DA">
               <File Id="qscEXE" Name="Quick Status Change.exe" Source="Quick Status Change.exe" KeyPath="yes">
-                <Shortcut Id="startmenuQSC" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="Quick Status Change" Advertise="yes"/>
-                <Shortcut Id="startupQSC" Directory="StartupFolder" Icon="redqblueb.exe" Name="Quick Status Change" Advertise="yes"/>
+                <Shortcut Id="startmenuQSC" Directory="ProgramMenuDir" Icon="WoosterGraphic.exe" Name="Quick Status Change" Advertise="yes"/>
+                <Shortcut Id="startupQSC" Directory="StartupFolder" Icon="WoosterGraphic.exe" Name="Quick Status Change" Advertise="yes"/>
               </File>
             </Component>
 
-            <Component Id="QuestUp" Guid="D5FE9E94-81AA-4A86-82ED-02731CF02C45">
-              <File Id="quBAT" Name="QuestUp.bat" Source="QuestUp.bat" KeyPath="yes">
-                <Shortcut Id="startmenuQU" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="QuestUp" Arguments='ringtone_-20db.wav' WorkingDirectory='INSTALLDIR' Advertise="yes"/>
-                <Shortcut Id="startupQU" Directory="StartupFolder" Icon="redqblueb.exe" Name="QuestUp" Arguments="ringtone_-20db.wav" WorkingDirectory="INSTALLDIR" Advertise="yes"/>
-              </File>
-            </Component>
-
-            <Component Id="SOLIDWORKSReset" Guid="74D86364-8321-4852-BDD5-53CF72EE3342">
+            <Component Id="SOLIDWORKSReset" Guid="064EBB73-B9BB-4345-AAAF-EE539CA24827">
               <File Id="swReset" Name="SOLIDWORKS Reset.exe" Source="SOLIDWORKS Reset.exe" KeyPath="yes">
-                <Shortcut Id="startmenuSWR" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="SOLIDWORKS Reset" Advertise="yes"/>
+                <Shortcut Id="startmenuSWR" Directory="ProgramMenuDir" Icon="WoosterGraphic.exe" Name="SOLIDWORKS Reset" Advertise="yes"/>
               </File>
             </Component>
 
-            <Component Id="_3DConnexionReset" Guid="C349A7B8-2877-4ABD-9694-0C7E37466893">
+            <Component Id="_3DConnexionReset" Guid="753FBCEB-58D8-441F-9E4C-C1AE62E76CAF">
               <File Id="_3dcReset" Name="3DConnexion Reset.exe" Source="3DConnexion Reset.exe" KeyPath="yes">
-                <Shortcut Id="startmenu3DCR" Directory="ProgramMenuDir" Icon="redqblueb.exe" Name="3DConnexion Reset" Advertise="yes"/>
+                <Shortcut Id="startmenu3DCR" Directory="ProgramMenuDir" Icon="WoosterGraphic.exe" Name="3DConnexion Reset" Advertise="yes"/>
               </File>
             </Component>
+
+			<Component Id="Master" Guid="93F08090-669E-4053-B957-22C822E8958B">
+				<File Id="mstEXE" Name="Master.exe" Source="Master.exe" KeyPath="yes">
+					<Shortcut Id="startmenuMST" Directory="ProgramMenuDir" Icon="WoosterGraphic.exe" Name="Master" Advertise="yes"/>
+					<Shortcut Id="startupMST" Directory="StartupFolder" Icon="WoosterGraphic.exe" Name="Master" Advertise="yes"/>
+				</File>
+			</Component>
+
+			<Component Id="WindowWizard" Guid="AFFE52E4-6829-49CF-B2C9-68CAB5252662">
+				<File Id="wwzEXE" Name="Window Wizard.exe" Source="Window Wizard.exe" KeyPath="yes">
+					<Shortcut Id="startmenuWWZ" Directory="ProgramMenuDir" Icon="WoosterGraphic.exe" Name="Window Wizard" Advertise="yes"/>
+					<Shortcut Id="startupWWZ" Directory="StartupFolder" Icon="WoosterGraphic.exe" Name="Window Wizard" Advertise="yes"/>
+				</File>
+			</Component>
             
           </Directory>
         </Directory>
       </Directory>
 
       <Directory Id="ProgramMenuFolder" Name="Programs">
-        <Directory Id="ProgramMenuDir" Name="QI Tools">
-          <Component Id="ProgramMenuDir" Guid="BA8F6D64-347A-49D4-814C-C07A7E29914C">
+        <Directory Id="ProgramMenuDir" Name="Wooster Technical Solutions">
+          <Component Id="ProgramMenuDir" Guid="4DDDE8DD-BD85-4636-9453-95954EB90857">
             <RemoveFolder Id="ProgramMenuDir" On="uninstall"/>
             <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Name="Start Menu Location" Value="[ProgramMenuDir]" KeyPath="yes" />
           </Component>
@@ -132,49 +123,44 @@
       </Directory>
     </Directory>
     
-		<Feature Id="Complete" Title="QI_Tools" Description="The complete package." Display="expand" Level="1" ConfigurableDirectory="INSTALLDIR">
+    <Feature Id="Complete" Title="Wooster AHK Scripts" Description="The complete package." Display="expand" Level="1" ConfigurableDirectory="INSTALLDIR">
 
-      <Feature Id="qsc" Title="Quick Status Change" Description="Allows for hotkeys for changing presence in 3CX and Teams" Level="1">
-        <ComponentRef Id="QuickStatusChange"/>
-      </Feature>
+        <Feature Id="qsc" Title="Quick Status Change" Description="Allows for hotkeys for changing presence in 3CX and Teams" Level="1">
+            <ComponentRef Id="QuickStatusChange"/>
+        </Feature>
 
-      <Feature Id="bsc" Title="Basic Shortcuts" Description="Locks numlock" Level="1000">
-        <ComponentRef Id="BasicShortcuts" />
-      </Feature>
+        <Feature Id="wwz" Title="Window Wizard" Description="Hotkeys for easy switching between standard programs (Teams/Slack/Outlook/etc.)" Level="1">
+	        <ComponentRef Id="WindowWizard"/>
+        </Feature>
 
-      <Feature Id="_3CXfeat" Title="3CX Press-to-Call" Description="Easily copy and dial numbers from anywhere" Level="1000">
-        <ComponentRef Id="_3CX"/>
-      </Feature>
+        <Feature Id="bsc" Title="Basic Shortcuts" Description="Locks numlock" Level="1000">
+            <ComponentRef Id="BasicShortcuts"/>
+        </Feature>
 
-      <Feature Id="qu" Title="QuestUp" Description="A startup script to set up your environment (e.g. lower ringtone volume)" Level="1000">
-        <ComponentRef Id="QuestUp"/>
-      </Feature>
+        <Feature Id="mst" Title="Master" Description="'Specific' scripts for email addresses, etc." Level="1000">
+	        <ComponentRef Id="Master"/>
+        </Feature>
 
-      <Feature Id="swr" Title="SOLIDWORKS Reset" Description="A shortcut for restarting SOLIDWORKS if hung" Level="1000">
-        <ComponentRef Id="SOLIDWORKSReset"/>
-      </Feature>
+        <Feature Id="swr" Title="SOLIDWORKS Reset" Description="A shortcut for restarting SOLIDWORKS if hung" Level="1000">
+            <ComponentRef Id="SOLIDWORKSReset"/>
+        </Feature>
 
-      <Feature Id="_3dc" Title="3DConnexion Reset" Description="A quick shortcut for restarting the 3DConnexion drivers" Level="1000">
-        <ComponentRef Id="_3DConnexionReset"/>
-      </Feature>
+        <Feature Id="_3dc" Title="3DConnexion Reset" Description="A quick shortcut for restarting the 3DConnexion drivers" Level="1000">
+            <ComponentRef Id="_3DConnexionReset"/>
+        </Feature>
 
-      <ComponentRef Id="qIcons"/>
-      <ComponentRef Id="sounds"/>
-      <ComponentRef Id="commonFiles"/>
-      <ComponentRef Id="ProgramMenuDir" />
-		</Feature>
+        <ComponentRef Id="qIcons"/>
+        <ComponentRef Id="commonFiles"/>
+        <ComponentRef Id="ProgramMenuDir" />
+    </Feature>
 
     <InstallExecuteSequence>
       <Custom Action="LaunchQSC" After="InstallFinalize"><![CDATA[&qsc = 3]]></Custom>
       <Custom Action="LaunchBSC" After="InstallFinalize"><![CDATA[&bsc = 3]]></Custom>
-      <Custom Action="LaunchQU" After="InstallFinalize"><![CDATA[&qu = 3]]></Custom>
-      <Custom Action="Launch3CX" After="InstallFinalize"><![CDATA[&_3CXfeat = 3]]></Custom>
     </InstallExecuteSequence>
 
     <CustomAction Id="LaunchBSC" FileKey="bscEXE" ExeCommand="" Return="asyncNoWait" />
     <CustomAction Id="LaunchQSC" FileKey="qscEXE" ExeCommand="" Return="asyncNoWait" />
-    <CustomAction Id="LaunchQU" Directory="INSTALLDIR" ExeCommand="[INSTALLDIR]QuestUp.bat ringtone_-20db.wav" Return="asyncNoWait" />
-    <CustomAction Id="Launch3CX" FileKey="_3cxEXE" ExeCommand="" Return="asyncNoWait" />
     
 	</Product>
 

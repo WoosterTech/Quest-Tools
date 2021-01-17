@@ -1,10 +1,10 @@
 #SingleInstance, force 								; Forces only one instance, allows to re-run script without reloading
-Menu, Tray, Icon, images\red_q_on_blue_bkgd.ico		; Icon for this script
-Menu, Tray, Tip, QI Tools: SOLIDWORKS Reset	 		; Change tooltip on icon in tray
+Menu, Tray, Icon, images\WoosterGraphic.ico		; Icon for this script
+Menu, Tray, Tip, WTS Tools: SOLIDWORKS Reset	 		; Change tooltip on icon in tray
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Initialization ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Define INI file location
-pathINI = %A_AppData%\Quest Integration\QI Tools.ini
+pathINI = %A_AppData%\WoosterTech\WoosterTech.ini
 
 ; Section of INI file for 3CX
 iniSection = SW_Reset
@@ -17,7 +17,7 @@ iniProps["process_name"] := "sldworks.exe"
 iniProps["program_name"] := "SOLIDWORKS"
 iniProps["start_path"] := "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\SOLIDWORKS 2020\SOLIDWORKS 2020.lnk"
 
-iniProps := QIFunctions_readINI(pathINI, iniProps, iniSection)
+iniProps := WTSFunctions_readINI(pathINI, iniProps, iniSection)
 
 process_name := iniProps["process_name"]
 program_name := iniProps["program_name"]

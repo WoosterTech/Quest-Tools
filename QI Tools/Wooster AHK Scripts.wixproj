@@ -6,8 +6,9 @@
     <ProductVersion>3.10</ProductVersion>
     <ProjectGuid>f0ad4643-07cd-4e6a-83bf-803b5b0d72dc</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>QI_Tools</OutputName>
+    <OutputName>WTS_Tools</OutputName>
     <OutputType>Package</OutputType>
+    <Name>Wooster AHK Scripts</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>

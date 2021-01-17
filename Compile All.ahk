@@ -1,6 +1,7 @@
 #SingleInstance, force 												; Forces only one instance, allows to re-run script without reloading
 
-listAHK := ["3CX", "3DConnexion Reset", "Basic Shortcuts", "Quick Status Change", "SOLIDWORKS Reset"]
+listAHK := ["Window Wizard", "Master", "3DConnexion Reset", "Basic Shortcuts", "Quick Status Change", "SOLIDWORKS Reset"]
+destFolder := "QI Tools"   ; This is where the WiX solution will look for the EXEs
 
 For index, AHK in listAHK
 {
@@ -29,7 +30,7 @@ For index, AHK in listAHK
 	{
 		ToolTip, % "Compiling " AHK
 		; RunWait, % "Ahk2Exe.exe /in """ AHK ".ahk"" /icon images/red_q_on_blue_bkgd.ico"					; Run compiler for AHK files
-		RunWait, % "Ahk2Exe.exe /in """ AHK ".ahk"" /out ""QI Tools\" AHK ".exe"" /icon images/red_q_on_blue_bkgd.ico"					; Run compiler for AHK files
+		RunWait, % "Ahk2Exe.exe /in """ AHK ".ahk"" /out """ destFolder "\" AHK ".exe"" /icon images/WoosterGraphic.ico"					; Run compiler for AHK files
 	} catch e {
 		MsgBox, % "Unable to compile """ AHK """, exiting"
 		ExitApp
