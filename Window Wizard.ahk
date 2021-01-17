@@ -27,7 +27,7 @@ iniProps["teamsKey"] := "F9"
 iniProps["teamsCommand"] := """""C:\Users\" A_UserName "\AppData\Local\Microsoft\Teams\Update.exe"" --processStart ""Teams.exe"""""
 iniProps["3cxCommand"] := "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\3CXPhone for Windows\3CXPhone for Windows.lnk"
 
-iniProps := QIFunctions_readINI(pathINI, iniProps, iniSection)
+iniProps := WTSFunctions_readINI(pathINI, iniProps, iniSection)
 
 TeamsHide := iniProps["TeamsHide"]
 SlackHide := iniProps["SlackHide"]
@@ -50,7 +50,7 @@ return
 outlook:
 if WinExist("- Outlook")
 {
-	QIFunctions_winShow(OutlookHide)
+	WTSFunctions_winShow(OutlookHide)
 } else {
 	try run Outlook.exe
 	catch e
@@ -61,7 +61,7 @@ return
 teams:
 if WinExist("| Microsoft Teams") or WinExist("ahk_exe Teams.exe")
 {
-	QIFunctions_winShow(TeamsHide)
+	WTSFunctions_winShow(TeamsHide)
 } else {
 	try run %teamsCommand%
 	catch e
@@ -72,7 +72,7 @@ return
 3cx:
 if WinExist("3CX -")
 {
-	QIFunctions_winShow(3cxHide)
+	WTSFunctions_winShow(3cxHide)
 } else {
 	try run %3cxCommand%
 	catch e
@@ -83,7 +83,7 @@ return
 slack:
 if WinExist("Slack |")
 {
-	QIFunctions_winShow(SlackHide)
+	WTSFunctions_winShow(SlackHide)
 } else {
 	try run Slack.exe
 	catch e

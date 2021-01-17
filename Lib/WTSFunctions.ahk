@@ -1,4 +1,4 @@
-QIFunctions_readINI(iniPath, iniKeys, ini_section)					; Reads keys from defined INI file based on 'iniKeys'
+WTSFunctions_readINI(iniPath, iniKeys, ini_section)					; Reads keys from defined INI file based on 'iniKeys'
 {
 	For key, value in iniKeys
 	{
@@ -14,7 +14,7 @@ QIFunctions_readINI(iniPath, iniKeys, ini_section)					; Reads keys from defined
 	return iniKeys
 }
 
-QIFunctions_winShow(WindHide := true)
+WTSFunctions_winShow(WindHide := true)
 {
 	WinGet, Style, Style
 

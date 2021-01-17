@@ -148,8 +148,8 @@
     
 		<Feature Id="Complete" Title="Wooster AHK Scripts" Description="The complete package." Display="expand" Level="1" ConfigurableDirectory="INSTALLDIR">
 
-      <Feature Id="qst" Title="QuestStart" Description="Runs at startup to get all scripts started up cleanly" Level="1">
-        <ComponentRef Id="QuestStart"/>
+      <Feature Id="qst" Title="ScriptStart" Description="Runs at startup to get all scripts started up cleanly" Level="1">
+        <ComponentRef Id="ScriptStart"/>
       </Feature>
       
       <Feature Id="qsc" Title="Quick Status Change" Description="Allows for hotkeys for changing presence in 3CX and Teams" Level="1">
@@ -194,14 +194,14 @@
       <Custom Action="LaunchQST" After="InstallFinalize"><![CDATA[&qst = 3]]></Custom>
       <!--<Custom Action="LaunchQSC" After="InstallFinalize"><![CDATA[&qsc = 3]]></Custom>-->
       <!--<Custom Action="LaunchBSC" After="InstallFinalize"><![CDATA[&bsc = 3]]></Custom>-->
-      <Custom Action="LaunchQU" After="InstallFinalize"><![CDATA[&qu = 3]]></Custom>
+      <!--<Custom Action="LaunchQU" After="InstallFinalize"><![CDATA[&qu = 3]]></Custom>-->
       <!--<Custom Action="Launch3CX" After="InstallFinalize"><![CDATA[&_3CXfeat = 3]]></Custom>-->
     </InstallExecuteSequence>
 
     <CustomAction Id="LaunchQST" Directory="INSTALLDIR" ExeCommand="[INSTALLDIR]QuestStart.exe" Return="asyncNoWait" />
     <!--<CustomAction Id="LaunchBSC" FileKey="bscEXE" ExeCommand="" Return="asyncNoWait" />-->
     <!--<CustomAction Id="LaunchQSC" FileKey="qscEXE" ExeCommand="" Return="asyncNoWait" />-->
-    <CustomAction Id="LaunchQU" Directory="INSTALLDIR" ExeCommand="[INSTALLDIR]QuestUp.bat ringtone_-20db.wav" Return="asyncNoWait" />
+    <!--<CustomAction Id="LaunchQU" Directory="INSTALLDIR" ExeCommand="[INSTALLDIR]QuestUp.bat ringtone_-20db.wav" Return="asyncNoWait" />-->
     <!--<CustomAction Id="Launch3CX" FileKey="_3cxEXE" ExeCommand="" Return="asyncNoWait" />-->
     
 	</Product>

@@ -1,6 +1,6 @@
 #SingleInstance, force 												; Forces only one instance, allows to re-run script without reloading
 
-listAHK := ["Master", "3DConnexion Reset", "Basic Shortcuts", "Quick Status Change", "SOLIDWORKS Reset", "QuestStart", "Window Wizard", "AppKill", "SOLIDWORKS Kill"]
+listAHK := ["Master", "3DConnexion Reset", "Basic Shortcuts", "Quick Status Change", "SOLIDWORKS Reset", "ScriptStart", "Window Wizard", "AppKill", "SOLIDWORKS Kill"]
 destFolder := "QI Tools"
 
 For index, AHK in listAHK
