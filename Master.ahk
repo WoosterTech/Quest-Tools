@@ -1,6 +1,6 @@
 #SingleInstance, force 							; Forces only one instance, allows to re-run script without reloading
-Menu, Tray, Icon, images\WoosterGraphic.ico	; Icon for this script
-Menu, Tray, Tip, WTS: Master Shortcut Script			; Change tooltip on icon in tray
+Menu, Tray, Icon, images\WoosterGraphic.ico	    ; Icon for this script
+Menu, Tray, Tip, WTS: Master Shortcut Script	; Change tooltip on icon in tray
 
 ; system verbs
 

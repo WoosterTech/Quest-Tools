@@ -8,7 +8,7 @@ DetectHiddenWindows, On
 SetTitleMatchMode, 2
 
 ; Define INI file location
-pathINI = %A_AppData%\WoosterTech\WoosterTech.ini
+pathINI = % A_AppData "\Wooster Technical Solutions\WoosterTech.ini"
 
 ; Section of INI file for QSC
 iniSection = QuickStatusChange

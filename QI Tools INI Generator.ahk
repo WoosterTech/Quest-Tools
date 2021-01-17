@@ -1,4 +1,4 @@
-defINILoc := % AppData "\Quest Integration\QI Tools.ini"
+defINILoc := % A_AppData "\Wooster Technical Solutions\WoosterTech.ini"
 
 ; INIexist := FileExist(defINILoc)
 
