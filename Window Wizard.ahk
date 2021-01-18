@@ -24,6 +24,8 @@ iniProps["outlookKey"] := "F10"
 iniProps["slackKey"] := "F8"
 iniProps["teamsKey"] := "F9"
 iniProps["teamsCommand"] := """""C:\Users\" A_UserName "\AppData\Local\Microsoft\Teams\Update.exe"" --processStart ""Teams.exe"""""
+iniProps["slackCommand"] := "Slack.exe"
+iniProps["slackWinTitle"] := "Slack |"
 
 iniProps := WTSFunctions_readINI(pathINI, iniProps, iniSection)
 
@@ -35,6 +37,8 @@ outlookKey := iniProps["outlookKey"]
 slackKey := iniProps["slackKey"]
 teamsKey := iniProps["teamsKey"]
 teamsCommand := iniProps["teamsCommand"]
+slackCommand := iniProps["slackCommand"]
+slackWinTitle := iniProps["slackWinTitle"]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Main Code ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 Hotkey, %outlookKey%, outlook
@@ -65,11 +69,11 @@ if WinExist("| Microsoft Teams") or WinExist("ahk_exe Teams.exe")
 return
 
 slack:
-if WinExist("Slack |")
+if WinExist(slackWinTitle)
 {
 	WTSFunctions_winShow(SlackHide)
 } else {
-	try run Slack.exe
+	try run slackCommand
 	catch e
 		MsgBox, 16, Slack Error, Didn't find Slack window`nUnable to run Slack`n%e%
 }

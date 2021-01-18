@@ -12,8 +12,8 @@ iniSection = ScriptStart
 iniProps := {}
 
 ; Properties from INI file with their defaults
-iniProps["fullList"] := "Master,Basic Shortcuts,Quick Status Change,3CX,Window Wizard,AppKill"
-iniProps["startList"] := "Master,Basic Shortcuts,Quick Status Change,3CX,Window Wizard,AppKill"
+iniProps["fullList"] := "Master,Basic Shortcuts,Quick Status Change,Window Wizard,AppKill"
+iniProps["startList"] := "Master,Basic Shortcuts,Quick Status Change,Window Wizard,AppKill"
 iniProps["delay"] := 100
 
 iniProps := WTSFunctions_readINI(pathINI, iniProps, iniSection)
