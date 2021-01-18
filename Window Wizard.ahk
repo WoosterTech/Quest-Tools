@@ -21,11 +21,9 @@ iniProps["OutlookHide"] := true
 iniProps["TeamsHide"] := true
 iniProps["3cxHide"] := false
 iniProps["outlookKey"] := "F10"
-iniProps["3cxKey"] := "F7"
 iniProps["slackKey"] := "F8"
 iniProps["teamsKey"] := "F9"
 iniProps["teamsCommand"] := """""C:\Users\" A_UserName "\AppData\Local\Microsoft\Teams\Update.exe"" --processStart ""Teams.exe"""""
-iniProps["3cxCommand"] := "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\3CXPhone for Windows\3CXPhone for Windows.lnk"
 
 iniProps := WTSFunctions_readINI(pathINI, iniProps, iniSection)
 
@@ -34,16 +32,13 @@ SlackHide := iniProps["SlackHide"]
 OutlookHide := iniProps["TeamsHide"]
 3cxHide := iniProps["3cxHide"]
 outlookKey := iniProps["outlookKey"]
-3cxKey := iniProps["3cxKey"]
 slackKey := iniProps["slackKey"]
 teamsKey := iniProps["teamsKey"]
 teamsCommand := iniProps["teamsCommand"]
-3cxCommand := iniProps["3cxCommand"]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Main Code ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 Hotkey, %outlookKey%, outlook
 Hotkey, %teamsKey%, teams
-Hotkey, %3cxKey%, 3cx
 Hotkey, %slackKey%, slack
 return
 
@@ -66,17 +61,6 @@ if WinExist("| Microsoft Teams") or WinExist("ahk_exe Teams.exe")
 	try run %teamsCommand%
 	catch e
 		MsgBox, 16, Teams Error, Didn't find Teams window`nUnable to run Teams`n%e%
-}
-return
-
-3cx:
-if WinExist("3CX -")
-{
-	WTSFunctions_winShow(3cxHide)
-} else {
-	try run %3cxCommand%
-	catch e
-		MsgBox, 16, 3CX Error, Didn't find 3CX window`nUnable to run 3CX`n%e%
 }
 return
 
