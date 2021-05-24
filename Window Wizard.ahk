@@ -20,12 +20,16 @@ iniProps["SlackHide"] := true
 iniProps["OutlookHide"] := true
 iniProps["TeamsHide"] := true
 iniProps["3cxHide"] := false
+iniProps["8by8Hide"] := true
 iniProps["outlookKey"] := "F10"
 iniProps["slackKey"] := "F8"
 iniProps["teamsKey"] := "F9"
+iniProps["8by8Key"] := "F11"
 iniProps["teamsCommand"] := """""C:\Users\" A_UserName "\AppData\Local\Microsoft\Teams\Update.exe"" --processStart ""Teams.exe"""""
 iniProps["slackCommand"] := "Slack.exe"
 iniProps["slackWinTitle"] := "Slack |"
+iniProps["8by8WinTitle"] := "8x8 Work"
+iniProps["8by8Command"] := """""C:\Users\" A_UserName "\AppData\Local\8x8-Work\8x8 Work.exe"""
 
 iniProps := WTSFunctions_readINI(pathINI, iniProps, iniSection)
 
@@ -33,17 +37,22 @@ TeamsHide := iniProps["TeamsHide"]
 SlackHide := iniProps["SlackHide"]
 OutlookHide := iniProps["TeamsHide"]
 3cxHide := iniProps["3cxHide"]
+8by8Hide := iniProps["8by8Hide"]
 outlookKey := iniProps["outlookKey"]
 slackKey := iniProps["slackKey"]
 teamsKey := iniProps["teamsKey"]
+8by8Key := iniProps ["8by8Key"]
 teamsCommand := iniProps["teamsCommand"]
 slackCommand := iniProps["slackCommand"]
 slackWinTitle := iniProps["slackWinTitle"]
+8by8WinTitle := iniProps["8by8WinTitle"]
+8by8Command := iniProps["8by8Command"]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Main Code ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 Hotkey, %outlookKey%, outlook
 Hotkey, %teamsKey%, teams
 Hotkey, %slackKey%, slack
+Hotkey, %8by8Key%, 8by8
 return
 
 outlook:
@@ -73,9 +82,20 @@ if WinExist(slackWinTitle)
 {
 	WTSFunctions_winShow(SlackHide)
 } else {
-	try run slackCommand
+	try run %slackCommand%
 	catch e
 		MsgBox, 16, Slack Error, Didn't find Slack window`nUnable to run Slack`n%e%
+}
+return
+
+8by8:
+if WinExist(8by8WinTitle)
+{
+	WTSFunctions_winShow(8by8Hide)
+} else {
+	try run %8by8Command%
+	catch e
+		MsgBox, 16, 8x8 Work Error, Didn't find 8x8 Work window`nUnable to run 8x8 Work`n%e%
 }
 return
 
