@@ -21,15 +21,19 @@ iniProps["OutlookHide"] := true
 iniProps["TeamsHide"] := true
 iniProps["3cxHide"] := false
 iniProps["8by8Hide"] := true
+iniProps["YourPhoneHide"] := true
 iniProps["outlookKey"] := "F10"
 iniProps["slackKey"] := "F8"
 iniProps["teamsKey"] := "F9"
 iniProps["8by8Key"] := "F11"
+iniProps["YourPhoneKey"] := "F7"
 iniProps["teamsCommand"] := """""C:\Users\" A_UserName "\AppData\Local\Microsoft\Teams\Update.exe"" --processStart ""Teams.exe"""""
 iniProps["slackCommand"] := "Slack.exe"
 iniProps["slackWinTitle"] := "Slack |"
 iniProps["8by8WinTitle"] := "8x8 Work"
 iniProps["8by8Command"] := """""C:\Users\" A_UserName "\AppData\Local\8x8-Work\8x8 Work.exe"""
+iniProps["YourPhoneWinTitle"] := "Your Phone"
+iniProps["YourPhoneCommand"] := "MicrosoftYourPhone_8wekyb3d8bbwe!App"
 
 iniProps := WTSFunctions_readINI(pathINI, iniProps, iniSection)
 
@@ -38,21 +42,26 @@ SlackHide := iniProps["SlackHide"]
 OutlookHide := iniProps["TeamsHide"]
 3cxHide := iniProps["3cxHide"]
 8by8Hide := iniProps["8by8Hide"]
+YourPhoneHide := iniProps["YourPhoneHide"]
 outlookKey := iniProps["outlookKey"]
 slackKey := iniProps["slackKey"]
 teamsKey := iniProps["teamsKey"]
 8by8Key := iniProps ["8by8Key"]
+YourPhoneKey := iniProps["YourPhoneKey"]
 teamsCommand := iniProps["teamsCommand"]
 slackCommand := iniProps["slackCommand"]
 slackWinTitle := iniProps["slackWinTitle"]
 8by8WinTitle := iniProps["8by8WinTitle"]
 8by8Command := iniProps["8by8Command"]
+YourPhoneWinTitle := iniProps["YourPhoneWinTitle"]
+YourPhoneCommand := iniProps["YourPhoneCommand"]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Main Code ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 Hotkey, %outlookKey%, outlook
 Hotkey, %teamsKey%, teams
 Hotkey, %slackKey%, slack
 Hotkey, %8by8Key%, 8by8
+Hotkey, %YourPhoneKey%, yourPhone
 return
 
 outlook:
@@ -96,6 +105,17 @@ if WinExist(8by8WinTitle)
 	try run %8by8Command%
 	catch e
 		MsgBox, 16, 8x8 Work Error, Didn't find 8x8 Work window`nUnable to run 8x8 Work`n%e%
+}
+return
+
+yourPhone:
+if WinExist(YourPhoneWinTitle)
+{
+	WTSFunctions_winShow(YourPhoneHide)
+} else {
+	try run %YourPhoneCommand%
+	catch e
+		MsgBox, 16, Your Phone Error, Didn't find Your Phone window`nUnable to run Your Phone`n%e%
 }
 return
 

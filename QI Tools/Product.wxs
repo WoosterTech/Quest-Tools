@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <!--replace this Id-->
-	<Product Id="9411D75C-25A0-488E-8872-CD4404BA82FF"
+	<Product Id="BDF8AB2B-4780-4C0E-8C14-86080CA2E080"
            Name="Wooster AHK Scripts"
            Language="1033"
-           Version="0.0.2.1"
+           Version="0.0.3.0"
            Manufacturer="Wooster Technical Solutions"
            UpgradeCode="82FBCE35-5FAA-4996-827E-81FA2665E7AE">
     
@@ -20,7 +20,7 @@
       <UpgradeVersion OnlyDetect="no"
                       Property="PREVIOUSFOUND"
                       Minimum="0.0.0.0" IncludeMinimum="yes"
-                      Maximum="0.0.2.1" IncludeMaximum="no" />
+                      Maximum="0.0.3.0" IncludeMaximum="no" />
     </Upgrade>
              
 
