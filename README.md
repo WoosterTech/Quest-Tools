@@ -1,40 +1,32 @@
 # Quest Tools
 
 ## Quick Status Change
-Changes status in both MS Teams and 3CX Desktop. Teams doesn't seem to be perfectly reliable, change *teamsSleep* value (see **Edit Settings** below).
-
-3CX actually dials a number (e.g. **\*30** for *Available*) to change its status. That makes it slow and it "announces" the change over your headset, but it should be almost perfectly reliable.
+Changes status in MS Teams. Teams doesn't seem to be perfectly reliable, change *teamsSleep* value (see **Edit Settings** below).
 
 The shortcuts below are editable in the **Settings**. See me for tips on changing these.
 
 + Ctrl+F1  - *Available*
-+ Ctrl+F2  - *Away*
++ Ctrl+F2  - *Away* (Prompts to lock computer)
 + Ctrl+F3  - *Do Not Disturb* (**NO** notifications in MS Teams)
-+ Ctrl+F4  - *Busy* (**DND** in 3CX)
++ Ctrl+F4  - *Busy*
 + Ctrl+F5  - *Custom 1* (**DND** in Teams)
 + Ctrl+F6  - *Custom 2* (**Away** in Teams)
 
-## 3CX Click-to-Call
-Copies selected text into 3CX. **Must** have text copied to clipboard.
-
-+ NumLock - Dials number on clipboard (must copy number using ctrl+c *before* pressing numlock)
-
-_See below for notes on modifying Settings (INI file)_
-
 ## Basic Shortcuts
-Provides an option to **lock** the numlock on. This means that you *cannot* turn off numlock. May not be necessary if {numlock} is left as the default click-to-call option.
+Provides an option to **lock** the numlock on. This means that you *cannot* turn off numlock.
 
 By default, this option is disabled. Follow instructions in **Edit Settings** to set the *numLockOn* value to **1**.
 
 ## Window Wizard
 Hides and shows different windows. Will always bring focus to the window.
 
-+ F7 - 3CX
++ F7 - Your Phone
 + F8 - Slack (I've had issues with hiding this, edit Settings file [see below] to set *SlackHide* to **0**)
 + F9 - Teams
 + F10 - Outlook
++ F11 - 8x8 Phone
 
-_Commands for 3CX and Teams are configured in **Settings**, if 3CX or Teams change how their programs launch, these may need to be updated._
+_Commands for Teams are configured in **Settings**, if Teams changes how it launches, these may need to be updated._
 
 ## AppKill
 Sometimes killing Teams from the System Tray doesn't work (Teams starts itself again). This kills the process. If you get an warning message that it couldn't kill Teams, run it a second time, that seems to work.
