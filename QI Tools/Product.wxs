@@ -128,6 +128,20 @@
                 <Shortcut Id="startmenuAK" Directory="ProgramMenuDir" Icon="WoosterGraphic.exe" Name="AppKill" Advertise="yes"/>
               </File>
             </Component>
+
+			<Component Id="Master" Guid="93F08090-669E-4053-B957-22C822E8958B">
+				<File Id="mstEXE" Name="Master.exe" Source="Master.exe" KeyPath="yes">
+					<Shortcut Id="startmenuMST" Directory="ProgramMenuDir" Icon="WoosterGraphic.exe" Name="Master" Advertise="yes"/>
+					<Shortcut Id="startupMST" Directory="StartupFolder" Icon="WoosterGraphic.exe" Name="Master" Advertise="yes"/>
+				</File>
+			</Component>
+
+			<Component Id="WindowWizard" Guid="AFFE52E4-6829-49CF-B2C9-68CAB5252662">
+				<File Id="wwzEXE" Name="Window Wizard.exe" Source="Window Wizard.exe" KeyPath="yes">
+					<Shortcut Id="startmenuWWZ" Directory="ProgramMenuDir" Icon="WoosterGraphic.exe" Name="Window Wizard" Advertise="yes"/>
+					<Shortcut Id="startupWWZ" Directory="StartupFolder" Icon="WoosterGraphic.exe" Name="Window Wizard" Advertise="yes"/>
+				</File>
+			</Component>
             
           </Directory>
         </Directory>
@@ -160,9 +174,9 @@
 				<ComponentRef Id="Master"/>
 			</Feature>
 
-      <Feature Id="bsc" Title="Basic Shortcuts" Description="Locks numlock" Level="1000">
-        <ComponentRef Id="BasicShortcuts" />
-      </Feature>
+        <Feature Id="wwz" Title="Window Wizard" Description="Hotkeys for easy switching between standard programs (Teams/Slack/Outlook/etc.)" Level="1">
+	        <ComponentRef Id="WindowWizard"/>
+        </Feature>
 
       <Feature Id="swr" Title="SOLIDWORKS Reset" Description="A shortcut for restarting SOLIDWORKS if hung" Level="1000">
         <ComponentRef Id="SOLIDWORKSReset"/>

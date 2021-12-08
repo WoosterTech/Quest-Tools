@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29209.62
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "QI Tools", "QI Tools.wixproj", "{F0AD4643-07CD-4E6A-83BF-803B5B0D72DC}"
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Wooster AHK Scripts", "Wooster AHK Scripts.wixproj", "{F0AD4643-07CD-4E6A-83BF-803B5B0D72DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

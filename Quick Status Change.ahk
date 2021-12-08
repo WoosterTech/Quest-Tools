@@ -18,9 +18,6 @@ iniProps := {}
 
 ; Properties from INI file with their defaults
 iniProps["teamsSleep"] := 250
-iniProps["onCallPos"] := "80,500"
-iniProps["onCallColors"] := "0x0000FF,0x575757,0xC1C1C1,0xFF0000"
-iniProps["codeIndex"] := 3
 iniProps["changeTeams"] := 1
 ; iniProps["change3CX"] := 0
 iniProps["availKey"] := "^F1"
