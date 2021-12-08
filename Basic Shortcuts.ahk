@@ -4,7 +4,7 @@ Menu, Tray, Tip, WTS: Basic Shortcuts	 		; Change tooltip on icon in tray
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Initialization ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Define INI file location
-pathINI = %A_AppData%\WoosterTech\WoosterTech.ini
+pathINI = % A_AppData "\Wooster Technical Solutions\WoosterTech.ini"
 
 ; Section of INI file for 3CX
 iniSection = BasicShortcuts
@@ -14,19 +14,15 @@ iniProps := {}
 
 ; Properties from INI file with their defaults
 iniProps["numLockOn"] := 0
-iniProps["hkInterval"] := 1000
-iniProps["hkMaxPerInt"] := 210
 
 iniProps := WTSFunctions_readINI(pathINI, iniProps, iniSection)
 
 numLockOn := iniProps["numLockOn"]
-hkInterval := iniProps["hkInterval"]
-hkMaxPerInt := iniProps["hkMaxPerInt"]
-
-#HotkeyInterval %hkInterval%						; Defines interval for next line
-#MaxHotkeysPerInterval %hkMaxPerInt%				; Sets maximum number of presses of hotkey per interval
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Main Code ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 if numLockOn {
 	SetNumLockState, AlwaysOn
 }
+
+; Opens a G2M prompt to start or join a meeting
+; ^!g::Run, "gotomeeting://SALaunch?Action=Host"

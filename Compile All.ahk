@@ -1,7 +1,7 @@
 #SingleInstance, force 												; Forces only one instance, allows to re-run script without reloading
 
-listAHK := ["Window Wizard", "Master", "3DConnexion Reset", "Basic Shortcuts", "Quick Status Change", "SOLIDWORKS Reset"]
-destFolder := "QI Tools"   ; This is where the WiX solution will look for the EXEs
+listAHK := ["Master", "3DConnexion Reset", "Basic Shortcuts", "Quick Status Change", "SOLIDWORKS Reset", "ScriptStart", "Window Wizard", "AppKill", "SOLIDWORKS Kill"]
+destFolder := "QI Tools"
 
 For index, AHK in listAHK
 {

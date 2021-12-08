@@ -1,4 +1,4 @@
-defINILoc := % AppData "\WoosterTech\WoosterTech.ini"
+defINILoc := % A_AppData "\Wooster Technical Solutions\WoosterTech.ini"
 
 ; INIexist := FileExist(defINILoc)
 

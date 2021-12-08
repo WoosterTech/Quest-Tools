@@ -1,6 +1,0 @@
-3DConnexion Reset.exe
-Basic Shortcuts.exe
-WoosterTech.ini
-WoosterGraphic.ico
-Quick Status Change.exe
-SOLIDWORKS Reset.exe

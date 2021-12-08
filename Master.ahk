@@ -1,6 +1,6 @@
 #SingleInstance, force 							; Forces only one instance, allows to re-run script without reloading
-Menu, Tray, Icon, images\WoosterGraphic.ico	; Icon for this script
-Menu, Tray, Tip, WTS: Master Shortcut Script			; Change tooltip on icon in tray
+Menu, Tray, Icon, images\WoosterGraphic.ico	    ; Icon for this script
+Menu, Tray, Tip, WTS: Master Shortcut Script	; Change tooltip on icon in tray
 
 ; system verbs
 
@@ -13,7 +13,7 @@ Menu, Tray, Tip, WTS: Master Shortcut Script			; Change tooltip on icon in tray
 ; #h::Run, explore "C:\Users\karl\Documents\GitHub"
 
 ; #n::Run, explore "C:\temp\Customers"
-#n::Run, C:\Users\karl_\Downloads\PdmVaultBrowser.exe
+#n::Run, "C:\Users\KarlWooster\OneDrive - Wooster Technical Solutions\Documents\PdmVaultBrowser.exe"
 
 ; #n::Run, explorer.exe shell:appsFolder\Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe!App
 
@@ -40,7 +40,6 @@ CapsLock & s::SendInput SOLIDWORKS
 ;
 ; SendInput, Samantha{Tab}
 ; SendInput, Wooster{Tab}{Tab}
-; SendInput, 7711 Thetis Dr{Tab}
 ; SendInput, Pasco{Tab}
 ; SendInput, w{Tab}
 ; Sleep, 200

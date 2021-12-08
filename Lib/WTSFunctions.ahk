@@ -14,18 +14,18 @@ WTSFunctions_readINI(iniPath, iniKeys, ini_section)					; Reads keys from define
 	return iniKeys
 }
 
-WTSFunctions_winTogg()
+WTSFunctions_winShow(WindHide := true)
 {
 	WinGet, Style, Style
 
 	IfWinNotActive
 	{
-		If !(Style & 0x10000000)
-			WinRestore
-		WinActivate
+		WinGet, winid, ID
+		DllCall("SwitchToThisWindow", "UInt", winid, "UInt", 1)		; This seems to be more reliable than WinRestore, woohoo!
 	} else {
 		WinMinimize
-		WinHide
+		If WindHide													; Allows for the INI file to control hiding if the app doesn't like it (fixed with DllCall I think)
+			WinHide
 	}
 
 	return

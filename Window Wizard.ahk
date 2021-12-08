@@ -1,103 +1,123 @@
 #SingleInstance, force
-Menu, Tray, Icon,  images\WoosterGraphic.ico
+Menu, Tray, Icon, images\WoosterGraphic.ico
 Menu, Tray, Tip, WTS: Window Wizard
 
 SetTitleMatchMode 2
 DetectHiddenWindows, On
-; SetKeyDelay, 500
 
-; F3::						; Switch to Outlook inbox
-; IfWinExist, - Outlook
-; {
-; 	WTSFunctions_winTogg()
-; 	SendInput ^1
-; } else {
-; 	run Outlook.exe /select outlook:inbox
-; }
-; return
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Initialization ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Define INI file location
+pathINI = % A_AppData "\Wooster Technical Solutions\WoosterTech.ini"
 
-; F4::						; Switch to Outlook calendar
-; IfWinExist, - Outlook
-; {
-; 	WTSFunctions_winTogg()
-; 	SendInput ^2
-; } else {
-; 	run Outlook.exe /select outlook:calendar
-; }
-; return
+; Section of INI file for 3CX
+iniSection = WindowWizard
 
-; ^Numpad1::
-; IfWinExist, ahk_exe Google Play Music Desktop Player.exe
-; {
-; 	WinGet, Style, Style
-; 	MsgBox, % Style
-; 	WTSFunctions_winTogg()
-; } else {
-; 	MsgBox, GMDPR not found!
-; }
-; return
+; Initialize iniProps
+iniProps := {}
 
-F6::
-IfWinExist, - Outlook
-{
-	WTSFunctions_winTogg()
-} else {
-	run Outlook.exe
-}
-Sleep 500
-Tooltip
+; Properties from INI file with their defaults
+iniProps["SlackHide"] := true
+iniProps["OutlookHide"] := true
+iniProps["TeamsHide"] := true
+iniProps["3cxHide"] := false
+iniProps["8by8Hide"] := true
+iniProps["YourPhoneHide"] := true
+iniProps["outlookKey"] := "F10"
+iniProps["slackKey"] := "F8"
+iniProps["teamsKey"] := "F9"
+iniProps["8by8Key"] := "F11"
+iniProps["YourPhoneKey"] := "F7"
+iniProps["teamsCommand"] := """""C:\Users\" A_UserName "\AppData\Local\Microsoft\Teams\Update.exe"" --processStart ""Teams.exe"""""
+iniProps["slackCommand"] := "Slack.exe"
+iniProps["slackWinTitle"] := "Slack |"
+iniProps["8by8WinTitle"] := "8x8 Work"
+iniProps["8by8Command"] := """""C:\Users\" A_UserName "\AppData\Local\8x8-Work\8x8 Work.exe"""
+iniProps["YourPhoneWinTitle"] := "Your Phone"
+iniProps["YourPhoneCommand"] := "MicrosoftYourPhone_8wekyb3d8bbwe!App"
+
+iniProps := WTSFunctions_readINI(pathINI, iniProps, iniSection)
+
+TeamsHide := iniProps["TeamsHide"]
+SlackHide := iniProps["SlackHide"]
+OutlookHide := iniProps["TeamsHide"]
+3cxHide := iniProps["3cxHide"]
+8by8Hide := iniProps["8by8Hide"]
+YourPhoneHide := iniProps["YourPhoneHide"]
+outlookKey := iniProps["outlookKey"]
+slackKey := iniProps["slackKey"]
+teamsKey := iniProps["teamsKey"]
+8by8Key := iniProps ["8by8Key"]
+YourPhoneKey := iniProps["YourPhoneKey"]
+teamsCommand := iniProps["teamsCommand"]
+slackCommand := iniProps["slackCommand"]
+slackWinTitle := iniProps["slackWinTitle"]
+8by8WinTitle := iniProps["8by8WinTitle"]
+8by8Command := iniProps["8by8Command"]
+YourPhoneWinTitle := iniProps["YourPhoneWinTitle"]
+YourPhoneCommand := iniProps["YourPhoneCommand"]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Main Code ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+Hotkey, %outlookKey%, outlook
+Hotkey, %teamsKey%, teams
+Hotkey, %slackKey%, slack
+Hotkey, %8by8Key%, 8by8
+Hotkey, %YourPhoneKey%, yourPhone
 return
 
-F9::
-IfWinExist, | Microsoft Teams
+outlook:
+if WinExist("- Outlook")
 {
-	WTSFunctions_winTogg()
+	WTSFunctions_winShow(OutlookHide)
 } else {
-	; run "C:\Users\karl\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Microsoft Teams.lnk"
-	run "C:\Users\karl\AppData\Local\Microsoft\Teams\Update.exe" --processStart "Teams.exe"
+	try run Outlook.exe
+	catch e
+		MsgBox, 16, Outlook Error, Didn't find Outlook Window`nUnable to run Outlook`n%e%
 }
 return
 
-; F7::
-; IfWinExist, 3CX -
-; {
-; 	WTSFunctions_winTogg()
-; } else {
-; 	run "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\3CXPhone for Windows\3CXPhone for Windows.lnk"
-; }
-; return
-
-F8::
-IfWinExist, Slack
+teams:
+if WinExist("| Microsoft Teams") or WinExist("ahk_exe Teams.exe")
 {
-	WinGet, Name, ControlList
-	Tooltip, % Name "Window Found"
-	WTSFunctions_winTogg()
+	WTSFunctions_winShow(TeamsHide)
 } else {
-	Tooltip "Window NOT Found"
-	run Slack.exe
+	try run %teamsCommand%
+	catch e
+		MsgBox, 16, Teams Error, Didn't find Teams window`nUnable to run Teams`n%e%
 }
-Sleep 500
-Tooltip
 return
 
-; F9::
-; ; IfWinExist, ahk_exe "Google Play Music Desktop Player.exe"
-; IfWinExist, ahk_exe teams.exe
-; {
-; 	IfWinNotActive
-; 	{
-; 		WinShow
-; 		WinActivate
-; 	} else {
-; 		WinMinimize
-; 		WinHide
-; 	}
-; } else {
-; 	MsgBox, Did not find Google Play Music!
-; 	; run "Google Play Music Desktop Player.exe"
-; }
-; return
+slack:
+if WinExist(slackWinTitle)
+{
+	WTSFunctions_winShow(SlackHide)
+} else {
+	try run %slackCommand%
+	catch e
+		MsgBox, 16, Slack Error, Didn't find Slack window`nUnable to run Slack`n%e%
+}
+return
+
+8by8:
+if WinExist(8by8WinTitle)
+{
+	WTSFunctions_winShow(8by8Hide)
+} else {
+	try run %8by8Command%
+	catch e
+		MsgBox, 16, 8x8 Work Error, Didn't find 8x8 Work window`nUnable to run 8x8 Work`n%e%
+}
+return
+
+yourPhone:
+if WinExist(YourPhoneWinTitle)
+{
+	WTSFunctions_winShow(YourPhoneHide)
+} else {
+	try run %YourPhoneCommand%
+	catch e
+		MsgBox, 16, Your Phone Error, Didn't find Your Phone window`nUnable to run Your Phone`n%e%
+}
+return
 
 ; ^!p::gotoChannel("DE{space}-{space}TS")					; Direct access to DE - TS "general" channel
 
