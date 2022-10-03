@@ -5,13 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "ahkdbg",
+            "type": "autohotkey",
             "request": "launch",
-            "name": "AHKDebug",
+            "name": "AHK Launch Mode Simple",
             "program": "${file}",
             "stopOnEntry": true,
-            "captureStreams": true,
-            "AhkExecutable": "C:\\\\Program Files\\\\AutoHotkey\\\\AutoHotkey.exe",
+            "runtime": "C:\\\\Program Files\\\\AutoHotkey\\\\",
             "port": 9005
         }
     ]
