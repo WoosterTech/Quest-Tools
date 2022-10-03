@@ -19,6 +19,7 @@ Menu, Tray, Tip, WTS: Master Shortcut Script	; Change tooltip on icon in tray
 
 :*:kw@::karlwooster@gmail.com
 :*:kt@::karl@woostertech.com
+:*:km@::karl.wooster@wsu.edu
 :*:sw@::samlsanderson@gmail.com
 :*:wts*::Wooster Technical Solutions
 
