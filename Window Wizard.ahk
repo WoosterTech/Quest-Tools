@@ -37,6 +37,7 @@ iniProps["YourPhoneCommand"] := "MicrosoftYourPhone_8wekyb3d8bbwe!App"
 
 iniProps := WTSFunctions_readINI(pathINI, iniProps, iniSection)
 
+; windowList := StrSplit(iniProps["windowList"], ",")
 windowList := iniProps["windowList"]
 TeamsHide := iniProps["TeamsHide"]
 SlackHide := iniProps["SlackHide"]
@@ -57,23 +58,29 @@ YourPhoneWinTitle := iniProps["YourPhoneWinTitle"]
 YourPhoneCommand := iniProps["YourPhoneCommand"]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Main Code ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-If "outlook" in windowList
+outlookVar = outlook
+teamsVar = teams
+slackVar = slack
+8by8Var = 8by8
+yourphoneVar = yourphone
+
+If outlookVar in %windowList%
 {
 	Hotkey, %outlookKey%, outlook
 }
-If "teams" in windowList
+If teamsVar in %windowList%
 {
 	Hotkey, %teamsKey%, teams
 }
-If slack in windowList
+If slackVar in %windowList%
 {
 	Hotkey, %slackKey%, slack
 }
-If "8by8" in windowList
+If 8by8Var in %windowList%
 {
 	Hotkey, %8by8Key%, 8by8
 }
-If "yourphone" in windowList
+If yourphoneVar in %windowList%
 {
 	Hotkey, %YourPhoneKey%, yourPhone
 }

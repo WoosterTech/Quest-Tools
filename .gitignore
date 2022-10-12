@@ -3,6 +3,7 @@
 *.lnk
 *.log
 QITools-karl.ini
+*.zip
 
 # VS stuff
 *.suo
