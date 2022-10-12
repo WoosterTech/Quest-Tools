@@ -22,6 +22,7 @@ Menu, Tray, Tip, WTS: Master Shortcut Script	; Change tooltip on icon in tray
 :*:km@::karl.wooster@wsu.edu
 :*:sw@::samlsanderson@gmail.com
 :*:wts*::Wooster Technical Solutions
+:*:wsu*::Washington State University
 
 ; + & CapsLock::CapsLock
 CapsLock & s::SendInput SOLIDWORKS

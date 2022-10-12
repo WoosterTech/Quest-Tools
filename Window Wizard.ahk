@@ -16,10 +16,10 @@ iniSection = WindowWizard
 iniProps := {}
 
 ; Properties from INI file with their defaults
+iniProps["windowList"] := "slack,teams,outlook,8by8,yourphone"
 iniProps["SlackHide"] := true
 iniProps["OutlookHide"] := true
 iniProps["TeamsHide"] := true
-iniProps["3cxHide"] := false
 iniProps["8by8Hide"] := true
 iniProps["YourPhoneHide"] := true
 iniProps["outlookKey"] := "F10"
@@ -37,10 +37,10 @@ iniProps["YourPhoneCommand"] := "MicrosoftYourPhone_8wekyb3d8bbwe!App"
 
 iniProps := WTSFunctions_readINI(pathINI, iniProps, iniSection)
 
+windowList := iniProps["windowList"]
 TeamsHide := iniProps["TeamsHide"]
 SlackHide := iniProps["SlackHide"]
 OutlookHide := iniProps["TeamsHide"]
-3cxHide := iniProps["3cxHide"]
 8by8Hide := iniProps["8by8Hide"]
 YourPhoneHide := iniProps["YourPhoneHide"]
 outlookKey := iniProps["outlookKey"]
@@ -57,11 +57,26 @@ YourPhoneWinTitle := iniProps["YourPhoneWinTitle"]
 YourPhoneCommand := iniProps["YourPhoneCommand"]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Main Code ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-Hotkey, %outlookKey%, outlook
-Hotkey, %teamsKey%, teams
-Hotkey, %slackKey%, slack
-Hotkey, %8by8Key%, 8by8
-Hotkey, %YourPhoneKey%, yourPhone
+If "outlook" in windowList
+{
+	Hotkey, %outlookKey%, outlook
+}
+If "teams" in windowList
+{
+	Hotkey, %teamsKey%, teams
+}
+If slack in windowList
+{
+	Hotkey, %slackKey%, slack
+}
+If "8by8" in windowList
+{
+	Hotkey, %8by8Key%, 8by8
+}
+If "yourphone" in windowList
+{
+	Hotkey, %YourPhoneKey%, yourPhone
+}
 return
 
 outlook:
